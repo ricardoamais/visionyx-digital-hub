@@ -16,6 +16,7 @@ const Header = () => {
   const sectionMap: Record<string, string> = {
     "Início": "hero",
     "Serviços": "servicos",
+    "Empresas": "empresas",
     "Sobre": "sobre",
     "Contato": "contato",
   };
