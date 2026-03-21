@@ -2,7 +2,7 @@ import { useState } from "react";
 import { Menu, X, MessageCircle } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 
-const navItems = ["Início", "Serviços", "Sobre", "Contato"];
+const navItems = ["Início", "Serviços", "Empresas", "Sobre", "Contato"];
 
 const Header = () => {
   const [mobileOpen, setMobileOpen] = useState(false);
@@ -16,6 +16,7 @@ const Header = () => {
   const sectionMap: Record<string, string> = {
     "Início": "hero",
     "Serviços": "servicos",
+    "Empresas": "empresas",
     "Sobre": "sobre",
     "Contato": "contato",
   };
