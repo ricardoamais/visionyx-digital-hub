@@ -36,7 +36,13 @@ const Contact = () => {
           >
             <div>
               <h3 className="text-xl font-bold mb-1">Visionyx Informática</h3>
-              <p className="text-muted-foreground font-body">Manutenção e suporte técnico</p>
+              <p className="text-muted-foreground font-body">Manutenção e suporte técnico para pessoas físicas e empresas</p>
+            </div>
+
+            <div className="bg-card border border-primary/20 rounded-xl p-4 mb-2">
+              <p className="text-sm text-muted-foreground font-body">
+                <span className="text-primary font-semibold">Empresas:</span> Solicite uma proposta de contrato de suporte técnico mensal com atendimento prioritário.
+              </p>
             </div>
 
             <a
