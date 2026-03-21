@@ -1,14 +1,15 @@
 import { motion } from "framer-motion";
-import { Settings, Sparkles, Wrench, Monitor, Download, Database } from "lucide-react";
+import { Settings, Sparkles, Wrench, Monitor, Download, Database, ArrowRight } from "lucide-react";
+import { Link } from "react-router-dom";
 import desktopImg from "@/assets/desktop-pc.jpg";
 
 const services = [
-  { icon: Settings, title: "Formatação", desc: "Sistema otimizado e limpo" },
-  { icon: Sparkles, title: "Limpeza", desc: "Interna e externa completa" },
-  { icon: Wrench, title: "Montagem", desc: "De computadores sob medida" },
-  { icon: Monitor, title: "Desktop e Notebook", desc: "Reparo e manutenção" },
-  { icon: Download, title: "Instalação", desc: "De programas e drivers" },
-  { icon: Database, title: "Backup", desc: "Recuperação de dados" },
+  { icon: Settings, title: "Formatação", desc: "Sistema otimizado e limpo", link: "/formatacao-de-computador" },
+  { icon: Sparkles, title: "Limpeza", desc: "Interna e externa completa", link: "/limpeza-de-computador" },
+  { icon: Wrench, title: "Montagem", desc: "De computadores sob medida", link: "/montagem-de-pc" },
+  { icon: Monitor, title: "Desktop e Notebook", desc: "Reparo e manutenção", link: "/manutencao-de-notebook" },
+  { icon: Download, title: "Instalação", desc: "De programas e drivers", link: "/formatacao-de-computador" },
+  { icon: Database, title: "Backup", desc: "Recuperação de dados", link: "/backup-e-recuperacao-de-dados" },
 ];
 
 const Services = () => (
@@ -42,20 +43,24 @@ const Services = () => (
 
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
         {services.map((s, i) => (
-          <motion.div
-            key={s.title}
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ delay: i * 0.1 }}
-            className="group bg-card border border-border rounded-xl p-6 hover:border-primary/50 transition-all hover:box-glow"
-          >
-            <div className="w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center mb-4 group-hover:bg-primary/20 transition-colors">
-              <s.icon className="text-primary" size={24} />
-            </div>
-            <h3 className="text-lg font-bold mb-1">{s.title}</h3>
-            <p className="text-muted-foreground text-sm font-body">{s.desc}</p>
-          </motion.div>
+          <Link to={s.link} key={s.title}>
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: i * 0.1 }}
+              className="group bg-card border border-border rounded-xl p-6 hover:border-primary/50 transition-all hover:box-glow h-full"
+            >
+              <div className="w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center mb-4 group-hover:bg-primary/20 transition-colors">
+                <s.icon className="text-primary" size={24} />
+              </div>
+              <h3 className="text-lg font-bold mb-1">{s.title}</h3>
+              <p className="text-muted-foreground text-sm font-body mb-3">{s.desc}</p>
+              <span className="text-primary text-sm font-semibold flex items-center gap-1 opacity-0 group-hover:opacity-100 transition-opacity">
+                Saiba mais <ArrowRight size={14} />
+              </span>
+            </motion.div>
+          </Link>
         ))}
       </div>
     </div>

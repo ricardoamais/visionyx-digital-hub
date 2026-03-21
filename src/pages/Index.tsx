@@ -7,10 +7,19 @@ import Enterprise from "@/components/Enterprise";
 import About from "@/components/About";
 import Contact from "@/components/Contact";
 import Footer from "@/components/Footer";
+import SEOHead from "@/components/SEOHead";
+import JsonLd from "@/components/JsonLd";
+import ShareWhatsApp from "@/components/ShareWhatsApp";
+import GoogleMap from "@/components/GoogleMap";
 import { MessageCircle } from "lucide-react";
 
 const Index = () => (
   <div className="min-h-screen">
+    <SEOHead
+      title="Visionyx Informática - Manutenção de Computadores em Curitiba"
+      description="Manutenção de computadores, formatação, limpeza, montagem de PC, suporte técnico para empresas em Curitiba. Técnico de informática. (41) 99523-6952."
+    />
+    <JsonLd />
     <Header />
     <Hero />
     <Services />
@@ -19,7 +28,14 @@ const Index = () => (
     <Enterprise />
     <About />
     <Contact />
+    <section className="bg-surface pb-16">
+      <div className="container mx-auto px-4">
+        <GoogleMap />
+      </div>
+    </section>
     <Footer />
+
+    <ShareWhatsApp />
 
     {/* Floating WhatsApp button */}
     <a
