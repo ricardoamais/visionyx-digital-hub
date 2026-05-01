@@ -30,7 +30,7 @@ const Enterprise = () => (
         </div>
 
         <h2 className="text-3xl md:text-5xl font-bold mb-4">
-          Atendimento para <span className="text-primary text-glow">Empresas</span>
+          Suporte Técnico para <span className="text-primary text-glow">Empresas em Curitiba/PR</span>
         </h2>
         <p className="text-muted-foreground max-w-3xl mx-auto font-body text-lg leading-relaxed">
           Oferecemos suporte técnico especializado para empresas através de contratos mensais, garantindo atendimento rápido, manutenção preventiva, suporte remoto e presencial, monitoramento de equipamentos e prioridade em chamados.

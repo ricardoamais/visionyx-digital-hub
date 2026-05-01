@@ -6,7 +6,7 @@ const Hero = () => (
   <section id="hero" className="relative min-h-screen flex items-center justify-center overflow-hidden pt-16">
     {/* Background image */}
     <div className="absolute inset-0">
-      <img src={heroImg} alt="Computadores" className="w-full h-full object-cover opacity-30" />
+      <img src={heroImg} alt="Manutenção de computadores em Curitiba" className="w-full h-full object-cover opacity-30" />
       <div className="absolute inset-0 bg-gradient-to-b from-background/60 via-background/80 to-background" />
     </div>
 
@@ -25,9 +25,8 @@ const Hero = () => (
           </span>
         </div>
 
-        <h1 className="text-4xl sm:text-5xl md:text-7xl font-bold tracking-tight leading-tight mb-6">
-          MANUTENÇÃO EM{" "}
-          <span className="text-primary text-glow">INFORMÁTICA</span>
+        <h1 className="text-4xl sm:text-5xl md:text-7xl font-bold tracking-tight leading-tight mb-6 uppercase">
+          Manutenção de Computadores e <span className="text-primary text-glow">Criação de Sites em Curitiba</span>
         </h1>
 
         <p className="text-muted-foreground text-lg md:text-xl max-w-2xl mx-auto mb-10 font-body">
