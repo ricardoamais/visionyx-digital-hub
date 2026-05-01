@@ -22,7 +22,7 @@ const Contact = () => {
           className="text-center mb-16"
         >
           <h2 className="text-3xl md:text-5xl font-bold mb-4">
-            Entre em <span className="text-primary text-glow">Contato</span>
+            Assistência Técnica em <span className="text-primary text-glow">Curitiba</span>
           </h2>
         </motion.div>
 
@@ -35,8 +35,8 @@ const Contact = () => {
             className="space-y-6"
           >
             <div>
-              <h3 className="text-xl font-bold mb-1">Visionyx Informática</h3>
-              <p className="text-muted-foreground font-body">Manutenção e suporte técnico para pessoas físicas e empresas</p>
+              <h3 className="text-xl font-bold mb-1">Visionyx Informática Curitiba</h3>
+              <p className="text-muted-foreground font-body">Manutenção, criação de sites e suporte técnico em Curitiba e região.</p>
             </div>
 
             <div className="bg-card border border-primary/20 rounded-xl p-4 mb-2">

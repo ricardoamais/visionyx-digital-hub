@@ -23,7 +23,7 @@ const Services = () => (
           viewport={{ once: true }}
         >
           <h2 className="text-3xl md:text-5xl font-bold mb-4">
-            Nossos <span className="text-primary text-glow">Serviços</span>
+            Serviços de <span className="text-primary text-glow">Informática em Curitiba</span>
           </h2>
           <p className="text-muted-foreground max-w-xl font-body mb-6">
             Oferecemos soluções completas para seu computador, desde formatação até montagem personalizada.
