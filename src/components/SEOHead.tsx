@@ -9,7 +9,7 @@ interface SEOHeadProps {
 
 const SEOHead = ({ title, description, canonical }: SEOHeadProps) => {
   const location = useLocation();
-  const baseUrl = "https://visonyxinformatica.com.br";
+  const baseUrl = "https://visionyx.com.br";
   const url = canonical || `${baseUrl}${location.pathname}`;
 
   useEffect(() => {
