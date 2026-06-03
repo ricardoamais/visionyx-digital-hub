@@ -10,7 +10,7 @@ const ShareWhatsApp = () => {
   return (
     <button
       onClick={handleShare}
-      className="fixed bottom-6 left-6 z-50 bg-card border border-border hover:border-primary/50 p-3 rounded-full transition-all hover:scale-110 hover:box-glow"
+      className="fixed bottom-8 left-8 z-50 bg-white border border-slate-200 hover:border-primary p-4 rounded-full transition-all hover:scale-110 shadow-lg"
       aria-label="Compartilhar no WhatsApp"
       title="Compartilhar no WhatsApp"
     >

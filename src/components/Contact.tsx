@@ -13,7 +13,7 @@ const Contact = () => {
   };
 
   return (
-    <section id="contato" className="py-24 bg-surface">
+    <section id="contato" className="py-24 bg-slate-50">
       <div className="container mx-auto px-4">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -21,8 +21,8 @@ const Contact = () => {
           viewport={{ once: true }}
           className="text-center mb-16"
         >
-          <h2 className="text-3xl md:text-5xl font-bold mb-4">
-            Assistência Técnica em <span className="text-primary text-glow">Curitiba</span>
+          <h2 className="text-3xl md:text-5xl font-extrabold mb-4 text-slate-900 leading-tight">
+            Pronto para Resolver seus <span className="text-primary">Problemas de TI?</span>
           </h2>
         </motion.div>
 
@@ -35,13 +35,15 @@ const Contact = () => {
             className="space-y-6"
           >
             <div>
-              <h3 className="text-xl font-bold mb-1">Visionyx Informática Curitiba</h3>
-              <p className="text-muted-foreground font-body">Manutenção, criação de sites e suporte técnico em Curitiba e região.</p>
+              <h3 className="text-2xl font-bold mb-4 text-slate-900">Visionyx Informática</h3>
+              <p className="text-slate-600 text-lg leading-relaxed mb-8">
+                Atendimento presencial em Curitiba e suporte remoto para todo o Brasil. Escolha o canal de sua preferência.
+              </p>
             </div>
 
-            <div className="bg-card border border-primary/20 rounded-xl p-4 mb-2">
-              <p className="text-sm text-muted-foreground font-body">
-                <span className="text-primary font-semibold">Empresas:</span> Solicite uma proposta de contrato de suporte técnico mensal com atendimento prioritário.
+            <div className="bg-primary/5 border border-primary/20 rounded-2xl p-6 mb-8">
+              <p className="text-slate-700 font-medium italic">
+                "Atendimento especializado para empresas com foco em contratos de manutenção preventiva e corretiva."
               </p>
             </div>
 
@@ -49,7 +51,7 @@ const Contact = () => {
               href="https://wa.me/5541995236952"
               target="_blank"
               rel="noopener noreferrer"
-              className="flex items-center gap-3 bg-green-600 hover:bg-green-500 text-foreground px-6 py-4 rounded-xl font-semibold transition-colors w-fit"
+              className="flex items-center gap-3 bg-[#25D366] hover:bg-[#20ba56] text-white px-8 py-4 rounded-xl font-bold transition-all shadow-lg shadow-green-200 w-fit mb-6"
             >
               <MessageCircle size={20} />
               (41) 99523-6952
@@ -75,22 +77,22 @@ const Contact = () => {
               value={name}
               onChange={(e) => setName(e.target.value)}
               required
-              className="w-full bg-card border border-border rounded-xl px-4 py-3 text-foreground placeholder:text-muted-foreground focus:outline-none focus:border-primary/50 focus:box-glow transition-all font-body"
+              className="w-full bg-white border border-slate-200 rounded-xl px-5 py-4 text-slate-900 placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all shadow-sm"
             />
             <textarea
-              placeholder="Sua mensagem"
+              placeholder="Sua mensagem (ex: orçamento para formatação)"
               value={message}
               onChange={(e) => setMessage(e.target.value)}
               required
-              rows={4}
-              className="w-full bg-card border border-border rounded-xl px-4 py-3 text-foreground placeholder:text-muted-foreground focus:outline-none focus:border-primary/50 focus:box-glow transition-all resize-none font-body"
+              rows={5}
+              className="w-full bg-white border border-slate-200 rounded-xl px-5 py-4 text-slate-900 placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all shadow-sm resize-none"
             />
             <button
               type="submit"
-              className="flex items-center gap-2 bg-primary hover:bg-primary/90 text-primary-foreground px-6 py-3 rounded-xl font-semibold transition-all hover:scale-105 w-full justify-center"
+              className="flex items-center gap-3 bg-primary hover:bg-primary/90 text-white px-8 py-5 rounded-xl font-bold transition-all shadow-xl shadow-primary/20 w-full justify-center group"
             >
-              <Send size={18} />
-              Enviar via WhatsApp
+              <Send size={20} className="group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
+              Enviar Mensagem agora
             </button>
           </motion.form>
         </div>
