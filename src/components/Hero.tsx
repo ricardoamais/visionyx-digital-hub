@@ -3,42 +3,41 @@ import { MessageCircle } from "lucide-react";
 import heroImg from "@/assets/hero-computers.jpg";
 
 const Hero = () => (
-  <section id="hero" className="relative min-h-screen flex items-center justify-center overflow-hidden pt-16">
-    {/* Background image */}
+  <section id="hero" className="relative min-h-[90vh] flex items-center justify-center overflow-hidden pt-20 bg-slate-50">
+    {/* Professional grid pattern or subtle background */}
+    <div className="absolute inset-0 opacity-[0.03]" style={{ backgroundImage: 'radial-gradient(#000 1px, transparent 1px)', backgroundSize: '40px 40px' }} />
+    
+    {/* Background image with better overlay */}
     <div className="absolute inset-0">
-      <img src={heroImg} alt="Manutenção de computadores em Curitiba" className="w-full h-full object-cover opacity-30" />
-      <div className="absolute inset-0 bg-gradient-to-b from-background/60 via-background/80 to-background" />
+      <img src={heroImg} alt="Manutenção de computadores em Curitiba" className="w-full h-full object-cover opacity-10" />
+      <div className="absolute inset-0 bg-gradient-to-r from-white via-white/95 to-transparent" />
     </div>
 
-    {/* Glow effects */}
-    <div className="absolute top-1/3 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] rounded-full bg-primary/10 blur-[150px]" />
-
-    <div className="container mx-auto px-4 text-center relative z-10">
+    <div className="container mx-auto px-4 relative z-10 text-left">
       <motion.div
         initial={{ opacity: 0, y: 30 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.8 }}
       >
-        <div className="inline-block border border-border rounded-full px-6 py-2 mb-8">
-          <span className="text-sm text-muted-foreground tracking-widest uppercase font-body">
-            Agilidade • Qualidade • Confiança
+        <div className="inline-flex items-center gap-2 bg-primary/10 text-primary border border-primary/20 rounded-full px-4 py-1.5 mb-8">
+          <span className="text-xs font-bold tracking-wider uppercase">
+            Curitiba • Paraná
           </span>
         </div>
 
-        <h1 className="text-4xl sm:text-5xl md:text-7xl font-bold tracking-tight leading-tight mb-6 uppercase">
-          Manutenção de Computadores e <span className="text-primary text-glow">Criação de Sites em Curitiba</span>
+        <h1 className="text-4xl sm:text-5xl md:text-6xl font-extrabold tracking-tight leading-[1.1] mb-6 text-slate-900 max-w-4xl">
+          Suporte Técnico e <span className="text-primary">Manutenção de Computadores</span> para sua Empresa
         </h1>
 
-        <p className="text-muted-foreground text-lg md:text-xl max-w-2xl mx-auto mb-10 font-body">
-          Soluções profissionais em manutenção, formatação e montagem de computadores com rapidez e qualidade.
+        <p className="text-slate-600 text-lg md:text-xl max-w-2xl mb-10 leading-relaxed">
+          Atendimento especializado em Curitiba com agilidade e transparência. Do suporte corporativo à manutenção preventiva.
         </p>
 
         <a
           href="https://wa.me/5541995236952"
           target="_blank"
           rel="noopener noreferrer"
-          className="inline-flex items-center gap-3 bg-green-600 hover:bg-green-500 text-foreground px-8 py-4 rounded-xl text-lg font-semibold transition-all hover:scale-105"
-          style={{ boxShadow: "0 0 20px rgba(34,197,94,0.3)" }}
+          className="inline-flex items-center gap-3 bg-primary hover:bg-primary/90 text-white px-10 py-5 rounded-lg text-lg font-bold shadow-xl shadow-primary/20 transition-all hover:-translate-y-1"
         >
           <MessageCircle size={22} />
           Falar no WhatsApp
