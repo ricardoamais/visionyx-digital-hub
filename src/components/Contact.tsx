@@ -77,22 +77,22 @@ const Contact = () => {
               value={name}
               onChange={(e) => setName(e.target.value)}
               required
-              className="w-full bg-card border border-border rounded-xl px-4 py-3 text-foreground placeholder:text-muted-foreground focus:outline-none focus:border-primary/50 focus:box-glow transition-all font-body"
+              className="w-full bg-white border border-slate-200 rounded-xl px-5 py-4 text-slate-900 placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all shadow-sm"
             />
             <textarea
-              placeholder="Sua mensagem"
+              placeholder="Sua mensagem (ex: orçamento para formatação)"
               value={message}
               onChange={(e) => setMessage(e.target.value)}
               required
-              rows={4}
-              className="w-full bg-card border border-border rounded-xl px-4 py-3 text-foreground placeholder:text-muted-foreground focus:outline-none focus:border-primary/50 focus:box-glow transition-all resize-none font-body"
+              rows={5}
+              className="w-full bg-white border border-slate-200 rounded-xl px-5 py-4 text-slate-900 placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all shadow-sm resize-none"
             />
             <button
               type="submit"
-              className="flex items-center gap-2 bg-primary hover:bg-primary/90 text-primary-foreground px-6 py-3 rounded-xl font-semibold transition-all hover:scale-105 w-full justify-center"
+              className="flex items-center gap-3 bg-primary hover:bg-primary/90 text-white px-8 py-5 rounded-xl font-bold transition-all shadow-xl shadow-primary/20 w-full justify-center group"
             >
-              <Send size={18} />
-              Enviar via WhatsApp
+              <Send size={20} className="group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
+              Enviar Mensagem agora
             </button>
           </motion.form>
         </div>
