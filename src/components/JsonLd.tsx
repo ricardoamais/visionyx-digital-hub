@@ -4,7 +4,7 @@ const JsonLd = () => {
     "@type": "LocalBusiness",
     "name": "Visionyx Informática",
     "description": "Manutenção de computadores, formatação, limpeza, montagem de PC e suporte técnico em Curitiba. Atendimento para empresas.",
-    "url": "https://visonyxinformatica.com.br",
+    "url": "https://visionyx.com.br",
     "telephone": "+5541995236952",
     "address": {
       "@type": "PostalAddress",
