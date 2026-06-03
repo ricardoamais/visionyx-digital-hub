@@ -12,7 +12,7 @@ const services = [
 ];
 
 const Services = () => (
-  <section id="servicos" className="py-24 bg-white relative">
+  <section id="servicos" className="py-16 bg-[#EBF3FB] relative">
     <div className="container mx-auto px-4 relative z-10">
       <div className="text-center mb-20">
         <motion.div
@@ -30,7 +30,7 @@ const Services = () => (
         </motion.div>
       </div>
 
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
         {services.map((s, i) => (
           <Link to={s.link} key={s.title}>
             <motion.div
@@ -38,13 +38,13 @@ const Services = () => (
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: i * 0.1 }}
-              className="group bg-white border border-[#D3D1C7] rounded-2xl p-8 hover:border-[#185FA5] hover:shadow-2xl hover:shadow-[#185FA5]/10 transition-all duration-300 h-full relative overflow-hidden"
+              className="group bg-white border border-[#D3D1C7] rounded-2xl p-5 hover:border-[#185FA5] hover:shadow-2xl hover:shadow-[#185FA5]/10 transition-all duration-300 h-full relative overflow-hidden"
             >
-              <div className="w-16 h-16 rounded-xl bg-[#E6F1FB] flex items-center justify-center mb-8 group-hover:bg-[#185FA5] group-hover:text-white transition-all duration-300 text-[#185FA5]">
-                <s.icon size={32} />
+              <div className="w-10 h-10 rounded-xl bg-[#E6F1FB] flex items-center justify-center mb-4 group-hover:bg-[#185FA5] group-hover:text-white transition-all duration-300 text-[#185FA5]">
+                <s.icon size={20} />
               </div>
-              <h3 className="text-2xl font-bold mb-4 text-[#042C53] group-hover:text-[#185FA5] transition-colors">{s.title}</h3>
-              <p className="text-[#5F5E5A] text-lg mb-8 leading-relaxed">{s.desc}</p>
+              <h3 className="text-xl font-bold mb-2 text-[#042C53] group-hover:text-[#185FA5] transition-colors">{s.title}</h3>
+              <p className="text-[#5F5E5A] text-lg mb-3 leading-relaxed">{s.desc}</p>
               <span className="text-[#185FA5] text-sm font-bold flex items-center gap-2">
                 Saiba mais <ArrowRight size={16} />
               </span>

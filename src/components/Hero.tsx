@@ -2,7 +2,7 @@ import { motion } from "framer-motion";
 import { MessageCircle, CheckCircle2 } from "lucide-react";
 
 const Hero = () => (
-  <section id="hero" className="relative min-h-[90vh] flex items-center justify-center overflow-hidden pt-20 bg-white">
+  <section id="hero" className="relative min-h-[90vh] flex items-center justify-center overflow-hidden pt-20 bg-[#EBF3FB]">
     {/* Subtle gradient background */}
     <div className="absolute top-0 right-0 w-[40%] h-[40%] bg-[#E6F1FB] blur-[120px] rounded-full opacity-60" />
     
@@ -74,7 +74,7 @@ const Hero = () => (
       </div>
     </div>
 
-    <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-white to-transparent" />
+    <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-[#EBF3FB] to-transparent" />
   </section>
 );
 
