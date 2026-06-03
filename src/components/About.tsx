@@ -2,18 +2,17 @@ import { motion } from "framer-motion";
 import repairImg from "@/assets/repair-service.jpg";
 
 const About = () => (
-  <section id="sobre" className="py-24 relative">
-    <div className="absolute inset-0 gradient-radial opacity-30" />
+  <section id="sobre" className="py-24 bg-white relative">
     <div className="container mx-auto px-4 relative z-10">
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
         <motion.div
           initial={{ opacity: 0, x: -30 }}
           whileInView={{ opacity: 1, x: 0 }}
           viewport={{ once: true }}
-          className="relative rounded-2xl overflow-hidden border border-border box-glow order-2 lg:order-1"
+          className="relative rounded-2xl overflow-hidden border border-slate-200 shadow-2xl order-2 lg:order-1"
         >
           <img src={repairImg} alt="Técnico de informática em Curitiba reparando computador" className="w-full h-72 lg:h-96 object-cover" />
-          <div className="absolute inset-0 bg-gradient-to-r from-background/60 to-transparent" />
+          <div className="absolute inset-0 bg-gradient-to-r from-slate-900/20 to-transparent" />
         </motion.div>
 
         <motion.div
@@ -22,10 +21,10 @@ const About = () => (
           viewport={{ once: true }}
           className="order-1 lg:order-2"
         >
-          <h2 className="text-3xl md:text-5xl font-bold mb-6">
-            Especialista em <span className="text-primary text-glow">Tecnologia no Paraná</span>
+          <h2 className="text-3xl md:text-5xl font-extrabold mb-8 text-slate-900 leading-tight">
+            Excelência em <span className="text-primary">Tecnologia</span> no Paraná
           </h2>
-          <div className="space-y-4 text-muted-foreground font-body leading-relaxed text-lg">
+          <div className="space-y-6 text-slate-600 text-lg leading-relaxed">
             <p>
               A <strong className="text-foreground">Visionyx Informática</strong> é sua parceira ideal para manutenção de computadores, notebooks e suporte técnico em Curitiba. Atuamos com foco na qualidade, agilidade e satisfação dos nossos clientes em todo o Paraná.
             </p>
