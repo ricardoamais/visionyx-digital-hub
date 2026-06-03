@@ -1,4 +1,5 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
+@import "@fontsource/dm-serif-display";
+@import "@fontsource-variable/plus-jakarta-sans";
 
 @tailwind base;
 @tailwind components;
@@ -6,7 +7,7 @@
 
 @layer base {
   :root {
-    --background: 210 20% 98%;
+    --background: 0 0% 100%;
     --foreground: 222 47% 11%;
 
     --card: 0 0% 100%;
@@ -15,7 +16,8 @@
     --popover: 0 0% 100%;
     --popover-foreground: 222 47% 11%;
 
-    --primary: 221 83% 53%;
+    /* Corporate Blue Palette */
+    --primary: 210 75% 37%; /* #185FA5 */
     --primary-foreground: 210 40% 98%;
 
     --secondary: 210 40% 96.1%;
@@ -24,25 +26,24 @@
     --muted: 210 40% 96.1%;
     --muted-foreground: 215.4 16.3% 46.9%;
 
-    --accent: 210 40% 96.1%;
-    --accent-foreground: 222 47% 11.2%;
+    --accent: 210 80% 94%; /* #E6F1FB */
+    --accent-foreground: 210 75% 37%;
 
     --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 210 40% 98%;
 
-    --border: 214.3 31.8% 91.4%;
+    --border: 52 5% 80%; /* #D3D1C7 */
     --input: 214.3 31.8% 91.4%;
-    --ring: 221 83% 53%;
+    --ring: 210 75% 37%;
 
-    --radius: 0.5rem;
+    --radius: 0.75rem;
 
-    --neon-glow: 221 83% 53%;
-    --surface: 210 20% 96%;
-    --surface-hover: 210 20% 94%;
+    --surface: 47 16% 94%; /* #F1EFE8 */
+    --surface-hover: 210 70% 54%; /* #378ADD */
 
     --sidebar-background: 220 20% 6%;
     --sidebar-foreground: 0 0% 95%;
-    --sidebar-primary: 207 90% 54%;
+    --sidebar-primary: 210 75% 37%;
     --sidebar-primary-foreground: 0 0% 100%;
     --sidebar-accent: 220 15% 15%;
     --sidebar-accent-foreground: 0 0% 95%;
