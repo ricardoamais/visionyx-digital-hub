@@ -28,7 +28,7 @@ const Index = () => (
     <Enterprise />
     <About />
     <Contact />
-    <section className="bg-surface pb-16">
+    <section className="bg-white pb-24">
       <div className="container mx-auto px-4">
         <GoogleMap />
       </div>
