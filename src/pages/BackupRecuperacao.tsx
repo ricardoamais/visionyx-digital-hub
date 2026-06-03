@@ -14,10 +14,11 @@ const benefits = [
 const BackupRecuperacao = () => (
   <ServicePageLayout
     title="Backup e Recuperação de Dados"
-    seoTitle="Backup e Recuperação de Dados em Curitiba | Visionyx Informática"
-    seoDescription="Backup e recuperação de dados em Curitiba. Recuperação de HD, SSD e pendrive. Backup empresarial automatizado. (41) 99523-6952."
+    seoTitle="Recuperação de Dados em Curitiba | Backup Profissional | Visionyx"
+    seoDescription="Recuperação de dados e backup profissional em Curitiba. HD formatado, vírus, falha de sistema. Resgate seus arquivos com técnicos especializados. (41) 99523-6952."
     heroText="Proteja seus dados com backup profissional e recuperação segura de arquivos."
     whatsappMessage="Olá! Preciso de ajuda com backup ou recuperação de dados."
+    keywords="recuperação de dados Curitiba, recuperar arquivos deletados Curitiba, backup empresarial Curitiba, HD corrompido Curitiba, recuperar HD Curitiba"
   >
     <div className="max-w-3xl mx-auto">
       <motion.div

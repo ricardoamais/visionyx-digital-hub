@@ -14,14 +14,15 @@ interface ServicePageLayoutProps {
   heroText: string;
   children: ReactNode;
   whatsappMessage: string;
+  keywords?: string;
 }
 
-const ServicePageLayout = ({ title, seoTitle, seoDescription, heroText, children, whatsappMessage }: ServicePageLayoutProps) => {
+const ServicePageLayout = ({ title, seoTitle, seoDescription, heroText, children, whatsappMessage, keywords }: ServicePageLayoutProps) => {
   const navigate = useNavigate();
 
   return (
     <div className="min-h-screen bg-white">
-      <SEOHead title={seoTitle} description={seoDescription} />
+      <SEOHead title={seoTitle} description={seoDescription} keywords={keywords} />
       <Header />
 
       {/* Hero */}

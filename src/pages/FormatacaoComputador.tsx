@@ -14,10 +14,11 @@ const benefits = [
 const FormatacaoComputador = () => (
   <ServicePageLayout
     title="Formatação de Computador"
-    seoTitle="Formatação de Computador em Curitiba | Visionyx Informática"
-    seoDescription="Formatação de computador e notebook em Curitiba. Sistema otimizado, instalação de drivers e programas. A partir de R$90. Ligue (41) 99523-6952."
+    seoTitle="Formatação de Computador em Curitiba a partir de R$90 | Visionyx"
+    seoDescription="Formatação de computador e notebook em Curitiba a partir de R$90. Sistema limpo, drivers atualizados, remoção de vírus e instalação de programas. Ligue (41) 99523-6952."
     heroText="Formatação profissional com sistema otimizado, instalação de drivers e programas. Seu computador como novo!"
     whatsappMessage="Olá! Gostaria de agendar uma formatação de computador."
+    keywords="formatação de computador Curitiba, formatar notebook Curitiba, formatação PC Curitiba barato, formatar computador Curitiba preço"
   >
     <div className="max-w-3xl mx-auto">
       <motion.div

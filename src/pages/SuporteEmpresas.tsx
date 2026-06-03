@@ -16,10 +16,11 @@ const benefits = [
 const SuporteEmpresas = () => (
   <ServicePageLayout
     title="Suporte para Empresas"
-    seoTitle="Suporte Técnico para Empresas em Curitiba | Visionyx Informática"
-    seoDescription="Suporte técnico empresarial em Curitiba. Contrato mensal de manutenção, atendimento remoto e presencial, monitoramento. (41) 99523-6952."
+    seoTitle="Suporte Técnico para Empresas em Curitiba | Contrato TI | Visionyx"
+    seoDescription="Suporte técnico e TI para empresas em Curitiba. Contratos mensais de manutenção preventiva, suporte remoto e presencial, redes e servidores. (41) 99523-6952."
     heroText="Suporte técnico especializado para empresas com contratos mensais e atendimento prioritário."
     whatsappMessage="Olá! Gostaria de solicitar uma proposta de suporte técnico para minha empresa."
+    keywords="suporte técnico empresas Curitiba, TI para empresas Curitiba, contrato manutenção TI Curitiba, suporte informática empresas Curitiba, gestão TI Curitiba"
   >
     <div className="max-w-3xl mx-auto">
       <motion.div

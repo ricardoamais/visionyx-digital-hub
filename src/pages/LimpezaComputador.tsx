@@ -15,9 +15,10 @@ const LimpezaComputador = () => (
   <ServicePageLayout
     title="Limpeza de Computador"
     seoTitle="Limpeza de Computador em Curitiba | Visionyx Informática"
-    seoDescription="Limpeza interna e externa de computadores e notebooks em Curitiba. Troca de pasta térmica, limpeza de coolers. (41) 99523-6952."
+    seoDescription="Limpeza interna e externa de computadores e notebooks em Curitiba. Remoção de poeira, pasta térmica e manutenção preventiva. Agende pelo (41) 99523-6952."
     heroText="Limpeza profissional interna e externa para manter seu equipamento funcionando perfeitamente."
     whatsappMessage="Olá! Gostaria de agendar uma limpeza de computador."
+    keywords="limpeza de computador Curitiba, limpeza notebook Curitiba, manutenção preventiva computador Curitiba, pasta térmica notebook Curitiba"
   >
     <div className="max-w-3xl mx-auto">
       <motion.div

@@ -1,3 +1,8 @@
 User-agent: *
 Allow: /
+
 Sitemap: https://visionyx.com.br/sitemap.xml
+
+# Bloquear arquivos desnecessários
+Disallow: /src/
+Disallow: /*.json$
