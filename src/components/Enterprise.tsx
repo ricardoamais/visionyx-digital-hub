@@ -45,10 +45,19 @@ const Enterprise = () => (
         className="mb-16"
       >
         <p className="text-center text-slate-500 text-sm font-bold uppercase tracking-[0.2em] mb-8">Empresas que confiam em nosso trabalho</p>
-        <div className="flex flex-wrap justify-center items-center gap-8 md:gap-16 opacity-70 grayscale hover:grayscale-0 transition-all duration-500">
-          <div className="text-white text-xl md:text-2xl font-black tracking-tighter">TINTAS DARKA</div>
-          <div className="text-white text-xl md:text-2xl font-extrabold tracking-tight italic">HERING STORE</div>
-          <div className="text-white text-xl md:text-2xl font-bold tracking-widest border-2 border-white px-3 py-1">ADS ELETRO</div>
+        <div className="flex flex-wrap justify-center items-center gap-12 md:gap-20">
+          <div className="text-center group">
+            <div className="text-white text-xl md:text-2xl font-black tracking-tighter group-hover:text-primary transition-colors">TINTAS DARKA</div>
+            <div className="text-slate-500 text-[10px] font-bold uppercase tracking-wider mt-1">41 Filiais • Curitiba/PR</div>
+          </div>
+          <div className="text-center group">
+            <div className="text-white text-xl md:text-2xl font-extrabold tracking-tight italic group-hover:text-primary transition-colors">HERING STORE</div>
+            <div className="text-slate-500 text-[10px] font-bold uppercase tracking-wider mt-1">10 Unidades • Curitiba</div>
+          </div>
+          <div className="text-center group">
+            <div className="text-white text-xl md:text-2xl font-bold tracking-widest border-2 border-white px-3 py-1 group-hover:border-primary group-hover:text-primary transition-colors">ADS ELETRO</div>
+            <div className="text-slate-500 text-[10px] font-bold uppercase tracking-wider mt-1">Suporte Especializado</div>
+          </div>
         </div>
       </motion.div>
 
