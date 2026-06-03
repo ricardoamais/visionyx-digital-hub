@@ -48,7 +48,16 @@ const Index = () => (
       href="https://wa.me/5541995236952"
       target="_blank"
       rel="noopener noreferrer"
-      className="fixed bottom-8 right-8 z-50 bg-[#25D366] hover:bg-[#20ba56] p-5 rounded-full shadow-2xl transition-all hover:scale-110"
+      className="fixed bottom-5 right-5 z-50 flex md:hidden items-center justify-center w-14 h-14 bg-[#25D366] hover:bg-[#20ba56] rounded-full shadow-xl shadow-green-400/30 transition-all hover:scale-110"
+      aria-label="WhatsApp"
+    >
+      <MessageCircle size={28} className="text-white" />
+    </a>
+    <a
+      href="https://wa.me/5541995236952"
+      target="_blank"
+      rel="noopener noreferrer"
+      className="fixed bottom-8 right-8 z-50 hidden md:flex items-center justify-center bg-[#25D366] hover:bg-[#20ba56] p-5 rounded-full shadow-2xl transition-all hover:scale-110"
       aria-label="WhatsApp"
     >
       <MessageCircle size={32} className="text-white" />
