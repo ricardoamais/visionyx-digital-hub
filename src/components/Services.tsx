@@ -13,20 +13,20 @@ const services = [
 ];
 
 const Services = () => (
-  <section id="servicos" className="py-24 relative">
-    <div className="absolute inset-0 gradient-radial opacity-50" />
+  <section id="servicos" className="py-24 bg-white relative">
     <div className="container mx-auto px-4 relative z-10">
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center mb-16">
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center mb-20">
         <motion.div
           initial={{ opacity: 0, x: -30 }}
           whileInView={{ opacity: 1, x: 0 }}
           viewport={{ once: true }}
         >
-          <h2 className="text-3xl md:text-5xl font-bold mb-4">
-            Serviços de <span className="text-primary text-glow">Informática em Curitiba</span>
+          <span className="text-primary font-bold text-sm tracking-widest uppercase mb-4 block">Nossos Serviços</span>
+          <h2 className="text-3xl md:text-5xl font-extrabold mb-6 text-slate-900 leading-tight">
+            Soluções Completas em <span className="text-primary">Tecnologia</span>
           </h2>
-          <p className="text-muted-foreground max-w-xl font-body mb-6">
-            Oferecemos soluções completas para seu computador, desde formatação até montagem personalizada.
+          <p className="text-slate-600 text-lg leading-relaxed max-w-xl">
+            Atendimento técnico especializado para manter sua produtividade em alta. Experiência e qualidade comprovada em Curitiba.
           </p>
         </motion.div>
 
@@ -34,10 +34,10 @@ const Services = () => (
           initial={{ opacity: 0, x: 30 }}
           whileInView={{ opacity: 1, x: 0 }}
           viewport={{ once: true }}
-          className="relative rounded-2xl overflow-hidden border border-border box-glow"
+          className="relative rounded-2xl overflow-hidden border border-slate-200 shadow-2xl"
         >
-          <img src={desktopImg} alt="Desktop PC com LED azul" className="w-full h-64 lg:h-80 object-cover" />
-          <div className="absolute inset-0 bg-gradient-to-t from-background/80 to-transparent" />
+          <img src={desktopImg} alt="Desktop PC corporativo" className="w-full h-64 lg:h-80 object-cover" />
+          <div className="absolute inset-0 bg-gradient-to-t from-slate-900/40 to-transparent" />
         </motion.div>
       </div>
 
@@ -49,13 +49,13 @@ const Services = () => (
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: i * 0.1 }}
-              className="group bg-card border border-border rounded-xl p-6 hover:border-primary/50 transition-all hover:box-glow h-full"
+              className="group bg-white border border-slate-200 rounded-2xl p-8 hover:border-primary hover:shadow-xl hover:shadow-primary/10 transition-all duration-300 h-full"
             >
-              <div className="w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center mb-4 group-hover:bg-primary/20 transition-colors">
-                <s.icon className="text-primary" size={24} />
+              <div className="w-14 h-14 rounded-xl bg-slate-50 flex items-center justify-center mb-6 group-hover:bg-primary group-hover:text-white transition-all duration-300 text-primary">
+                <s.icon size={28} />
               </div>
-              <h3 className="text-lg font-bold mb-1">{s.title}</h3>
-              <p className="text-muted-foreground text-sm font-body mb-3">{s.desc}</p>
+              <h3 className="text-xl font-bold mb-3 text-slate-900">{s.title}</h3>
+              <p className="text-slate-600 text-base mb-6 leading-relaxed">{s.desc}</p>
               <span className="text-primary text-sm font-semibold flex items-center gap-1 opacity-0 group-hover:opacity-100 transition-opacity">
                 Saiba mais <ArrowRight size={14} />
               </span>
