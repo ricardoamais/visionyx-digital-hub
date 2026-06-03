@@ -2,8 +2,44 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://visionyx.com.br/</loc>
-    <lastmod>2024-05-22</lastmod>
-    <changefreq>monthly</changefreq>
+    <lastmod>2025-06-03</lastmod>
+    <changefreq>weekly</changefreq>
     <priority>1.0</priority>
+  </url>
+  <url>
+    <loc>https://visionyx.com.br/formatacao-de-computador</loc>
+    <lastmod>2025-06-03</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://visionyx.com.br/limpeza-de-computador</loc>
+    <lastmod>2025-06-03</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://visionyx.com.br/manutencao-de-notebook</loc>
+    <lastmod>2025-06-03</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://visionyx.com.br/montagem-de-pc</loc>
+    <lastmod>2025-06-03</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://visionyx.com.br/suporte-para-empresas</loc>
+    <lastmod>2025-06-03</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://visionyx.com.br/backup-e-recuperacao-de-dados</loc>
+    <lastmod>2025-06-03</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
   </url>
 </urlset>

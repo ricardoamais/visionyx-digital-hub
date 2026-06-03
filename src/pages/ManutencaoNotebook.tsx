@@ -14,10 +14,11 @@ const benefits = [
 const ManutencaoNotebook = () => (
   <ServicePageLayout
     title="Manutenção de Notebook"
-    seoTitle="Manutenção de Notebook em Curitiba | Visionyx Informática"
-    seoDescription="Manutenção de notebook em Curitiba. Reparo, troca de tela, upgrade de SSD e memória RAM. Técnico especializado. (41) 99523-6952."
+    seoTitle="Manutenção de Notebook em Curitiba | Reparo e Assistência Técnica | Visionyx"
+    seoDescription="Manutenção e reparo de notebook em Curitiba. Tela quebrada, teclado, bateria, superaquecimento e mais. Técnico especializado. Ligue (41) 99523-6952."
     heroText="Manutenção especializada de notebooks com diagnóstico completo e reparo profissional."
     whatsappMessage="Olá! Preciso de manutenção para meu notebook."
+    keywords="manutenção de notebook Curitiba, assistência técnica notebook Curitiba, reparo notebook Curitiba, conserto notebook Curitiba, técnico notebook Curitiba"
   >
     <div className="max-w-3xl mx-auto">
       <motion.div

@@ -14,10 +14,11 @@ const benefits = [
 const MontagemPC = () => (
   <ServicePageLayout
     title="Montagem de PC"
-    seoTitle="Montagem de PC em Curitiba | Visionyx Informática"
-    seoDescription="Montagem de computador personalizado em Curitiba. PC gamer, trabalho e estudo. Componentes selecionados. (41) 99523-6952."
+    seoTitle="Montagem de PC em Curitiba | Computador sob Medida | Visionyx"
+    seoDescription="Montagem de computadores sob medida em Curitiba. PC para trabalho, jogos ou uso básico com garantia e os melhores componentes. Orçamento: (41) 99523-6952."
     heroText="Montagem de computadores personalizados com os melhores componentes para sua necessidade."
     whatsappMessage="Olá! Gostaria de montar um PC personalizado."
+    keywords="montagem de PC Curitiba, montar computador Curitiba, montagem de computador personalizado Curitiba, PC gamer Curitiba"
   >
     <div className="max-w-3xl mx-auto">
       <motion.div
