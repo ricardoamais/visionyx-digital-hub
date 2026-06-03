@@ -37,6 +37,21 @@ const Enterprise = () => (
         </p>
       </motion.div>
 
+      {/* Clients Section */}
+      <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        className="mb-16"
+      >
+        <p className="text-center text-slate-500 text-sm font-bold uppercase tracking-[0.2em] mb-8">Empresas que confiam em nosso trabalho</p>
+        <div className="flex flex-wrap justify-center items-center gap-8 md:gap-16 opacity-70 grayscale hover:grayscale-0 transition-all duration-500">
+          <div className="text-white text-xl md:text-2xl font-black tracking-tighter">TINTAS DARKA</div>
+          <div className="text-white text-xl md:text-2xl font-extrabold tracking-tight italic">HERING STORE</div>
+          <div className="text-white text-xl md:text-2xl font-bold tracking-widest border-2 border-white px-3 py-1">ADS ELETRO</div>
+        </div>
+      </motion.div>
+
       {/* Highlight banner */}
       <motion.div
         initial={{ opacity: 0, scale: 0.95 }}
