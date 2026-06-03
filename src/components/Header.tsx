@@ -22,10 +22,10 @@ const Header = () => {
   };
 
   return (
-    <header className="fixed top-0 left-0 right-0 z-50 bg-background/80 backdrop-blur-xl border-b border-border">
-      <div className="container mx-auto px-4 h-16 flex items-center justify-between">
-        <button onClick={() => scrollTo("hero")} className="font-display text-lg md:text-xl font-bold tracking-wider text-foreground">
-          VISIONYX <span className="text-primary">INFORMÁTICA</span>
+    <header className="fixed top-0 left-0 right-0 z-50 bg-white/90 backdrop-blur-md border-b border-border shadow-sm">
+      <div className="container mx-auto px-4 h-20 flex items-center justify-between">
+        <button onClick={() => scrollTo("hero")} className="font-display text-xl md:text-2xl font-extrabold tracking-tight text-slate-900">
+          VISIONYX <span className="text-primary font-bold">INFORMÁTICA</span>
         </button>
 
         <nav className="hidden md:flex items-center gap-8">
