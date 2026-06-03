@@ -7,8 +7,8 @@ const GoogleMap = () => (
     viewport={{ once: true }}
     className="mt-16 max-w-4xl mx-auto"
   >
-    <h3 className="text-xl font-bold mb-4 text-center">
-      Nossa <span className="text-primary">Localização</span>
+    <h3 className="text-2xl font-display font-bold mb-8 text-center text-[#042C53]">
+      Nossa <span className="text-[#185FA5]">Localização</span>
     </h3>
     <div className="rounded-2xl overflow-hidden border border-border box-glow">
       <iframe
