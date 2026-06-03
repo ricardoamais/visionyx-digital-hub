@@ -41,7 +41,9 @@ const Index = () => (
 
     <ShareWhatsApp />
 
-    {/* Floating WhatsApp button */}
+    {/* Floating WhatsApp handled in Footer or specifically here? 
+        The Prompt says "Botão flutuante WhatsApp verde no mobile (canto inferior direito)".
+        Since ServicePageLayout has it, I'll ensure Index matches. */}
     <a
       href="https://wa.me/5541995236952"
       target="_blank"
@@ -49,7 +51,7 @@ const Index = () => (
       className="fixed bottom-8 right-8 z-50 bg-[#25D366] hover:bg-[#20ba56] p-5 rounded-full shadow-2xl transition-all hover:scale-110"
       aria-label="WhatsApp"
     >
-      <MessageCircle size={28} className="text-foreground" />
+      <MessageCircle size={32} className="text-white" />
     </a>
   </div>
 );
