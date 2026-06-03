@@ -32,7 +32,7 @@ const Index = () => (
     <Stats />
     <Enterprise />
     <Contact />
-    <section className="bg-white pb-24">
+    <section className="bg-white pb-24 border-t border-[#D3D1C7]/30">
       <div className="container mx-auto px-4">
         <GoogleMap />
       </div>
