@@ -42,8 +42,7 @@ const Index = () => (
       href="https://wa.me/5541995236952"
       target="_blank"
       rel="noopener noreferrer"
-      className="fixed bottom-6 right-6 z-50 bg-green-600 hover:bg-green-500 p-4 rounded-full shadow-lg transition-all hover:scale-110"
-      style={{ boxShadow: "0 0 20px rgba(34,197,94,0.4)" }}
+      className="fixed bottom-8 right-8 z-50 bg-[#25D366] hover:bg-[#20ba56] p-5 rounded-full shadow-2xl transition-all hover:scale-110"
       aria-label="WhatsApp"
     >
       <MessageCircle size={28} className="text-foreground" />
