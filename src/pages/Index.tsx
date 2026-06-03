@@ -6,6 +6,7 @@ import Pricing from "@/components/Pricing";
 import Differentials from "@/components/Differentials";
 import Enterprise from "@/components/Enterprise";
 import About from "@/components/About";
+import Stats from "@/components/Stats";
 import Contact from "@/components/Contact";
 import Footer from "@/components/Footer";
 import SEOHead from "@/components/SEOHead";
@@ -27,8 +28,9 @@ const Index = () => (
     <Services />
     <Pricing />
     <Differentials />
-    <Enterprise />
     <About />
+    <Stats />
+    <Enterprise />
     <Contact />
     <section className="bg-white pb-24">
       <div className="container mx-auto px-4">
