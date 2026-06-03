@@ -9,6 +9,7 @@ import About from "@/components/About";
 import Stats from "@/components/Stats";
 import Contact from "@/components/Contact";
 import Footer from "@/components/Footer";
+import Partners from "@/components/Partners";
 import SEOHead from "@/components/SEOHead";
 import JsonLd from "@/components/JsonLd";
 import ShareWhatsApp from "@/components/ShareWhatsApp";
@@ -28,6 +29,7 @@ const Index = () => (
     <Services />
     <Pricing />
     <Differentials />
+    <Partners />
     <About />
     <Stats />
     <Enterprise />
