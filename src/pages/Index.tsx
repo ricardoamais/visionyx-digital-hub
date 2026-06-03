@@ -1,10 +1,12 @@
 import Header from "@/components/Header";
 import Hero from "@/components/Hero";
 import Services from "@/components/Services";
+import Clients from "@/components/Clients";
 import Pricing from "@/components/Pricing";
 import Differentials from "@/components/Differentials";
 import Enterprise from "@/components/Enterprise";
 import About from "@/components/About";
+import Stats from "@/components/Stats";
 import Contact from "@/components/Contact";
 import Footer from "@/components/Footer";
 import SEOHead from "@/components/SEOHead";
@@ -22,13 +24,15 @@ const Index = () => (
     <JsonLd />
     <Header />
     <Hero />
+    <Clients />
     <Services />
     <Pricing />
     <Differentials />
-    <Enterprise />
     <About />
+    <Stats />
+    <Enterprise />
     <Contact />
-    <section className="bg-white pb-24">
+    <section className="bg-white pb-24 border-t border-[#D3D1C7]/30">
       <div className="container mx-auto px-4">
         <GoogleMap />
       </div>
@@ -37,7 +41,9 @@ const Index = () => (
 
     <ShareWhatsApp />
 
-    {/* Floating WhatsApp button */}
+    {/* Floating WhatsApp handled in Footer or specifically here? 
+        The Prompt says "Botão flutuante WhatsApp verde no mobile (canto inferior direito)".
+        Since ServicePageLayout has it, I'll ensure Index matches. */}
     <a
       href="https://wa.me/5541995236952"
       target="_blank"
@@ -45,7 +51,7 @@ const Index = () => (
       className="fixed bottom-8 right-8 z-50 bg-[#25D366] hover:bg-[#20ba56] p-5 rounded-full shadow-2xl transition-all hover:scale-110"
       aria-label="WhatsApp"
     >
-      <MessageCircle size={28} className="text-foreground" />
+      <MessageCircle size={32} className="text-white" />
     </a>
   </div>
 );

@@ -14,49 +14,49 @@ const services = [
 ];
 
 const Enterprise = () => (
-  <section id="empresas" className="py-24 bg-slate-900 relative overflow-hidden">
-    <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[600px] rounded-full bg-primary/20 blur-[150px] opacity-20" />
+  <section id="empresas" className="py-24 bg-[#042C53] relative overflow-hidden">
+    <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full h-full bg-[#185FA5]/10 blur-[150px] opacity-20" />
 
     <div className="container mx-auto px-4 relative z-10">
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
-        className="text-center mb-12"
+        className="text-center mb-20"
       >
-        <div className="inline-flex items-center gap-2 bg-primary/20 border border-primary/30 rounded-full px-5 py-2 mb-6">
-          <Building2 size={16} className="text-primary" />
-          <span className="text-sm text-primary font-bold tracking-widest uppercase">Soluções Corporativas</span>
+        <div className="inline-flex items-center gap-2 bg-[#185FA5]/20 border border-[#185FA5]/30 rounded-full px-5 py-2 mb-6">
+          <Building2 size={16} className="text-[#378ADD]" />
+          <span className="text-sm text-[#378ADD] font-bold tracking-widest uppercase">Soluções Corporativas</span>
         </div>
 
-        <h2 className="text-3xl md:text-5xl font-extrabold mb-6 text-white">
-          Gestão de TI e Suporte para <span className="text-primary">Empresas</span>
+        <h2 className="text-3xl md:text-6xl font-display font-bold mb-8 text-white leading-tight">
+          Gestão de TI e Suporte para <span className="text-[#185FA5]">Empresas</span>
         </h2>
-        <p className="text-slate-400 max-w-3xl mx-auto text-lg leading-relaxed">
+        <p className="text-white/60 max-w-3xl mx-auto text-lg leading-relaxed">
           Oferecemos suporte técnico especializado para empresas através de contratos mensais, garantindo atendimento rápido, manutenção preventiva, suporte remoto e presencial, monitoramento de equipamentos e prioridade em chamados.
         </p>
       </motion.div>
 
-      {/* Clients Section */}
+      {/* Clients Section Reprise */}
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
-        className="mb-16"
+        className="mb-24 text-center"
       >
-        <p className="text-center text-slate-500 text-sm font-bold uppercase tracking-[0.2em] mb-8">Empresas que confiam em nosso trabalho</p>
-        <div className="flex flex-wrap justify-center items-center gap-12 md:gap-20">
-          <div className="text-center group">
-            <div className="text-white text-xl md:text-2xl font-black tracking-tighter group-hover:text-primary transition-colors">TINTAS DARKA</div>
-            <div className="text-slate-500 text-[10px] font-bold uppercase tracking-wider mt-1">41 Filiais • Curitiba/PR</div>
+        <p className="text-white/40 text-xs font-bold uppercase tracking-[0.2em] mb-10 italic">Empresas que confiam em nosso trabalho</p>
+        <div className="flex flex-wrap justify-center items-center gap-12 md:gap-24">
+          <div className="group cursor-default">
+            <div className="text-white/80 text-xl md:text-3xl font-display font-bold group-hover:text-[#185FA5] transition-colors uppercase tracking-tight">Tintas Darka</div>
+            <div className="text-white/30 text-[10px] font-bold uppercase tracking-wider mt-2">41 Filiais • Curitiba/PR</div>
           </div>
-          <div className="text-center group">
-            <div className="text-white text-xl md:text-2xl font-extrabold tracking-tight italic group-hover:text-primary transition-colors">HERING STORE</div>
-            <div className="text-slate-500 text-[10px] font-bold uppercase tracking-wider mt-1">10 Unidades • Curitiba</div>
+          <div className="group cursor-default text-center">
+            <div className="text-white/80 text-xl md:text-3xl font-display font-bold group-hover:text-[#185FA5] transition-colors uppercase tracking-tight">Hering Store</div>
+            <div className="text-white/30 text-[10px] font-bold uppercase tracking-wider mt-2">10 Unidades • Curitiba</div>
           </div>
-          <div className="text-center group">
-            <div className="text-white text-xl md:text-2xl font-bold tracking-widest border-2 border-white px-3 py-1 group-hover:border-primary group-hover:text-primary transition-colors">ADS ELETRO</div>
-            <div className="text-slate-500 text-[10px] font-bold uppercase tracking-wider mt-1">Suporte Especializado</div>
+          <div className="group cursor-default text-center">
+            <div className="text-white/80 text-xl md:text-3xl font-display font-bold group-hover:text-[#185FA5] transition-colors uppercase tracking-tight">Ads Eletro</div>
+            <div className="text-white/30 text-[10px] font-bold uppercase tracking-wider mt-2">Suporte Especializado</div>
           </div>
         </div>
       </motion.div>
@@ -66,30 +66,30 @@ const Enterprise = () => (
         initial={{ opacity: 0, scale: 0.95 }}
         whileInView={{ opacity: 1, scale: 1 }}
         viewport={{ once: true }}
-        className="max-w-3xl mx-auto bg-white/5 border border-white/10 rounded-2xl p-8 text-center mb-16 backdrop-blur-sm"
+        className="max-w-4xl mx-auto bg-white/5 border border-white/10 rounded-2xl p-10 text-center mb-20 backdrop-blur-sm"
       >
-        <p className="text-xl md:text-2xl font-bold text-white leading-tight">
-          Sua empresa não pode parar. Oferecemos <span className="text-primary underline underline-offset-8">atendimento prioritário</span> com contratos sob medida.
+        <p className="text-xl md:text-3xl font-bold text-white leading-tight">
+          Sua empresa não pode parar. Oferecemos <span className="text-[#185FA5] italic underline underline-offset-8">atendimento prioritário</span> com contratos sob medida.
         </p>
       </motion.div>
 
       {/* Services grid */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 mb-12">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mb-20">
         {services.map((s, i) => (
           <motion.div
             key={s.title}
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{ delay: i * 0.06 }}
-            className="group bg-white/5 border border-white/10 rounded-xl p-6 hover:bg-white/10 transition-all duration-300 flex items-start gap-5"
+            transition={{ delay: i * 0.05 }}
+            className="group bg-white/5 border border-white/10 rounded-xl p-8 hover:bg-white/10 transition-all duration-300 flex items-start gap-6 h-full"
           >
-            <div className="w-12 h-12 rounded-lg bg-primary/20 flex items-center justify-center shrink-0 text-primary group-hover:scale-110 transition-transform">
-              <s.icon size={24} />
+            <div className="w-14 h-14 rounded-lg bg-[#185FA5]/20 flex items-center justify-center shrink-0 text-[#185FA5] group-hover:scale-110 group-hover:bg-[#185FA5] group-hover:text-white transition-all duration-300">
+              <s.icon size={28} />
             </div>
             <div>
-              <h3 className="font-bold text-white text-lg mb-1">{s.title}</h3>
-              <p className="text-slate-400 text-sm leading-relaxed">{s.desc}</p>
+              <h3 className="font-bold text-white text-xl mb-2 group-hover:text-[#185FA5] transition-colors">{s.title}</h3>
+              <p className="text-white/50 text-base leading-relaxed">{s.desc}</p>
             </div>
           </motion.div>
         ))}
@@ -106,9 +106,9 @@ const Enterprise = () => (
           href="https://wa.me/5541995236952?text=Olá! Gostaria de solicitar uma proposta de suporte técnico para minha empresa."
           target="_blank"
           rel="noopener noreferrer"
-          className="inline-flex items-center gap-3 bg-primary hover:bg-primary/90 text-white px-10 py-5 rounded-lg text-lg font-bold shadow-xl shadow-primary/20 transition-all hover:-translate-y-1"
+          className="inline-flex items-center gap-4 bg-[#185FA5] hover:bg-[#378ADD] text-white px-12 py-6 rounded-xl text-xl font-bold shadow-2xl shadow-[#185FA5]/30 transition-all hover:-translate-y-1"
         >
-          <MessageCircle size={22} />
+          <MessageCircle size={24} />
           Solicitar proposta para empresa
         </a>
       </motion.div>

@@ -81,6 +81,6 @@
   }
 
   .gradient-radial {
-    background: radial-gradient(ellipse at center, hsl(207 100% 60% / 0.08) 0%, transparent 70%);
+    background: radial-gradient(ellipse at center, rgba(24, 95, 165, 0.08) 0%, transparent 70%);
   }
 }

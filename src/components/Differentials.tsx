@@ -8,7 +8,7 @@ const items = [
 ];
 
 const Differentials = () => (
-  <section className="py-24 bg-slate-50">
+  <section className="py-24 bg-white">
     <div className="container mx-auto px-4">
       <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
         {items.map((item, i) => (
@@ -18,13 +18,13 @@ const Differentials = () => (
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ delay: i * 0.15 }}
-            className="bg-white p-10 rounded-2xl shadow-sm border border-slate-100 hover:shadow-md transition-shadow text-center"
+            className="bg-white p-12 rounded-3xl border border-[#D3D1C7]/50 hover:border-[#185FA5] hover:shadow-2xl transition-all duration-300 text-center"
           >
-            <div className="w-20 h-20 rounded-2xl bg-primary/5 flex items-center justify-center mx-auto mb-6">
-              <item.icon className="text-primary" size={36} />
+            <div className="w-24 h-24 rounded-3xl bg-[#E6F1FB] flex items-center justify-center mx-auto mb-8 text-[#185FA5]">
+              <item.icon size={48} />
             </div>
-            <h3 className="text-xl font-bold mb-3 text-slate-900">{item.title}</h3>
-            <p className="text-slate-600 leading-relaxed">{item.desc}</p>
+            <h3 className="text-2xl font-display font-bold mb-4 text-[#042C53]">{item.title}</h3>
+            <p className="text-[#5F5E5A] text-lg leading-relaxed">{item.desc}</p>
           </motion.div>
         ))}
       </div>
