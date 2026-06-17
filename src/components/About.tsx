@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import repairImg from "@/assets/repair-service.jpg";
+import videoAsset from "@/assets/video_manutençao.mp4.asset.json";
 
 const About = () => (
   <section id="sobre" className="py-14 md:py-24 bg-white relative">
@@ -11,8 +11,15 @@ const About = () => (
           viewport={{ once: true }}
           className="relative rounded-2xl overflow-hidden border border-slate-200 shadow-xl order-2 lg:order-1"
         >
-          <img src={repairImg} alt="Técnico de informática em Curitiba reparando computador" className="w-full h-52 sm:h-64 lg:h-96 object-cover" />
-          <div className="absolute inset-0 bg-gradient-to-r from-[#042C53]/20 to-transparent" />
+          <video
+            src={videoAsset.url}
+            autoPlay
+            muted
+            loop
+            playsInline
+            className="w-full h-52 sm:h-64 lg:h-96 object-cover"
+          />
+          <div className="absolute inset-0 bg-gradient-to-r from-[#042C53]/20 to-transparent pointer-events-none" />
         </motion.div>
 
         <motion.div
