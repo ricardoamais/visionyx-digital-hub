@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import videoAsset from "@/assets/video_manutençao.mp4.asset.json";
+import videoAsset from "@/assets/video-manutencao.mp4.asset.json";
 
 const About = () => (
   <section id="sobre" className="py-14 md:py-24 bg-white relative">
