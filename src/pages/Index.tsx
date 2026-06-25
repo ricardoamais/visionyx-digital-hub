@@ -18,7 +18,7 @@ import TrustBar from "@/components/TrustBar";
 import FloatingWhatsApp from "@/components/FloatingWhatsApp";
 
 const Index = () => (
-  <div className="min-h-screen pt-8 md:pt-9">
+  <div className="min-h-screen">
     <SEOHead
       title="Visionyx Informática - Manutenção de Computadores em Curitiba"
       description="Manutenção de computadores, formatação, limpeza, montagem de PC, suporte técnico para empresas em Curitiba. Técnico de informática. (41) 99523-6952."
