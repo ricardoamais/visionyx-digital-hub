@@ -23,8 +23,8 @@ const Hero = () => (
             <span className="text-xs sm:text-sm font-semibold text-green-700">Atendendo agora • Resposta em até 15 minutos</span>
           </div>
 
-          <div className="inline-flex items-center gap-2 bg-[#185FA5]/10 text-[#185FA5] border border-[#185FA5]/20 rounded-full px-3 py-1 mb-5 md:mb-8">
-            <span className="text-[10px] sm:text-xs font-bold tracking-wider uppercase">
+          <div className="inline-flex items-center gap-2 bg-white border border-slate-300 rounded-full px-3 py-1 mb-5 md:mb-8 shadow-sm">
+            <span className="text-[10px] sm:text-xs font-bold tracking-wider uppercase text-slate-600">
               Curitiba • Paraná
             </span>
           </div>
