@@ -12,7 +12,7 @@ import Footer from "@/components/Footer";
 import Partners from "@/components/Partners";
 import SEOHead from "@/components/SEOHead";
 import JsonLd from "@/components/JsonLd";
-import ShareWhatsApp from "@/components/ShareWhatsApp";
+
 import GoogleMap from "@/components/GoogleMap";
 import TrustBar from "@/components/TrustBar";
 import FloatingWhatsApp from "@/components/FloatingWhatsApp";
@@ -43,7 +43,7 @@ const Index = () => (
     </section>
     <Footer />
 
-    <ShareWhatsApp />
+    
     <FloatingWhatsApp />
   </div>
 );
