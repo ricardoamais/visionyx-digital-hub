@@ -36,26 +36,38 @@ const Services = () => (
       </div>
 
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-        {services.map((s, i) => (
-          <Link to={s.link} key={s.title}>
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: i * 0.1 }}
-              className="group bg-white border border-slate-200 rounded-2xl p-5 md:p-6 hover:border-[#185FA5] hover:shadow-xl hover:shadow-[#185FA5]/10 transition-all duration-300 h-full relative overflow-hidden"
-            >
-              <div className="w-10 h-10 md:w-12 md:h-12 rounded-xl bg-slate-50 flex items-center justify-center mb-4 group-hover:bg-[#185FA5] group-hover:text-white transition-all duration-300 text-[#185FA5]">
-                <s.icon size={20} />
-              </div>
-              <h3 className="text-base md:text-lg font-bold mb-2 text-slate-900 group-hover:text-[#185FA5] transition-colors">{s.title}</h3>
-              <p className="text-slate-600 text-sm md:text-base mb-3 leading-relaxed">{s.desc}</p>
-              <span className="text-[#185FA5] text-sm font-bold flex items-center gap-2">
-                Saiba mais <ArrowRight size={16} />
-              </span>
-            </motion.div>
-          </Link>
-        ))}
+        {services.map((s, i) => {
+          const isFeatured = s.title === "Formatação";
+          return (
+            <Link to={s.link} key={s.title}>
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: i * 0.1 }}
+                className={`group bg-white rounded-2xl p-5 md:p-6 transition-all duration-300 h-full relative overflow-hidden ${
+                  isFeatured
+                    ? "border-2 border-[#185FA5] shadow-xl shadow-[#185FA5]/15"
+                    : "border border-slate-200 hover:border-[#185FA5] hover:shadow-xl hover:shadow-[#185FA5]/10"
+                }`}
+              >
+                {isFeatured && (
+                  <span className="absolute -top-3 left-5 bg-[#185FA5] text-white text-[10px] font-bold uppercase tracking-wider px-3 py-1 rounded-full">
+                    Mais procurado
+                  </span>
+                )}
+                <div className="w-10 h-10 md:w-12 md:h-12 rounded-xl bg-slate-50 flex items-center justify-center mb-4 group-hover:bg-[#185FA5] group-hover:text-white transition-all duration-300 text-[#185FA5]">
+                  <s.icon size={20} />
+                </div>
+                <h3 className="text-base md:text-lg font-bold mb-2 text-slate-900 group-hover:text-[#185FA5] transition-colors">{s.title}</h3>
+                <p className="text-slate-600 text-sm md:text-base mb-3 leading-relaxed">{s.desc}</p>
+                <span className="text-[#185FA5] text-sm font-bold flex items-center gap-2">
+                  Saiba mais <ArrowRight size={16} />
+                </span>
+              </motion.div>
+            </Link>
+          );
+        })}
       </div>
     </div>
   </section>
