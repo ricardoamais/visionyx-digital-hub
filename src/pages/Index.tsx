@@ -14,15 +14,17 @@ import SEOHead from "@/components/SEOHead";
 import JsonLd from "@/components/JsonLd";
 import ShareWhatsApp from "@/components/ShareWhatsApp";
 import GoogleMap from "@/components/GoogleMap";
-import { MessageCircle } from "lucide-react";
+import TrustBar from "@/components/TrustBar";
+import FloatingWhatsApp from "@/components/FloatingWhatsApp";
 
 const Index = () => (
-  <div className="min-h-screen">
+  <div className="min-h-screen pt-8 md:pt-9">
     <SEOHead
       title="Visionyx Informática - Manutenção de Computadores em Curitiba"
       description="Manutenção de computadores, formatação, limpeza, montagem de PC, suporte técnico para empresas em Curitiba. Técnico de informática. (41) 99523-6952."
     />
     <JsonLd />
+    <TrustBar />
     <Header />
     <Hero />
     <Clients />
@@ -42,28 +44,7 @@ const Index = () => (
     <Footer />
 
     <ShareWhatsApp />
-
-    {/* Floating WhatsApp handled in Footer or specifically here? 
-        The Prompt says "Botão flutuante WhatsApp verde no mobile (canto inferior direito)".
-        Since ServicePageLayout has it, I'll ensure Index matches. */}
-    <a
-      href="https://wa.me/5541995236952"
-      target="_blank"
-      rel="noopener noreferrer"
-      className="fixed bottom-5 right-5 z-50 flex md:hidden items-center justify-center w-14 h-14 bg-[#25D366] hover:bg-[#20ba56] rounded-full shadow-xl shadow-green-400/30 transition-all hover:scale-110"
-      aria-label="WhatsApp"
-    >
-      <MessageCircle size={28} className="text-white" />
-    </a>
-    <a
-      href="https://wa.me/5541995236952"
-      target="_blank"
-      rel="noopener noreferrer"
-      className="fixed bottom-8 right-8 z-50 hidden md:flex items-center justify-center bg-[#25D366] hover:bg-[#20ba56] p-5 rounded-full shadow-2xl transition-all hover:scale-110"
-      aria-label="WhatsApp"
-    >
-      <MessageCircle size={32} className="text-white" />
-    </a>
+    <FloatingWhatsApp />
   </div>
 );
 
