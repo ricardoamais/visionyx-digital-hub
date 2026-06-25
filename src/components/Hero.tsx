@@ -2,7 +2,7 @@ import { motion } from "framer-motion";
 import { MessageCircle, CheckCircle2, ShieldCheck, Zap, MapPin } from "lucide-react";
 
 const Hero = () => (
-  <section id="hero" className="relative min-h-[100svh] md:min-h-[90vh] flex items-center justify-center overflow-hidden pt-20 bg-gradient-to-br from-white via-slate-50 to-blue-50">
+  <section id="hero" className="relative min-h-[100svh] md:min-h-[90vh] flex items-center justify-center overflow-hidden pt-36 md:pt-40 bg-gradient-to-br from-white via-slate-50 to-blue-50">
     {/* Decorative blobs */}
     <div className="absolute top-1/4 right-0 w-96 h-96 bg-[#185FA5]/10 rounded-full blur-3xl -z-0" />
     <div className="absolute bottom-0 left-0 w-72 h-72 bg-green-400/10 rounded-full blur-3xl -z-0" />

@@ -9,7 +9,11 @@ const Header = () => {
 
   const scrollTo = (id: string) => {
     const el = document.getElementById(id);
-    el?.scrollIntoView({ behavior: "smooth" });
+    if (el) {
+      const offset = 110;
+      const top = el.getBoundingClientRect().top + window.scrollY - offset;
+      window.scrollTo({ top, behavior: "smooth" });
+    }
     setMobileOpen(false);
   };
 
@@ -22,7 +26,7 @@ const Header = () => {
   };
 
   return (
-    <header className="fixed top-0 left-0 right-0 z-50 bg-white/90 backdrop-blur-md border-b border-gray-200">
+    <header className="fixed top-9 md:top-10 left-0 right-0 z-50 bg-white/90 backdrop-blur-md border-b border-gray-200">
       <div className="container mx-auto px-4 h-20 flex items-center justify-between">
         <button onClick={() => scrollTo("hero")} className="font-display text-lg sm:text-xl md:text-2xl font-extrabold tracking-tight text-[#042C53]">
           <span className="sm:hidden uppercase">VISIONYX</span>
