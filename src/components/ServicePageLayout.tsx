@@ -4,7 +4,7 @@ import { MessageCircle, ArrowLeft } from "lucide-react";
 import SEOHead from "@/components/SEOHead";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
-import ShareWhatsApp from "@/components/ShareWhatsApp";
+
 import type { ReactNode } from "react";
 
 interface ServicePageLayoutProps {
@@ -69,7 +69,7 @@ const ServicePageLayout = ({ title, seoTitle, seoDescription, heroText, children
       </section>
 
       <Footer />
-      <ShareWhatsApp />
+      
 
       <a
         href="https://wa.me/5541995236952"
