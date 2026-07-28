@@ -13,7 +13,7 @@ const Contact = () => {
   };
 
   return (
-    <section id="contato" className="py-14 md:py-24 bg-slate-50">
+    <section id="contato" className="py-16 md:py-24 bg-[#F8FAFF]">
       <div className="container mx-auto px-4">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -42,8 +42,8 @@ const Contact = () => {
               </p>
             </div>
 
-            <div className="bg-[#185FA5]/5 border border-[#185FA5]/20 rounded-2xl p-4 md:p-6 mb-5 md:mb-8">
-              <p className="text-[#042C53] text-lg font-medium italic">
+            <div className="border-l-4 border-[#1A56DB] bg-[#EFF6FF] rounded-r-2xl px-5 py-4 mb-6">
+              <p className="text-[#0F2D5C] font-medium italic text-base leading-relaxed">
                 "Atendimento especializado para empresas com foco em contratos de manutenção preventiva e corretiva."
               </p>
             </div>
@@ -73,8 +73,9 @@ const Contact = () => {
             initial={{ opacity: 0, x: 20 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
-            className="bg-white rounded-3xl p-6 md:p-10 shadow-xl border border-slate-100"
+            className="bg-white rounded-3xl p-6 md:p-10 shadow-2xl shadow-slate-200/50 border border-slate-100 overflow-hidden relative"
           >
+            <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-[#1A56DB] via-[#38BDF8] to-[#1A56DB]" />
             <form onSubmit={handleSubmit} className="space-y-3 md:space-y-4">
               <div className="space-y-2">
                 <label className="text-xs font-bold text-slate-900 ml-1 uppercase tracking-wider">Seu nome</label>
@@ -100,7 +101,7 @@ const Contact = () => {
               </div>
               <button
                 type="submit"
-                className="flex items-center gap-3 bg-[#185FA5] hover:bg-[#378ADD] text-white px-6 py-4 md:px-8 md:py-5 rounded-xl font-bold w-full justify-center group text-lg transition-all shadow-lg shadow-[#185FA5]/20"
+                className="flex items-center gap-3 bg-gradient-to-r from-[#1A56DB] to-[#0F2D5C] hover:from-[#0F2D5C] hover:to-[#1A56DB] text-white px-6 py-4 md:px-8 md:py-5 rounded-xl font-bold w-full justify-center group text-lg transition-all shadow-xl shadow-[#1A56DB]/20"
               >
                 <Send size={24} className="group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
                 Enviar Mensagem

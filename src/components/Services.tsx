@@ -13,7 +13,7 @@ const services = [
 ];
 
 const Services = () => (
-  <section id="servicos" className="py-14 md:py-24 bg-white relative">
+  <section id="servicos" className="py-16 md:py-24 bg-[#F8FAFF] relative">
     <div className="container mx-auto px-4 relative z-10">
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-16 items-center mb-10 md:mb-20">
         <motion.div
@@ -21,15 +21,15 @@ const Services = () => (
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
         >
-          <span className="text-[#185FA5] font-bold text-xs tracking-widest uppercase mb-3 block">Nossos Serviços</span>
-          <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-extrabold mb-4 md:mb-6 text-slate-900 leading-tight">
+          <span className="text-[#1A56DB] font-bold text-xs tracking-widest uppercase mb-3 block">Nossos Serviços</span>
+          <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-extrabold mb-4 md:mb-6 text-[#0F2D5C] leading-tight">
             Soluções Completas em Tecnologia
           </h2>
           <p className="text-slate-600 text-base md:text-lg leading-relaxed max-w-xl">
             Atendimento técnico especializado para manter sua produtividade em alta. Experiência e qualidade comprovada em Curitiba.
           </p>
         </motion.div>
-        
+
         <div className="hidden lg:block relative rounded-2xl overflow-hidden border border-slate-200 shadow-2xl">
           <img src={repairImg} alt="Manutenção de computadores" className="w-full h-64 object-cover" />
         </div>
@@ -45,23 +45,24 @@ const Services = () => (
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: i * 0.1 }}
-                className={`group bg-white rounded-2xl p-5 md:p-6 transition-all duration-300 h-full relative overflow-hidden ${
+                className={`group bg-white rounded-2xl p-5 md:p-6 transition-all duration-300 h-full relative overflow-hidden border cursor-pointer ${
                   isFeatured
-                    ? "border-2 border-[#185FA5] shadow-xl shadow-[#185FA5]/15"
-                    : "border border-slate-200 hover:border-[#185FA5] hover:shadow-xl hover:shadow-[#185FA5]/10"
+                    ? "border-[#1A56DB] shadow-xl shadow-[#1A56DB]/10"
+                    : "border-slate-200 hover:border-[#1A56DB]/50 hover:shadow-xl hover:shadow-[#1A56DB]/10"
                 }`}
               >
+                <div className="absolute left-0 top-0 bottom-0 w-1 bg-[#1A56DB] rounded-l-2xl opacity-0 group-hover:opacity-100 transition-opacity" />
                 {isFeatured && (
-                  <span className="absolute -top-3 left-5 bg-[#185FA5] text-white text-[10px] font-bold uppercase tracking-wider px-3 py-1 rounded-full">
+                  <span className="absolute -top-3 left-5 bg-[#1A56DB] text-white text-[10px] font-bold uppercase tracking-wider px-3 py-1 rounded-full">
                     Mais procurado
                   </span>
                 )}
-                <div className="w-10 h-10 md:w-12 md:h-12 rounded-xl bg-slate-50 flex items-center justify-center mb-4 group-hover:bg-[#185FA5] group-hover:text-white transition-all duration-300 text-[#185FA5]">
+                <div className="w-10 h-10 md:w-12 md:h-12 rounded-xl bg-[#EFF6FF] flex items-center justify-center mb-4 group-hover:bg-[#1A56DB] group-hover:text-white transition-all duration-300 text-[#1A56DB]">
                   <s.icon size={20} />
                 </div>
-                <h3 className="text-base md:text-lg font-bold mb-2 text-slate-900 group-hover:text-[#185FA5] transition-colors">{s.title}</h3>
+                <h3 className="text-base md:text-lg font-bold mb-2 text-[#0F2D5C] group-hover:text-[#1A56DB] transition-colors">{s.title}</h3>
                 <p className="text-slate-600 text-sm md:text-base mb-3 leading-relaxed">{s.desc}</p>
-                <span className="text-[#185FA5] text-sm font-bold flex items-center gap-2">
+                <span className="text-[#1A56DB] text-sm font-bold flex items-center gap-2">
                   Saiba mais <ArrowRight size={16} />
                 </span>
               </motion.div>
