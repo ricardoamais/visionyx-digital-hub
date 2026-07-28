@@ -14,7 +14,7 @@ const services = [
 ];
 
 const Enterprise = () => (
-  <section id="empresas" className="py-14 md:py-24 bg-slate-900 relative overflow-hidden">
+  <section id="empresas" className="py-16 md:py-24 bg-slate-900 relative overflow-hidden border-t-4 border-[#1A56DB]">
     <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full h-full bg-[#185FA5]/10 blur-[150px] opacity-20" />
 
     <div className="container mx-auto px-4 relative z-10">
@@ -66,10 +66,10 @@ const Enterprise = () => (
         initial={{ opacity: 0, scale: 0.95 }}
         whileInView={{ opacity: 1, scale: 1 }}
         viewport={{ once: true }}
-        className="max-w-3xl mx-auto bg-white/5 border border-white/10 rounded-2xl p-6 md:p-8 text-center mb-10 md:mb-16 backdrop-blur-sm"
+        className="max-w-3xl mx-auto bg-gradient-to-r from-[#1A56DB]/20 to-[#0F2D5C] border border-[#38BDF8]/30 rounded-2xl p-6 md:p-8 text-center mb-10 md:mb-16 backdrop-blur-sm"
       >
         <p className="text-lg md:text-xl lg:text-2xl font-bold text-white leading-tight">
-          Sua empresa não pode parar. Oferecemos <span className="text-[#185FA5] italic underline underline-offset-8">atendimento prioritário</span> com contratos sob medida.
+          Sua empresa não pode parar. Oferecemos <span className="text-[#38BDF8] italic">atendimento prioritário</span> com contratos sob medida.
         </p>
       </motion.div>
 
@@ -82,9 +82,9 @@ const Enterprise = () => (
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ delay: i * 0.05 }}
-            className="group bg-white/5 border border-white/10 rounded-xl p-4 md:p-6 hover:bg-white/10 transition-all duration-300 flex items-start gap-4 h-full"
+            className="group bg-white/5 border border-white/10 rounded-xl p-4 md:p-6 hover:bg-gradient-to-br hover:from-[#1A56DB]/20 hover:to-transparent hover:border-[#1A56DB]/40 transition-all duration-300 flex items-start gap-4 h-full"
           >
-            <div className="w-10 h-10 md:w-12 md:h-12 rounded-lg bg-[#185FA5]/20 flex items-center justify-center shrink-0 text-[#185FA5] group-hover:scale-110 group-hover:bg-[#185FA5] group-hover:text-white transition-all duration-300">
+            <div className="w-10 h-10 md:w-12 md:h-12 rounded-lg bg-[#1A56DB]/20 flex items-center justify-center shrink-0 text-[#38BDF8] group-hover:scale-110 group-hover:bg-[#1A56DB] group-hover:text-white transition-all duration-300">
               <s.icon size={20} />
             </div>
             <div>

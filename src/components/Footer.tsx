@@ -1,42 +1,64 @@
-import { MessageCircle, Phone } from "lucide-react";
+import { MessageCircle } from "lucide-react";
 
 const Footer = () => (
-  <footer className="bg-slate-900 border-t border-white/10 py-10 md:py-16 text-white">
+  <footer className="bg-[#080F1E] border-t border-white/5 py-12 md:py-16 text-white">
     <div className="container mx-auto px-4">
-      <div className="flex flex-col items-center gap-8 md:flex-row md:justify-between mb-10 md:mb-16">
-        {/* Brand Column */}
-        <div className="space-y-6 text-center md:text-left">
-          <div className="font-display text-xl md:text-2xl font-extrabold tracking-tight">
-            VISIONYX <span className="text-[#185FA5]">INFORMÁTICA</span>
+      <div className="h-px bg-gradient-to-r from-transparent via-[#1A56DB] to-transparent mb-12" />
+
+      <div className="grid grid-cols-1 md:grid-cols-4 gap-8 mb-12">
+        <div className="md:col-span-2">
+          <div className="flex items-center gap-3 mb-4">
+            <div className="w-8 h-8 rounded-lg bg-[#1A56DB] flex items-center justify-center">
+              <svg viewBox="0 0 20 20" fill="none" className="w-5 h-5">
+                <path d="M10 2L17 6V14L10 18L3 14V6L10 2Z" stroke="white" strokeWidth="1.5" strokeLinejoin="round"/>
+                <circle cx="10" cy="10" r="2.5" fill="white"/>
+              </svg>
+            </div>
+            <span className="font-display text-lg font-extrabold uppercase">Visionyx <span className="text-[#38BDF8]">Informática</span></span>
           </div>
-          <p className="text-slate-400 text-base max-w-xs mx-auto md:mx-0">
-            Soluções completas em tecnologia para empresas e pessoas físicas em Curitiba.
+          <p className="text-slate-400 text-sm leading-relaxed max-w-xs mb-4">
+            Soluções completas em tecnologia para empresas e pessoas físicas em Curitiba e região.
           </p>
-        </div>
-
-        {/* Links Column */}
-        <div className="flex flex-col sm:flex-row items-center gap-4 sm:gap-8 text-sm text-slate-400 font-medium">
-          <button onClick={() => document.getElementById("servicos")?.scrollIntoView({ behavior: "smooth" })} className="hover:text-white transition-colors">Serviços</button>
-          <button onClick={() => document.getElementById("empresas")?.scrollIntoView({ behavior: "smooth" })} className="hover:text-white transition-colors">Empresas</button>
-          <button onClick={() => document.getElementById("sobre")?.scrollIntoView({ behavior: "smooth" })} className="hover:text-white transition-colors">Sobre nós</button>
-          <button onClick={() => document.getElementById("contato")?.scrollIntoView({ behavior: "smooth" })} className="hover:text-white transition-colors">Contato</button>
-        </div>
-
-        {/* Contact info Column */}
-        <div className="flex flex-col items-center md:items-end gap-3 text-slate-400">
-          <a href="https://wa.me/5541995236952" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 hover:text-white transition-colors">
-            <MessageCircle size={18} className="text-[#185FA5]" />
+          <a href="https://wa.me/5541995236952" className="inline-flex items-center gap-2 bg-[#16A34A] hover:bg-[#15803D] text-white px-4 py-2.5 rounded-lg text-sm font-bold transition-all">
+            <MessageCircle size={16} />
             (41) 99523-6952
           </a>
-          <div className="flex items-center gap-2">
-            <Phone size={18} className="text-[#185FA5]" />
-            (41) 99523-6952
-          </div>
+        </div>
+
+        <div>
+          <h4 className="text-xs font-bold text-white uppercase tracking-widest mb-4">Serviços</h4>
+          <ul className="space-y-2.5 text-sm text-slate-400">
+            {["Formatação", "Limpeza", "Montagem de PC", "Manutenção Notebook", "Backup e Dados"].map(s => (
+              <li key={s}><span className="hover:text-white transition-colors cursor-pointer">{s}</span></li>
+            ))}
+          </ul>
+        </div>
+
+        <div>
+          <h4 className="text-xs font-bold text-white uppercase tracking-widest mb-4">Empresa</h4>
+          <ul className="space-y-2.5 text-sm text-slate-400">
+            {[
+              { label: "Sobre nós", id: "sobre" },
+              { label: "Suporte Empresarial", id: "empresas" },
+              { label: "Contato", id: "contato" },
+            ].map(item => (
+              <li key={item.label}>
+                <button
+                  onClick={() => document.getElementById(item.id)?.scrollIntoView({ behavior: "smooth" })}
+                  className="hover:text-white transition-colors"
+                >
+                  {item.label}
+                </button>
+              </li>
+            ))}
+            <li><span className="text-slate-500 text-xs">CNPJ: 56.666.903/0001-08</span></li>
+          </ul>
         </div>
       </div>
 
-      <div className="text-center mt-8 md:mt-12 pt-6 md:pt-8 border-t border-white/5 text-xs md:text-sm text-slate-500 px-4">
-        © {new Date().getFullYear()} Visionyx Informática · CNPJ: 56.666.903/0001-08 · Todos os direitos reservados.
+      <div className="border-t border-white/5 pt-6 flex flex-col sm:flex-row justify-between items-center gap-2 text-xs text-slate-500">
+        <span>© {new Date().getFullYear()} Visionyx Informática. Todos os direitos reservados.</span>
+        <span>Curitiba / PR 🌲</span>
       </div>
     </div>
   </footer>
