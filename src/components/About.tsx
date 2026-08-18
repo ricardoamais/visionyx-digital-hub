@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import imagemSite from "@/assets/imagem-site.jpeg.asset.json";
+import imagemSite from "@/assets/imagem-site.jpeg";
 
 const About = () => (
   <section id="sobre" className="py-14 md:py-24 bg-white relative">
@@ -12,7 +12,7 @@ const About = () => (
           className="relative rounded-2xl overflow-hidden border border-slate-200 shadow-xl order-2 lg:order-1"
         >
           <img
-            src={imagemSite.url}
+            src={imagemSite}
             alt="Equipe Visionyx Informática em Curitiba"
             className="w-full h-52 sm:h-64 lg:h-96 object-cover object-[center_15%]"
           />
