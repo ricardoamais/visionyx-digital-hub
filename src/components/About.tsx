@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import videoAsset from "@/assets/video-manutencao.mp4.asset.json";
+import imagemSite from "@/assets/imagem-site.jpeg.asset.json";
 
 const About = () => (
   <section id="sobre" className="py-14 md:py-24 bg-white relative">
@@ -11,13 +11,10 @@ const About = () => (
           viewport={{ once: true }}
           className="relative rounded-2xl overflow-hidden border border-slate-200 shadow-xl order-2 lg:order-1"
         >
-          <video
-            src={videoAsset.url}
-            autoPlay
-            muted
-            loop
-            playsInline
-            className="w-full h-52 sm:h-64 lg:h-96 object-cover"
+          <img
+            src={imagemSite.url}
+            alt="Equipe Visionyx Informática em Curitiba"
+            className="w-full h-52 sm:h-64 lg:h-96 object-cover object-[center_15%]"
           />
           <div className="absolute inset-0 bg-gradient-to-r from-[#042C53]/20 to-transparent pointer-events-none" />
         </motion.div>
