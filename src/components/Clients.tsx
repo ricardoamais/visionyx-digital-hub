@@ -1,10 +1,11 @@
 import { motion } from "framer-motion";
-import { Paintbrush, Shirt, Zap } from "lucide-react";
+import { Paintbrush, Shirt, Zap, Factory } from "lucide-react";
 
 const clients = [
   { name: "Tintas Darka", category: "Tintas & Revestimentos", icon: Paintbrush },
   { name: "Hering Store", category: "Moda & Varejo", icon: Shirt },
   { name: "Ads Eletro", category: "Eletroeletrônicos", icon: Zap },
+  { name: "Abraspar Distribuidora de Abrasivos", category: "Distribuidora de Abrasivos", icon: Factory },
 ];
 
 const Clients = () => (
