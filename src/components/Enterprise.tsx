@@ -58,6 +58,10 @@ const Enterprise = () => (
             <div className="text-white/80 text-xl md:text-3xl font-display font-bold group-hover:text-[#185FA5] transition-colors uppercase tracking-tight">Ads Eletro</div>
             <div className="text-white/30 text-[10px] font-bold uppercase tracking-wider mt-2">Suporte Especializado</div>
           </div>
+          <div className="group cursor-default text-center">
+            <div className="text-white/80 text-xl md:text-3xl font-display font-bold group-hover:text-[#185FA5] transition-colors uppercase tracking-tight">Abraspar</div>
+            <div className="text-white/30 text-[10px] font-bold uppercase tracking-wider mt-2">Distribuidora de Abrasivos</div>
+          </div>
         </div>
       </motion.div>
 
