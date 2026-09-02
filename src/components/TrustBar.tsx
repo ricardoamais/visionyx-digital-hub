@@ -1,5 +1,5 @@
 const TrustBar = () => (
-  <div className="fixed top-0 left-0 right-0 z-[60] bg-[#0F2D5C] text-white py-2 px-4 overflow-hidden">
+  <div className="fixed top-0 left-0 right-0 z-[60] bg-[#061530] text-white py-2 px-4 overflow-hidden">
     <div className="flex items-center justify-center gap-6 text-[11px] md:text-xs font-semibold">
       <span className="flex items-center gap-1.5">
         <span className="text-[#F59E0B]">★</span> 4.9 — +500 clientes em Curitiba
