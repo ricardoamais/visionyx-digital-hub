@@ -26,19 +26,23 @@ const Header = () => {
   };
 
   return (
-    <header className="fixed top-9 md:top-10 left-0 right-0 z-50 bg-[#0F2D5C] shadow-xl shadow-[#0F2D5C]/30">
+    <header className="fixed top-9 md:top-10 left-0 right-0 z-50 bg-[#0A1F3F] shadow-xl shadow-[#0A1F3F]/40">
       <div className="container mx-auto px-4 h-16 md:h-18 flex items-center justify-between">
         <button onClick={() => scrollTo("hero")} className="flex items-center gap-3">
-          <div className="w-8 h-8 rounded-lg bg-[#1A56DB] flex items-center justify-center shrink-0">
-            <svg viewBox="0 0 20 20" fill="none" className="w-5 h-5">
-              <path d="M10 2L17 6V14L10 18L3 14V6L10 2Z" stroke="white" strokeWidth="1.5" strokeLinejoin="round"/>
-              <circle cx="10" cy="10" r="2.5" fill="white"/>
-            </svg>
-          </div>
-          <span className="font-display text-base sm:text-lg font-extrabold tracking-tight text-white uppercase">
-            Visionyx <span className="text-[#38BDF8]">Informática</span>
+          <svg viewBox="0 0 32 32" fill="none" className="w-8 h-8 shrink-0">
+            <path d="M4 4h9l3 8-4.5 4L4 4Z" fill="#38BDF8" />
+            <path d="M28 4h-9L9.5 28 16 20l6.5 8L28 4Z" fill="#1A56DB" />
+          </svg>
+          <span className="flex flex-col leading-none">
+            <span className="font-body text-base sm:text-lg font-extrabold tracking-tight text-white uppercase">
+              Visionyx
+            </span>
+            <span className="text-[9px] sm:text-[10px] font-semibold tracking-[0.35em] text-[#38BDF8] uppercase">
+              Informática
+            </span>
           </span>
         </button>
+
 
         <nav className="hidden md:flex items-center gap-6">
           {navItems.map((item) => (

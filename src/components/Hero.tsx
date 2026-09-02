@@ -2,7 +2,7 @@ import { motion } from "framer-motion";
 import { MessageCircle, CheckCircle2, ShieldCheck, Zap, MapPin, Monitor } from "lucide-react";
 
 const Hero = () => (
-  <section id="hero" className="relative min-h-[100svh] md:min-h-screen flex items-center overflow-hidden bg-[#0F2D5C] pt-32 md:pt-36 pb-16">
+  <section id="hero" className="relative min-h-[100svh] md:min-h-screen flex items-center overflow-hidden bg-[#0A1F3F] pt-32 md:pt-36 pb-16">
     <div className="absolute inset-0"
       style={{
         backgroundImage: `linear-gradient(rgba(56,189,248,0.05) 1px, transparent 1px),
@@ -10,9 +10,13 @@ const Hero = () => (
         backgroundSize: '40px 40px'
       }}
     />
+    <div className="absolute inset-0"
+      style={{ background: "radial-gradient(ellipse at 70% 25%, rgba(26,86,219,0.35) 0%, transparent 60%)" }}
+    />
 
     <div className="absolute top-1/3 right-1/4 w-[600px] h-[600px] bg-[#1A56DB]/20 rounded-full blur-[120px] -z-0" />
     <div className="absolute bottom-0 left-0 w-80 h-80 bg-[#38BDF8]/10 rounded-full blur-[80px] -z-0" />
+
 
     <div className="container mx-auto px-5 sm:px-6 relative z-10">
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
@@ -34,18 +38,15 @@ const Hero = () => (
             <span className="text-[#38BDF8] text-xs font-bold uppercase tracking-widest">Curitiba • Paraná</span>
           </div>
 
-          <h1 className="font-display text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-extrabold leading-[1.05] mb-6 text-white">
-            Tecnologia que{" "}
-            <span className="relative inline-block">
-              <span className="text-[#38BDF8] italic">impulsiona</span>
-              <span className="absolute -bottom-1 left-0 right-0 h-0.5 bg-gradient-to-r from-[#38BDF8] to-transparent" />
-            </span>
-            {" "}o seu negócio
+          <h1 className="font-body text-4xl sm:text-5xl md:text-6xl lg:text-[4.2rem] font-extrabold uppercase tracking-tight leading-[1.02] mb-6 text-white">
+            Tecnologia que
+            <span className="block text-[#2F80FF]">Conecta e Impulsiona</span>
           </h1>
 
           <p className="text-white/60 text-base md:text-lg lg:text-xl max-w-xl mb-8 leading-relaxed">
-            Atendimento especializado em Curitiba com agilidade e transparência. Do suporte corporativo à manutenção preventiva.
+            Soluções em TI para empresas que não podem parar. Atendimento especializado em Curitiba, com agilidade e transparência.
           </p>
+
 
           <div className="flex items-center gap-3 mb-8">
             <div className="flex -space-x-2">
