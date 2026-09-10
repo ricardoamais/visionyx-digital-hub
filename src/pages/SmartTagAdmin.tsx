@@ -87,7 +87,6 @@ const SmartTagAdmin = () => {
   const handleAuth = async (e: React.FormEvent) => {
     e.preventDefault();
     setBusy(true);
-    const fn = mode === "login" ? supabase.auth.signInWithPassword : supabase.auth.signUpWithPassword;
     const { error } =
       mode === "login"
         ? await supabase.auth.signInWithPassword({ email, password })
@@ -96,7 +95,6 @@ const SmartTagAdmin = () => {
             password,
             options: { emailRedirectTo: `${window.location.origin}/smart-tag-admin` },
           });
-    void fn;
     setBusy(false);
     if (error) {
       toast.error(error.message);

@@ -13,6 +13,8 @@ const ManutencaoNotebook = lazy(() => import("./pages/ManutencaoNotebook.tsx"));
 const SuporteEmpresas = lazy(() => import("./pages/SuporteEmpresas.tsx"));
 const MontagemPC = lazy(() => import("./pages/MontagemPC.tsx"));
 const BackupRecuperacao = lazy(() => import("./pages/BackupRecuperacao.tsx"));
+const SmartTagRedirect = lazy(() => import("./pages/SmartTagRedirect.tsx"));
+const SmartTagAdmin = lazy(() => import("./pages/SmartTagAdmin.tsx"));
 
 const queryClient = new QueryClient();
 
@@ -37,6 +39,8 @@ const App = () => (
             <Route path="/suporte-para-empresas" element={<SuporteEmpresas />} />
             <Route path="/montagem-de-pc" element={<MontagemPC />} />
             <Route path="/backup-e-recuperacao-de-dados" element={<BackupRecuperacao />} />
+            <Route path="/r/:code" element={<SmartTagRedirect />} />
+            <Route path="/smart-tag-admin" element={<SmartTagAdmin />} />
             <Route path="*" element={<NotFound />} />
           </Routes>
         </Suspense>
