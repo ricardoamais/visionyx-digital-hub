@@ -92,6 +92,16 @@ const SmartTagRedirect = () => {
             <p className="mt-4 text-sm text-white/70">
               {state === "redirecting" ? "Redirecionando..." : "Carregando..."}
             </p>
+            {state === "redirecting" && target && (
+              <a
+                href={target}
+                target="_top"
+                rel="noopener"
+                className="inline-block mt-4 text-sm font-semibold text-[#38BDF8] hover:underline"
+              >
+                Clique aqui se não for redirecionado
+              </a>
+            )}
           </>
         ) : (
           <>
