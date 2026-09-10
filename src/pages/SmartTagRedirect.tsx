@@ -4,6 +4,24 @@ import { supabase } from "@/integrations/supabase/client";
 
 type State = "loading" | "redirecting" | "unconfigured" | "inactive" | "notfound";
 
+/** Navegação top-level normal do navegador (sem fetch, iframe ou proxy). */
+const goTo = (url: string) => {
+  try {
+    // Se estivermos dentro de um iframe (preview/embed), navega a janela do topo.
+    if (window.top && window.top !== window.self) {
+      window.top.location.href = url;
+      return;
+    }
+  } catch {
+    // cross-origin: cai no fallback abaixo
+  }
+  try {
+    window.location.assign(url);
+  } catch {
+    window.location.href = url;
+  }
+};
+
 const messages: Record<Exclude<State, "loading" | "redirecting">, string> = {
   unconfigured: "Smart Tag ainda não configurado.",
   inactive: "Este Smart Tag está temporariamente indisponível.",
@@ -13,6 +31,7 @@ const messages: Record<Exclude<State, "loading" | "redirecting">, string> = {
 const SmartTagRedirect = () => {
   const { code } = useParams<{ code: string }>();
   const [state, setState] = useState<State>("loading");
+  const [target, setTarget] = useState<string>("");
 
   useEffect(() => {
     let cancelled = false;
@@ -39,8 +58,9 @@ const SmartTagRedirect = () => {
       }
       const url = (data.destination_url || "").trim();
       if (data.status === "Ativa" && /^https?:\/\//i.test(url)) {
+        setTarget(url);
         setState("redirecting");
-        window.location.replace(url);
+        goTo(url);
         return;
       }
       setState("unconfigured");
@@ -72,6 +92,16 @@ const SmartTagRedirect = () => {
             <p className="mt-4 text-sm text-white/70">
               {state === "redirecting" ? "Redirecionando..." : "Carregando..."}
             </p>
+            {state === "redirecting" && target && (
+              <a
+                href={target}
+                target="_top"
+                rel="noopener"
+                className="inline-block mt-4 text-sm font-semibold text-[#38BDF8] hover:underline"
+              >
+                Clique aqui se não for redirecionado
+              </a>
+            )}
           </>
         ) : (
           <>
