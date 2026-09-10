@@ -4,6 +4,24 @@ import { supabase } from "@/integrations/supabase/client";
 
 type State = "loading" | "redirecting" | "unconfigured" | "inactive" | "notfound";
 
+/** Navegação top-level normal do navegador (sem fetch, iframe ou proxy). */
+const goTo = (url: string) => {
+  try {
+    // Se estivermos dentro de um iframe (preview/embed), navega a janela do topo.
+    if (window.top && window.top !== window.self) {
+      window.top.location.href = url;
+      return;
+    }
+  } catch {
+    // cross-origin: cai no fallback abaixo
+  }
+  try {
+    window.location.assign(url);
+  } catch {
+    window.location.href = url;
+  }
+};
+
 const messages: Record<Exclude<State, "loading" | "redirecting">, string> = {
   unconfigured: "Smart Tag ainda não configurado.",
   inactive: "Este Smart Tag está temporariamente indisponível.",
