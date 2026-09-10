@@ -31,6 +31,7 @@ const messages: Record<Exclude<State, "loading" | "redirecting">, string> = {
 const SmartTagRedirect = () => {
   const { code } = useParams<{ code: string }>();
   const [state, setState] = useState<State>("loading");
+  const [target, setTarget] = useState<string>("");
 
   useEffect(() => {
     let cancelled = false;
@@ -57,8 +58,9 @@ const SmartTagRedirect = () => {
       }
       const url = (data.destination_url || "").trim();
       if (data.status === "Ativa" && /^https?:\/\//i.test(url)) {
+        setTarget(url);
         setState("redirecting");
-        window.location.replace(url);
+        goTo(url);
         return;
       }
       setState("unconfigured");
