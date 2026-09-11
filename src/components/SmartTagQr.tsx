@@ -5,9 +5,10 @@ import { getSmartTagUrl } from "@/lib/smartTag";
 
 interface Props {
   code: string;
+  centered?: boolean;
 }
 
-const SmartTagQr = ({ code }: Props) => {
+const SmartTagQr = ({ code, centered = false }: Props) => {
   const url = getSmartTagUrl(code);
   const [preview, setPreview] = useState("");
 
@@ -68,6 +69,50 @@ const SmartTagQr = ({ code }: Props) => {
       toast.error("Não foi possível copiar.");
     }
   };
+
+  if (centered) {
+    return (
+      <div className="flex flex-col items-center gap-3 w-full">
+        {preview ? (
+          <img
+            src={preview}
+            alt={`QR Code do Smart Tag ${code}`}
+            className="w-28 h-28 rounded-md border border-slate-200 bg-white"
+          />
+        ) : (
+          <div className="w-28 h-28 rounded-md border border-slate-200 bg-slate-50" />
+        )}
+        <a
+          href={url}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="text-xs font-semibold text-[#1A56DB] hover:underline break-all text-center"
+        >
+          {url}
+        </a>
+        <div className="grid grid-cols-2 gap-2 w-full">
+          <button
+            onClick={copyLink}
+            className="rounded-md border border-slate-300 px-2 py-1.5 text-xs font-semibold text-slate-700"
+          >
+            Copiar link
+          </button>
+          <button
+            onClick={downloadPng}
+            className="rounded-md bg-[#1A56DB] px-2 py-1.5 text-xs font-semibold text-white"
+          >
+            Baixar PNG
+          </button>
+          <button
+            onClick={downloadSvg}
+            className="rounded-md border border-slate-300 px-2 py-1.5 text-xs font-semibold text-slate-700 col-span-2"
+          >
+            Baixar SVG
+          </button>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className="flex items-start gap-3">
