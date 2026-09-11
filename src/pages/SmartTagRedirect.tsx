@@ -53,7 +53,7 @@ const SmartTagRedirect = () => {
         return;
       }
       // Registra o acesso (QR Code e NFC usam a mesma rota /r/:code).
-      await supabase.rpc("increment_smart_tag_access", { _code: data.code }).catch(() => {});
+      await supabase.rpc("increment_smart_tag_access", { _code: data.code });
       if (cancelled) return;
       if (data.status === "Inativa") {
         setState("inactive");
