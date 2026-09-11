@@ -1,6 +1,7 @@
 import { useCallback, useEffect, useMemo, useState } from "react";
 import { toast } from "sonner";
 import { supabase } from "@/integrations/supabase/client";
+import SmartTagQr from "@/components/SmartTagQr";
 import {
   DESTINATION_TYPES,
   SMART_TAG_STATUS,
@@ -382,20 +383,21 @@ const SmartTagAdmin = () => {
                   <th className="py-2 pr-4">Status</th>
                   <th className="py-2 pr-4">Criado</th>
                   <th className="py-2 pr-4">Atualizado</th>
+                  <th className="py-2 pr-4">QR Code</th>
                   <th className="py-2">Ações</th>
                 </tr>
               </thead>
               <tbody>
                 {loading && (
                   <tr>
-                    <td colSpan={8} className="py-6 text-center text-slate-400">
+                    <td colSpan={9} className="py-6 text-center text-slate-400">
                       Carregando...
                     </td>
                   </tr>
                 )}
                 {!loading && visible.length === 0 && (
                   <tr>
-                    <td colSpan={8} className="py-6 text-center text-slate-400">
+                    <td colSpan={9} className="py-6 text-center text-slate-400">
                       Nenhum Smart Tag encontrado.
                     </td>
                   </tr>
@@ -434,6 +436,9 @@ const SmartTagAdmin = () => {
                     </td>
                     <td className="py-3 pr-4 text-xs text-slate-500">{formatDate(t.created_at)}</td>
                     <td className="py-3 pr-4 text-xs text-slate-500">{formatDate(t.updated_at)}</td>
+                    <td className="py-3 pr-4">
+                      <SmartTagQr code={t.code} />
+                    </td>
                     <td className="py-3">
                       <div className="flex gap-2">
                         <button
