@@ -19,6 +19,7 @@ export interface SmartTag {
   destination_url: string | null;
   destination_type: string | null;
   status: string;
+  access_count: number;
   created_at: string;
   updated_at: string;
 }
