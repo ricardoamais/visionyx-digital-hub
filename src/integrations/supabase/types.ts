@@ -37,6 +37,7 @@ export type Database = {
       }
       visionyx_smart_tags: {
         Row: {
+          access_count: number
           client_name: string | null
           code: string
           created_at: string
@@ -47,6 +48,7 @@ export type Database = {
           updated_at: string
         }
         Insert: {
+          access_count?: number
           client_name?: string | null
           code: string
           created_at?: string
@@ -57,6 +59,7 @@ export type Database = {
           updated_at?: string
         }
         Update: {
+          access_count?: number
           client_name?: string | null
           code?: string
           created_at?: string
@@ -80,6 +83,10 @@ export type Database = {
           _user_id: string
         }
         Returns: boolean
+      }
+      increment_smart_tag_access: {
+        Args: { _code: string }
+        Returns: undefined
       }
     }
     Enums: {
