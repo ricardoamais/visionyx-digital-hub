@@ -382,6 +382,7 @@ const SmartTagAdmin = () => {
                   <th className="py-2 pr-4">Status</th>
                   <th className="py-2 pr-4">Criado</th>
                   <th className="py-2 pr-4">Atualizado</th>
+                  <th className="py-2 pr-4">QR Code</th>
                   <th className="py-2">Ações</th>
                 </tr>
               </thead>
