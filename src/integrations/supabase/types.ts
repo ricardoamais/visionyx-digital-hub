@@ -35,6 +35,30 @@ export type Database = {
         }
         Relationships: []
       }
+      vendedores: {
+        Row: {
+          created_at: string
+          email: string
+          id: string
+          nome: string
+          status: string
+        }
+        Insert: {
+          created_at?: string
+          email: string
+          id?: string
+          nome: string
+          status?: string
+        }
+        Update: {
+          created_at?: string
+          email?: string
+          id?: string
+          nome?: string
+          status?: string
+        }
+        Relationships: []
+      }
       visionyx_smart_tags: {
         Row: {
           access_count: number
@@ -46,6 +70,7 @@ export type Database = {
           id: string
           status: string
           updated_at: string
+          vendedor_id: string | null
         }
         Insert: {
           access_count?: number
@@ -57,6 +82,7 @@ export type Database = {
           id?: string
           status?: string
           updated_at?: string
+          vendedor_id?: string | null
         }
         Update: {
           access_count?: number
@@ -68,8 +94,17 @@ export type Database = {
           id?: string
           status?: string
           updated_at?: string
+          vendedor_id?: string | null
         }
-        Relationships: []
+        Relationships: [
+          {
+            foreignKeyName: "visionyx_smart_tags_vendedor_id_fkey"
+            columns: ["vendedor_id"]
+            isOneToOne: false
+            referencedRelation: "vendedores"
+            referencedColumns: ["id"]
+          },
+        ]
       }
     }
     Views: {
