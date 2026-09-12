@@ -372,7 +372,7 @@ const SmartTagAdmin = () => {
             </div>
           </div>
 
-          <div className="overflow-x-auto">
+          <div className="hidden md:block overflow-x-auto">
             <table className="w-full text-sm">
               <thead>
                 <tr className="text-left text-xs uppercase tracking-wider text-slate-400 border-b border-slate-200">
@@ -478,6 +478,103 @@ const SmartTagAdmin = () => {
                 ))}
               </tbody>
             </table>
+          </div>
+
+          <div className="block md:hidden space-y-4">
+            {loading && (
+              <p className="py-6 text-center text-slate-400">Carregando...</p>
+            )}
+            {!loading && visible.length === 0 && (
+              <p className="py-6 text-center text-slate-400">Nenhum Smart Tag encontrado.</p>
+            )}
+            {!loading &&
+              visible.map((t) => (
+                <div
+                  key={t.id}
+                  className="rounded-xl bg-white border border-slate-200 p-4 space-y-3"
+                >
+                  <div className="flex items-center justify-between gap-2">
+                    <p className="font-bold text-[#0A1F3F] break-all">{t.code}</p>
+                    <span
+                      className={`shrink-0 rounded-full px-2 py-0.5 text-xs font-bold ${
+                        t.status === "Ativa"
+                          ? "bg-emerald-100 text-emerald-700"
+                          : t.status === "Inativa"
+                            ? "bg-red-100 text-red-600"
+                            : "bg-slate-100 text-slate-600"
+                      }`}
+                    >
+                      {t.status}
+                    </span>
+                  </div>
+
+                  <div className="space-y-1 text-sm">
+                    <p>
+                      <span className="text-slate-400 font-semibold">Cliente:</span>{" "}
+                      {t.client_name || "—"}
+                    </p>
+                    <p>
+                      <span className="text-slate-400 font-semibold">Destino:</span>{" "}
+                      {t.destination_url ? (
+                        <a
+                          href={t.destination_url}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="text-[#1A56DB] hover:underline break-all"
+                        >
+                          {t.destination_url}
+                        </a>
+                      ) : (
+                        "—"
+                      )}
+                    </p>
+                    <p>
+                      <span className="text-slate-400 font-semibold">Tipo:</span>{" "}
+                      {t.destination_type || "—"}
+                    </p>
+                    <p>
+                      <span className="text-slate-400 font-semibold">Criado:</span>{" "}
+                      <span className="text-xs text-slate-500">{formatDate(t.created_at)}</span>
+                    </p>
+                    <p>
+                      <span className="text-slate-400 font-semibold">Atualizado:</span>{" "}
+                      <span className="text-xs text-slate-500">{formatDate(t.updated_at)}</span>
+                    </p>
+                    <p>
+                      <span className="text-slate-400 font-semibold">Acessos:</span>{" "}
+                      <span className="font-bold text-[#0A1F3F]">{t.access_count ?? 0}</span>
+                    </p>
+                  </div>
+
+                  <SmartTagQr code={t.code} centered />
+
+                  <div className="grid grid-cols-2 gap-2">
+                    <button
+                      onClick={() =>
+                        setForm({
+                          id: t.id,
+                          code: t.code,
+                          client_name: t.client_name || "",
+                          destination_url: t.destination_url || "",
+                          destination_type: t.destination_type || "",
+                          status: t.status,
+                        })
+                      }
+                      className="rounded-md border border-slate-300 px-2 py-2 text-xs font-semibold text-slate-700"
+                    >
+                      Editar
+                    </button>
+                    <a
+                      href={getSmartTagUrl(t.code)}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-center rounded-md border border-slate-300 px-2 py-2 text-xs font-semibold text-slate-700"
+                    >
+                      Testar
+                    </a>
+                  </div>
+                </div>
+              ))}
           </div>
         </section>
       </div>
