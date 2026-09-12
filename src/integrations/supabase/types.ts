@@ -42,6 +42,7 @@ export type Database = {
           id: string
           nome: string
           status: string
+          user_id: string | null
         }
         Insert: {
           created_at?: string
@@ -49,6 +50,7 @@ export type Database = {
           id?: string
           nome: string
           status?: string
+          user_id?: string | null
         }
         Update: {
           created_at?: string
@@ -56,6 +58,7 @@ export type Database = {
           id?: string
           nome?: string
           status?: string
+          user_id?: string | null
         }
         Relationships: []
       }
@@ -122,6 +125,15 @@ export type Database = {
       increment_smart_tag_access: {
         Args: { _code: string }
         Returns: undefined
+      }
+      link_vendedor_account: {
+        Args: never
+        Returns: {
+          email: string
+          id: string
+          nome: string
+          status: string
+        }[]
       }
     }
     Enums: {
