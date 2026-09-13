@@ -15,6 +15,8 @@ const MontagemPC = lazy(() => import("./pages/MontagemPC.tsx"));
 const BackupRecuperacao = lazy(() => import("./pages/BackupRecuperacao.tsx"));
 const SmartTagRedirect = lazy(() => import("./pages/SmartTagRedirect.tsx"));
 const SmartTagAdmin = lazy(() => import("./pages/SmartTagAdmin.tsx"));
+const VendedorAcesso = lazy(() => import("./pages/VendedorAcesso.tsx"));
+const VendedoresAdmin = lazy(() => import("./pages/VendedoresAdmin.tsx"));
 
 const queryClient = new QueryClient();
 
@@ -41,6 +43,8 @@ const App = () => (
             <Route path="/backup-e-recuperacao-de-dados" element={<BackupRecuperacao />} />
             <Route path="/r/:code" element={<SmartTagRedirect />} />
             <Route path="/smart-tag-admin" element={<SmartTagAdmin />} />
+            <Route path="/vendedor" element={<VendedorAcesso />} />
+            <Route path="/vendedores-admin" element={<VendedoresAdmin />} />
             <Route path="*" element={<NotFound />} />
           </Routes>
         </Suspense>

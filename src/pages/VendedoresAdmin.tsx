@@ -75,8 +75,7 @@ const VendedoresAdmin = () => {
 
   const toggleStatus = async (v: Vendedor) => {
     const next = v.status === "ativo" ? "inativo" : "ativo";
-    const patch: Record<string, unknown> = { status: next };
-    if (next === "inativo") patch.user_id = null;
+    const patch = next === "inativo" ? { status: next, user_id: null } : { status: next };
     const { error } = await supabase.from("vendedores").update(patch).eq("id", v.id);
     if (error) {
       toast({ title: "Erro", description: error.message, variant: "destructive" });
