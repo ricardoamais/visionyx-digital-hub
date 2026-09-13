@@ -129,9 +129,7 @@ const SmartTagAdmin = () => {
 
   const save = async (e: React.FormEvent) => {
     e.preventDefault();
-    const code = form.code.trim().toUpperCase();
-    if (!code) return toast.error("Informe o código.");
-    if (form.destination_url.trim()) {
+        if (form.destination_url.trim()) {
       const err = validateDestinationUrl(form.destination_url);
       if (err) return toast.error(err);
     }
