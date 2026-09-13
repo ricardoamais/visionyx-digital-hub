@@ -138,8 +138,8 @@ const SmartTagAdmin = () => {
     if (form.status === "Ativa" && !form.destination_url.trim()) {
       return toast.error("Um Smart Tag ativo precisa de uma URL de destino.");
     }
-    const payload = {
-      code,
+        const payload = {
+      ...(form.id ? { code: form.code.trim().toUpperCase() } : {}),
       client_name: form.client_name.trim() || null,
       destination_url: form.destination_url.trim() || null,
       destination_type: form.destination_type || null,
