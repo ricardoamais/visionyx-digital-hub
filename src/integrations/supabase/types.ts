@@ -75,10 +75,10 @@ export type Database = {
           updated_at: string
           vendedor_id: string | null
         }
-        Insert: {
+                Insert: {
           access_count?: number
           client_name?: string | null
-          code: string
+          code?: string
           created_at?: string
           destination_type?: string | null
           destination_url?: string | null
