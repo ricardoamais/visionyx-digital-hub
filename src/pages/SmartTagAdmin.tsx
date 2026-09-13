@@ -285,12 +285,17 @@ const SmartTagAdmin = () => {
             {form.id ? "Editar Smart Tag" : "Cadastrar Smart Tag"}
           </h2>
           <form onSubmit={save} className="grid gap-3 md:grid-cols-2">
-            <input
-              placeholder="Código (ex: VX0001)"
-              value={form.code}
-              onChange={(e) => setForm({ ...form, code: e.target.value.toUpperCase() })}
-              className={inputClass}
-            />
+                        {form.id ? (
+              <input
+                value={form.code}
+                readOnly
+                className={`${inputClass} bg-slate-100 cursor-not-allowed`}
+              />
+            ) : (
+              <div className={`${inputClass} bg-slate-50 text-slate-500`}>
+                O código VX-XXXXXX será gerado automaticamente
+              </div>
+            )}
             <input
               placeholder="Cliente"
               value={form.client_name}
