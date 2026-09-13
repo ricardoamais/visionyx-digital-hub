@@ -41,11 +41,8 @@ const SmartTagRedirect = () => {
         setState("notfound");
         return;
       }
-      const { data, error } = await supabase
-        .from("visionyx_smart_tags")
-        .select("code, status, destination_url")
-        .eq("code", normalized)
-        .maybeSingle();
+      const { data: rows, error } = await supabase.rpc("resolve_smart_tag", { _code: normalized });
+      const data = Array.isArray(rows) ? rows[0] : null;
 
       if (cancelled) return;
       if (error || !data) {
