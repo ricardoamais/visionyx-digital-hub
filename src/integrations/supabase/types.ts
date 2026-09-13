@@ -126,12 +126,21 @@ export type Database = {
         Args: { _code: string }
         Returns: undefined
       }
+      is_my_vendedor: { Args: { _vendedor_id: string }; Returns: boolean }
       link_vendedor_account: {
         Args: never
         Returns: {
           email: string
           id: string
           nome: string
+          status: string
+        }[]
+      }
+      resolve_smart_tag: {
+        Args: { _code: string }
+        Returns: {
+          code: string
+          destination_url: string
           status: string
         }[]
       }
