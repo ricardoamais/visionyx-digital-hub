@@ -15,6 +15,13 @@
       "when": 1791481852305,
       "tag": "0001_suporte_filiais_campos_admin_filial",
       "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "7",
+      "when": 1791481875990,
+      "tag": "0002_suporte_regras_acesso_filial",
+      "breakpoints": true
     }
   ]
 }

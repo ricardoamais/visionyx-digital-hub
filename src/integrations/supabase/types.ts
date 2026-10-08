@@ -441,6 +441,10 @@ export type Database = {
         Args: { _cliente_id: string; _filial_id: string }
         Returns: boolean
       }
+      suporte_pode_ver_chamado_v2: {
+        Args: { _cliente_id: string; _filial_id: string; _usuario_id: string }
+        Returns: boolean
+      }
       suporte_pode_ver_cliente: {
         Args: { _cliente_id: string }
         Returns: boolean
