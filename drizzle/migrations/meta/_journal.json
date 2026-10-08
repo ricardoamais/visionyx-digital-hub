@@ -50,6 +50,13 @@
       "when": 1791482667842,
       "tag": "0006_painel_atendimento",
       "breakpoints": true
+    },
+    {
+      "idx": 7,
+      "version": "7",
+      "when": 1791483760647,
+      "tag": "0007_notificacao_envios",
+      "breakpoints": true
     }
   ]
 }

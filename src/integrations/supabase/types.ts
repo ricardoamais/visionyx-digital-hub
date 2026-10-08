@@ -367,6 +367,47 @@ export type Database = {
           },
         ]
       }
+      suporte_notificacao_envios: {
+        Row: {
+          assunto: string
+          chamado_id: string
+          created_at: string
+          destinatario: string
+          erro: string | null
+          id: string
+          status: string
+          tipo: string
+        }
+        Insert: {
+          assunto: string
+          chamado_id: string
+          created_at?: string
+          destinatario: string
+          erro?: string | null
+          id?: string
+          status: string
+          tipo: string
+        }
+        Update: {
+          assunto?: string
+          chamado_id?: string
+          created_at?: string
+          destinatario?: string
+          erro?: string | null
+          id?: string
+          status?: string
+          tipo?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "suporte_notificacao_envios_chamado_id_fkey"
+            columns: ["chamado_id"]
+            isOneToOne: false
+            referencedRelation: "suporte_chamados"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       suporte_notificacoes: {
         Row: {
           canal: string | null
