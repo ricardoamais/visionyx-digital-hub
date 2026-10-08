@@ -7,7 +7,7 @@ const STATUS = ["Aberto", "Em atendimento", "Aguardando cliente", "Resolvido", "
 const POR_PAGINA = 25;
 type Row = { id: string; protocolo: string | null; numero: number; created_at: string; updated_at: string; cliente: string; filial: string; solicitante: string | null; categoria: string; assunto: string; prioridade: string; status: string; tecnico: string | null; total: number };
 const dt = (s: string) => new Date(s).toLocaleString("pt-BR", { dateStyle: "short", timeStyle: "short" });
-const sel = "rounded-lg border border-white/15 bg-[#0F2D5C] px-2 py-2 text-sm";
+const sel = "w-full md:w-auto min-w-0 rounded-lg border border-white/15 bg-[#0F2D5C] px-2 py-2 text-sm";
 
 export const prioridadeCls: Record<string, string> = {
   Urgente: "bg-red-500/20 text-red-200 border-red-400/50",
@@ -72,7 +72,7 @@ const AtendimentoChamados = () => {
       <h1 className="text-2xl md:text-3xl font-extrabold mb-4">Todos os Chamados</h1>
       <input value={busca} onChange={(e) => setBusca(e.target.value)} placeholder="Pesquisar por número, assunto, solicitante, filial ou equipamento"
         className="w-full rounded-lg border border-white/15 bg-white/5 px-3 py-2 text-sm placeholder:text-white/40 mb-3" />
-      <div className="flex flex-wrap gap-2 mb-4">
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:flex md:flex-wrap gap-2 mb-4 [&>*]:min-h-11 md:[&>*]:min-h-0">
         <select className={sel} value={f("cliente")} onChange={(e) => set("cliente", e.target.value)}><option value="">Todos os clientes</option>{clientes.map((c) => <option key={c.id} value={c.id}>{c.nome}</option>)}</select>
         <select className={sel} value={f("filial")} onChange={(e) => set("filial", e.target.value)} disabled={!f("cliente")}><option value="">Todas as filiais</option>{filiais.map((x) => <option key={x.id} value={x.id}>{x.codigo} — {x.nome}</option>)}</select>
         <select className={sel} value={f("status")} onChange={(e) => set("status", e.target.value)}><option value="">Todos os status</option>{STATUS.map((s) => <option key={s}>{s}</option>)}</select>
@@ -88,7 +88,23 @@ const AtendimentoChamados = () => {
         <button onClick={() => { setBusca(""); setSp({}, { replace: true }); }} className="rounded-lg border border-white/20 px-3 py-2 text-sm hover:border-[#38BDF8]">Limpar filtros</button>
       </div>
 
-      <div className="overflow-x-auto rounded-xl border border-white/10">
+      <div className="md:hidden space-y-3">
+        {rows === null && <p className="text-white/50">Carregando...</p>}
+        {rows?.length === 0 && <p className="text-white/50">Nenhum chamado encontrado.</p>}
+        {rows?.map((r) => (
+          <Link key={r.id} to={`/suporte/admin/chamado/${r.id}`} className={`block rounded-xl border p-4 ${r.prioridade === "Urgente" && !["Resolvido", "Fechado"].includes(r.status) ? "border-red-400/60 bg-red-500/10" : "border-white/10 bg-white/5"}`}>
+            <div className="flex justify-between gap-2 text-sm"><span className="font-bold text-[#38BDF8]">{r.protocolo ?? `#${r.numero}`}</span><span className="text-white/60">{dt(r.created_at)}</span></div>
+            <p className="font-bold mt-1 break-words">{r.assunto}</p>
+            <p className="text-sm text-white/70 mt-1 break-words">{r.filial} · {r.solicitante ?? "—"}</p>
+            <div className="mt-2 flex flex-wrap gap-2 text-xs">
+              <span className={`rounded-full border px-2 py-0.5 font-semibold ${prioridadeCls[r.prioridade]}`}>{r.prioridade}</span>
+              <span className="rounded-full bg-[#1A56DB]/30 px-2 py-0.5 font-semibold">{r.status}</span>
+              <span className="text-white/60">Técnico: {r.tecnico ?? "—"}</span>
+            </div>
+          </Link>
+        ))}
+      </div>
+      <div className="hidden md:block overflow-x-auto rounded-xl border border-white/10">
         <table className="w-full text-sm whitespace-nowrap">
           <thead className="bg-white/5 text-left text-white/60">
             <tr>{["Número", "Data", "Cliente", "Filial", "Solicitante", "Categoria", "Assunto", "Prioridade", "Status", "Técnico", "Atualização"].map((h) => <th key={h} className="p-3">{h}</th>)}</tr>

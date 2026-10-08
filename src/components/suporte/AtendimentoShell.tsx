@@ -29,7 +29,7 @@ const AtendimentoShell = () => {
     `flex items-center gap-2 rounded-lg px-3 py-2 text-sm font-semibold ${isActive ? "bg-[#1A56DB] text-white" : "text-white/70 hover:text-white"}`;
 
   return (
-    <div className="min-h-screen bg-[#0A1F3F] text-white">
+    <div className="min-h-screen bg-[#0A1F3F] text-white overflow-x-hidden break-words">
       <header className="border-b border-white/10">
         <div className="container mx-auto px-4 h-16 flex items-center justify-between gap-3">
           <span className="font-extrabold uppercase">Visionyx <span className="text-[#38BDF8] text-xs tracking-[0.3em]">Atendimento</span></span>

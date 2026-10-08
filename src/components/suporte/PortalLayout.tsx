@@ -86,7 +86,7 @@ const PortalLayout = () => {
 
   return (
     <Ctx.Provider value={{ user, reload }}>
-      <div className="min-h-screen bg-[#0A1F3F] text-white md:flex">
+      <div className="min-h-screen bg-[#0A1F3F] text-white md:flex overflow-x-hidden break-words">
         <aside className="md:w-64 md:min-h-screen border-b md:border-b-0 md:border-r border-white/10 bg-[#0F2D5C]">
           <div className="px-5 h-16 flex items-center font-extrabold uppercase">
             Visionyx <span className="ml-2 text-[#38BDF8] text-xs tracking-[0.3em]">Suporte</span>
@@ -100,7 +100,7 @@ const PortalLayout = () => {
             </button>
           </nav>
         </aside>
-        <main className="flex-1 px-4 py-6 md:px-8 pb-28 md:pb-8">
+        <main className="flex-1 min-w-0 px-4 py-6 md:px-8 pb-28 md:pb-8">
           <Outlet />
         </main>
         <nav className="md:hidden fixed bottom-0 inset-x-0 z-40 grid grid-cols-5 border-t border-white/10 bg-[#0F2D5C]">
