@@ -423,6 +423,15 @@ export type Database = {
           status: string
         }[]
       }
+      suporte_atualizar_meu_perfil: {
+        Args: {
+          _cargo: string
+          _nome: string
+          _setor: string
+          _telefone: string
+        }
+        Returns: undefined
+      }
       suporte_is_admin: { Args: never; Returns: boolean }
       suporte_is_tecnico_do_cliente: {
         Args: { _cliente_id: string }

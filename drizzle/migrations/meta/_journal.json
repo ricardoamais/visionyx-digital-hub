@@ -22,6 +22,13 @@
       "when": 1791481875990,
       "tag": "0002_suporte_regras_acesso_filial",
       "breakpoints": true
+    },
+    {
+      "idx": 3,
+      "version": "7",
+      "when": 1791482147773,
+      "tag": "0003_suporte_meu_perfil",
+      "breakpoints": true
     }
   ]
 }
