@@ -54,6 +54,9 @@ const Header = () => {
               {item}
             </button>
           ))}
+          <a href="/central-de-suporte" className="text-sm font-medium text-[#38BDF8] hover:text-white transition-colors">
+            Central de Suporte
+          </a>
           <a
             href="https://wa.me/5541995236952?text=Olá! Gostaria de solicitar uma proposta de suporte técnico para minha empresa."
             className="bg-[#1A56DB] hover:bg-[#38BDF8] text-white px-5 py-2.5 rounded-lg text-sm font-bold transition-all shadow-lg shadow-[#1A56DB]/30"
@@ -85,7 +88,10 @@ const Header = () => {
                   {item}
                 </button>
               ))}
-              <a
+              <a href="/central-de-suporte" className="text-[#38BDF8] py-4 px-2 text-base">
+                Central de Suporte
+              </a>
+              <
                 href="https://wa.me/5541995236952"
                 target="_blank"
                 rel="noopener noreferrer"
