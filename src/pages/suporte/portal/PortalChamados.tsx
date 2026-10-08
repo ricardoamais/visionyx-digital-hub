@@ -25,6 +25,7 @@ const dt = (s: string) => new Date(s).toLocaleString("pt-BR", { dateStyle: "shor
 
 const PortalChamados = () => {
   const lista = useMeusChamados();
+  const nav = useNavigate();
   const [q, setQ] = useState("");
   const [f, setF] = useState("Todos");
 
