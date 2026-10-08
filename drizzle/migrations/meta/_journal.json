@@ -29,6 +29,13 @@
       "when": 1791482147773,
       "tag": "0003_suporte_meu_perfil",
       "breakpoints": true
+    },
+    {
+      "idx": 4,
+      "version": "7",
+      "when": 1791482368152,
+      "tag": "0004_chamado_categorias_extras",
+      "breakpoints": true
     }
   ]
 }

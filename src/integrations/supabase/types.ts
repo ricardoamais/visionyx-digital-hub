@@ -471,6 +471,9 @@ export type Database = {
         | "Telefonia / PABX"
         | "Firewall / Segurança"
         | "Outros"
+        | "Notebook"
+        | "Servidor"
+        | "Equipamento"
       chamado_prioridade: "Baixa" | "Normal" | "Alta" | "Urgente"
       chamado_status:
         | "Aberto"
@@ -622,6 +625,9 @@ export const Constants = {
         "Telefonia / PABX",
         "Firewall / Segurança",
         "Outros",
+        "Notebook",
+        "Servidor",
+        "Equipamento",
       ],
       chamado_prioridade: ["Baixa", "Normal", "Alta", "Urgente"],
       chamado_status: [
