@@ -18,6 +18,9 @@ const SmartTagAdmin = lazy(() => import("./pages/SmartTagAdmin.tsx"));
 const VendedorAcesso = lazy(() => import("./pages/VendedorAcesso.tsx"));
 const VendedoresAdmin = lazy(() => import("./pages/VendedoresAdmin.tsx"));
 const CentralSuporte = lazy(() => import("./pages/CentralSuporte.tsx"));
+const SuporteClientes = lazy(() => import("./pages/suporte/SuporteClientes.tsx"));
+const SuporteCliente = lazy(() => import("./pages/suporte/SuporteCliente.tsx"));
+const SuporteFilial = lazy(() => import("./pages/suporte/SuporteFilial.tsx"));
 
 const queryClient = new QueryClient();
 
@@ -47,6 +50,9 @@ const App = () => (
             <Route path="/vendedor" element={<VendedorAcesso />} />
             <Route path="/vendedores-admin" element={<VendedoresAdmin />} />
             <Route path="/central-de-suporte" element={<CentralSuporte />} />
+            <Route path="/central-de-suporte/admin" element={<SuporteClientes />} />
+            <Route path="/central-de-suporte/admin/clientes/:id" element={<SuporteCliente />} />
+            <Route path="/central-de-suporte/admin/filiais/:id" element={<SuporteFilial />} />
             <Route path="*" element={<NotFound />} />
           </Routes>
         </Suspense>

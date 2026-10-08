@@ -129,38 +129,56 @@ export type Database = {
       }
       suporte_filiais: {
         Row: {
+          bairro: string | null
+          cep: string | null
           cidade: string | null
           cliente_id: string
+          cnpj: string | null
           codigo: string
           created_at: string
+          email: string | null
           endereco: string | null
           estado: string | null
           id: string
           nome: string
+          numero: string | null
+          responsavel: string | null
           status: string
           telefone: string | null
         }
         Insert: {
+          bairro?: string | null
+          cep?: string | null
           cidade?: string | null
           cliente_id: string
+          cnpj?: string | null
           codigo: string
           created_at?: string
+          email?: string | null
           endereco?: string | null
           estado?: string | null
           id?: string
           nome: string
+          numero?: string | null
+          responsavel?: string | null
           status?: string
           telefone?: string | null
         }
         Update: {
+          bairro?: string | null
+          cep?: string | null
           cidade?: string | null
           cliente_id?: string
+          cnpj?: string | null
           codigo?: string
           created_at?: string
+          email?: string | null
           endereco?: string | null
           estado?: string | null
           id?: string
           nome?: string
+          numero?: string | null
+          responsavel?: string | null
           status?: string
           telefone?: string | null
         }
@@ -423,6 +441,10 @@ export type Database = {
         Args: { _cliente_id: string; _filial_id: string }
         Returns: boolean
       }
+      suporte_pode_ver_chamado_v2: {
+        Args: { _cliente_id: string; _filial_id: string; _usuario_id: string }
+        Returns: boolean
+      }
       suporte_pode_ver_cliente: {
         Args: { _cliente_id: string }
         Returns: boolean
@@ -452,6 +474,7 @@ export type Database = {
         | "tecnico_visionyx"
         | "admin_cliente"
         | "usuario_filial"
+        | "admin_filial"
     }
     CompositeTypes: {
       [_ in never]: never
@@ -604,6 +627,7 @@ export const Constants = {
         "tecnico_visionyx",
         "admin_cliente",
         "usuario_filial",
+        "admin_filial",
       ],
     },
   },

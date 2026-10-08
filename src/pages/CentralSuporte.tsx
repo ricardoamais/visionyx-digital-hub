@@ -40,6 +40,9 @@ const CentralSuporte = () => (
       <p className="text-white/70 mt-4 max-w-2xl">
         Abertura e acompanhamento de chamados para empresas clientes da Visionyx. Acesso restrito a usuários cadastrados.
       </p>
+      <Link to="/central-de-suporte/admin" className="inline-block mt-6 rounded-lg bg-[#1A56DB] hover:bg-[#38BDF8] px-5 py-2.5 text-sm font-bold">
+        Administração Visionyx
+      </Link>
 
       <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4 mt-12">
         {modulos.map(({ icon: Icon, titulo, desc }) => (
