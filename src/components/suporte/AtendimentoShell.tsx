@@ -1,10 +1,11 @@
 import { useCallback, useEffect, useState } from "react";
-import { NavLink, Navigate, Outlet } from "react-router-dom";
+import { NavLink, Navigate, Outlet, useLocation } from "react-router-dom";
 import { supabase } from "@/integrations/supabase/client";
 import { LayoutDashboard, ListChecks, LogOut } from "lucide-react";
 
 /** Painel de Atendimento: só Administrador/Técnico Visionyx (o banco também bloqueia). */
 const AtendimentoShell = () => {
+  const loc = useLocation();
   const [state, setState] = useState<"loading" | "login" | "cliente" | "ok">("loading");
 
   const check = useCallback(async () => {
@@ -19,7 +20,10 @@ const AtendimentoShell = () => {
 
   if (state === "loading") return <div className="min-h-screen bg-[#0A1F3F] text-white/60 p-8">Carregando...</div>;
   if (state === "login") return <Navigate to="/suporte" replace />;
-  if (state === "cliente") return <Navigate to="/suporte/dashboard" replace />;
+  if (state === "cliente") {
+    const m = loc.pathname.match(/^\/suporte\/admin\/chamado\/([\w-]+)/);
+    return <Navigate to={m ? `/suporte/chamado/${m[1]}` : "/suporte/dashboard"} replace />;
+  }
 
   const link = ({ isActive }: { isActive: boolean }) =>
     `flex items-center gap-2 rounded-lg px-3 py-2 text-sm font-semibold ${isActive ? "bg-[#1A56DB] text-white" : "text-white/70 hover:text-white"}`;

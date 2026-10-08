@@ -29,7 +29,7 @@ Deno.serve(async (req) => {
 
   const admin = createClient(url, Deno.env.get('SUPABASE_SERVICE_ROLE_KEY')!)
   const { data: c } = await admin.from('suporte_chamados')
-    .select('id, protocolo, numero, created_at, categoria, prioridade, assunto, descricao, equipamento, cliente_id, filial_id, usuario_id').eq('id', id).maybeSingle()
+    .select('id, status, protocolo, numero, created_at, categoria, prioridade, assunto, descricao, equipamento, cliente_id, filial_id, usuario_id').eq('id', id).maybeSingle()
   if (!c) return json({ error: 'não encontrado' }, 404)
   const [cl, fi, us, an, env] = await Promise.all([
     admin.from('suporte_clientes').select('nome').eq('id', c.cliente_id).maybeSingle(),
@@ -46,6 +46,7 @@ Deno.serve(async (req) => {
     categoria: c.categoria, prioridade: c.prioridade, assunto: c.assunto, descricao: c.descricao ?? '',
     equipamento: c.equipamento ?? undefined,
     data: new Date(c.created_at).toLocaleString('pt-BR', { timeZone: 'America/Sao_Paulo', dateStyle: 'short', timeStyle: 'short' }),
+    status: c.status,
     link: `${SITE}/suporte/admin/chamado/${c.id}`, temAnexos: (an.count ?? 0) > 0,
   }
   const assunto = `[Visionyx] Novo chamado ${templateData.protocolo} — ${templateData.cliente ?? ''} — Filial ${templateData.filial ?? ''}`
