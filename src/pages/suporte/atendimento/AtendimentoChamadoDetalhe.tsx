@@ -21,6 +21,7 @@ const AtendimentoChamadoDetalhe = () => {
   const [busy, setBusy] = useState(false);
   const [modal, setModal] = useState<null | "aguardando" | "resolver">(null);
   const [txt, setTxt] = useState("");
+  const [envios, setEnvios] = useState<{ id: string; destinatario: string; status: string; erro: string | null; created_at: string }[]>([]);
 
   const load = useCallback(async () => {
     const [d, e, a] = await Promise.all([
@@ -30,6 +31,8 @@ const AtendimentoChamadoDetalhe = () => {
     ]);
     setC(((Array.isArray(d.data) ? d.data[0] : null) as D) ?? null);
     setEv((e.data as Ev[]) ?? []); setAn(a.data ?? []);
+    const n = await supabase.from("suporte_notificacao_envios").select("id, destinatario, status, erro, created_at").eq("chamado_id", id).order("created_at", { ascending: false });
+    setEnvios(n.data ?? []);
   }, [id]);
   useEffect(() => { load(); }, [load]);
 
@@ -100,6 +103,18 @@ const AtendimentoChamadoDetalhe = () => {
 
           <div className="rounded-xl border border-white/10 bg-white/5 p-4 grid grid-cols-2 gap-3 text-sm">
             {info("Abertura", dt(c.created_at))}{info("Início atendimento", dt(c.iniciado_em))}{info("Resolução", dt(c.resolvido_em))}{info("Fechamento", dt(c.closed_at))}
+          </div>
+
+          <div className="rounded-xl border border-white/10 bg-white/5 p-4 text-sm">
+            <p className="font-bold mb-2">E-mails de novo chamado</p>
+            {envios.length === 0 && <p className="text-white/50">Nenhum envio registrado.</p>}
+            {Array.from(new Map(envios.map((x) => [x.destinatario, x])).values()).map((x) => (
+              <p key={x.id} className="break-all" title={x.erro ?? ""}>{x.destinatario} → <b className={x.status === "enviado" ? "text-green-300" : "text-red-300"}>{x.status === "enviado" ? "Enviado" : x.status === "bloqueado" ? "Bloqueado" : "Falhou"}</b></p>
+            ))}
+            {!envios.some((x) => x.status === "enviado") || envios.some((x) => x.status !== "enviado") ? (
+              <button disabled={busy} onClick={() => acao(() => supabase.functions.invoke("notificar-novo-chamado", { body: { chamado_id: c.id } }).then((r) => ({ error: r.error })), "Envio processado")}
+                className="mt-2 w-full rounded-lg border border-white/20 px-3 py-2 font-bold hover:border-[#38BDF8]">Reenviar e-mail</button>
+            ) : null}
           </div>
 
           <div>
