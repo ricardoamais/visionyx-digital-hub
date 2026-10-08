@@ -108,10 +108,10 @@ const AtendimentoChamadoDetalhe = () => {
           <div className="rounded-xl border border-white/10 bg-white/5 p-4 text-sm">
             <p className="font-bold mb-2">E-mails de novo chamado</p>
             {envios.length === 0 && <p className="text-white/50">Nenhum envio registrado.</p>}
-            {Array.from(new Map(envios.map((x) => [x.destinatario, x])).values()).map((x) => (
+            {Array.from(new Map([...envios].reverse().map((x) => [x.destinatario, x])).values()).map((x) => (
               <p key={x.id} className="break-all" title={x.erro ?? ""}>{x.destinatario} → <b className={x.status === "enviado" ? "text-green-300" : "text-red-300"}>{x.status === "enviado" ? "Enviado" : x.status === "bloqueado" ? "Bloqueado" : "Falhou"}</b></p>
             ))}
-            {!envios.some((x) => x.status === "enviado") || envios.some((x) => x.status !== "enviado") ? (
+            {envios.length < 3 || Array.from(new Map([...envios].reverse().map((x) => [x.destinatario, x])).values()).some((x) => x.status !== "enviado") ? (
               <button disabled={busy} onClick={() => acao(() => supabase.functions.invoke("notificar-novo-chamado", { body: { chamado_id: c.id } }).then((r) => ({ error: r.error })), "Envio processado")}
                 className="mt-2 w-full rounded-lg border border-white/20 px-3 py-2 font-bold hover:border-[#38BDF8]">Reenviar e-mail</button>
             ) : null}
