@@ -14,6 +14,256 @@ export type Database = {
   }
   public: {
     Tables: {
+      suporte_chamados: {
+        Row: {
+          assunto: string
+          categoria: Database["public"]["Enums"]["chamado_categoria"]
+          cliente_id: string
+          closed_at: string | null
+          created_at: string
+          descricao: string | null
+          filial_id: string
+          id: string
+          numero: number
+          prioridade: Database["public"]["Enums"]["chamado_prioridade"]
+          status: Database["public"]["Enums"]["chamado_status"]
+          tecnico_id: string | null
+          updated_at: string
+          usuario_id: string | null
+        }
+        Insert: {
+          assunto: string
+          categoria?: Database["public"]["Enums"]["chamado_categoria"]
+          cliente_id: string
+          closed_at?: string | null
+          created_at?: string
+          descricao?: string | null
+          filial_id: string
+          id?: string
+          numero?: number
+          prioridade?: Database["public"]["Enums"]["chamado_prioridade"]
+          status?: Database["public"]["Enums"]["chamado_status"]
+          tecnico_id?: string | null
+          updated_at?: string
+          usuario_id?: string | null
+        }
+        Update: {
+          assunto?: string
+          categoria?: Database["public"]["Enums"]["chamado_categoria"]
+          cliente_id?: string
+          closed_at?: string | null
+          created_at?: string
+          descricao?: string | null
+          filial_id?: string
+          id?: string
+          numero?: number
+          prioridade?: Database["public"]["Enums"]["chamado_prioridade"]
+          status?: Database["public"]["Enums"]["chamado_status"]
+          tecnico_id?: string | null
+          updated_at?: string
+          usuario_id?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "suporte_chamados_cliente_id_fkey"
+            columns: ["cliente_id"]
+            isOneToOne: false
+            referencedRelation: "suporte_clientes"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "suporte_chamados_filial_id_cliente_id_fkey"
+            columns: ["filial_id", "cliente_id"]
+            isOneToOne: false
+            referencedRelation: "suporte_filiais"
+            referencedColumns: ["id", "cliente_id"]
+          },
+          {
+            foreignKeyName: "suporte_chamados_tecnico_id_fkey"
+            columns: ["tecnico_id"]
+            isOneToOne: false
+            referencedRelation: "suporte_usuarios"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "suporte_chamados_usuario_id_fkey"
+            columns: ["usuario_id"]
+            isOneToOne: false
+            referencedRelation: "suporte_usuarios"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      suporte_clientes: {
+        Row: {
+          cnpj: string | null
+          created_at: string
+          email: string | null
+          endereco: string | null
+          id: string
+          nome: string
+          status: string
+          telefone: string | null
+        }
+        Insert: {
+          cnpj?: string | null
+          created_at?: string
+          email?: string | null
+          endereco?: string | null
+          id?: string
+          nome: string
+          status?: string
+          telefone?: string | null
+        }
+        Update: {
+          cnpj?: string | null
+          created_at?: string
+          email?: string | null
+          endereco?: string | null
+          id?: string
+          nome?: string
+          status?: string
+          telefone?: string | null
+        }
+        Relationships: []
+      }
+      suporte_filiais: {
+        Row: {
+          cidade: string | null
+          cliente_id: string
+          codigo: string
+          created_at: string
+          endereco: string | null
+          estado: string | null
+          id: string
+          nome: string
+          status: string
+          telefone: string | null
+        }
+        Insert: {
+          cidade?: string | null
+          cliente_id: string
+          codigo: string
+          created_at?: string
+          endereco?: string | null
+          estado?: string | null
+          id?: string
+          nome: string
+          status?: string
+          telefone?: string | null
+        }
+        Update: {
+          cidade?: string | null
+          cliente_id?: string
+          codigo?: string
+          created_at?: string
+          endereco?: string | null
+          estado?: string | null
+          id?: string
+          nome?: string
+          status?: string
+          telefone?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "suporte_filiais_cliente_id_fkey"
+            columns: ["cliente_id"]
+            isOneToOne: false
+            referencedRelation: "suporte_clientes"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      suporte_tecnico_clientes: {
+        Row: {
+          cliente_id: string
+          tecnico_id: string
+        }
+        Insert: {
+          cliente_id: string
+          tecnico_id: string
+        }
+        Update: {
+          cliente_id?: string
+          tecnico_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "suporte_tecnico_clientes_cliente_id_fkey"
+            columns: ["cliente_id"]
+            isOneToOne: false
+            referencedRelation: "suporte_clientes"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "suporte_tecnico_clientes_tecnico_id_fkey"
+            columns: ["tecnico_id"]
+            isOneToOne: false
+            referencedRelation: "suporte_usuarios"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      suporte_usuarios: {
+        Row: {
+          cargo: string | null
+          cliente_id: string | null
+          created_at: string
+          email: string
+          filial_id: string | null
+          id: string
+          nome: string
+          perfil: Database["public"]["Enums"]["suporte_perfil"]
+          setor: string | null
+          status: string
+          telefone: string | null
+          user_id: string | null
+        }
+        Insert: {
+          cargo?: string | null
+          cliente_id?: string | null
+          created_at?: string
+          email: string
+          filial_id?: string | null
+          id?: string
+          nome: string
+          perfil?: Database["public"]["Enums"]["suporte_perfil"]
+          setor?: string | null
+          status?: string
+          telefone?: string | null
+          user_id?: string | null
+        }
+        Update: {
+          cargo?: string | null
+          cliente_id?: string | null
+          created_at?: string
+          email?: string
+          filial_id?: string | null
+          id?: string
+          nome?: string
+          perfil?: Database["public"]["Enums"]["suporte_perfil"]
+          setor?: string | null
+          status?: string
+          telefone?: string | null
+          user_id?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "suporte_usuarios_cliente_id_fkey"
+            columns: ["cliente_id"]
+            isOneToOne: false
+            referencedRelation: "suporte_clientes"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "suporte_usuarios_filial_id_cliente_id_fkey"
+            columns: ["filial_id", "cliente_id"]
+            isOneToOne: false
+            referencedRelation: "suporte_filiais"
+            referencedColumns: ["id", "cliente_id"]
+          },
+        ]
+      }
       user_roles: {
         Row: {
           created_at: string
@@ -127,6 +377,17 @@ export type Database = {
         Returns: undefined
       }
       is_my_vendedor: { Args: { _vendedor_id: string }; Returns: boolean }
+      link_suporte_account: {
+        Args: never
+        Returns: {
+          cliente_id: string
+          filial_id: string
+          id: string
+          nome: string
+          perfil: Database["public"]["Enums"]["suporte_perfil"]
+          status: string
+        }[]
+      }
       link_vendedor_account: {
         Args: never
         Returns: {
@@ -144,9 +405,53 @@ export type Database = {
           status: string
         }[]
       }
+      suporte_is_admin: { Args: never; Returns: boolean }
+      suporte_is_tecnico_do_cliente: {
+        Args: { _cliente_id: string }
+        Returns: boolean
+      }
+      suporte_me: {
+        Args: never
+        Returns: {
+          cliente_id: string
+          filial_id: string
+          id: string
+          perfil: Database["public"]["Enums"]["suporte_perfil"]
+        }[]
+      }
+      suporte_pode_ver_chamado: {
+        Args: { _cliente_id: string; _filial_id: string }
+        Returns: boolean
+      }
+      suporte_pode_ver_cliente: {
+        Args: { _cliente_id: string }
+        Returns: boolean
+      }
     }
     Enums: {
       app_role: "admin" | "user"
+      chamado_categoria:
+        | "Computador"
+        | "Internet"
+        | "Rede / Wi-Fi"
+        | "Impressora"
+        | "Sistema / Software"
+        | "E-mail"
+        | "Telefonia / PABX"
+        | "Firewall / Segurança"
+        | "Outros"
+      chamado_prioridade: "Baixa" | "Normal" | "Alta" | "Urgente"
+      chamado_status:
+        | "Aberto"
+        | "Em atendimento"
+        | "Aguardando cliente"
+        | "Resolvido"
+        | "Fechado"
+      suporte_perfil:
+        | "admin_visionyx"
+        | "tecnico_visionyx"
+        | "admin_cliente"
+        | "usuario_filial"
     }
     CompositeTypes: {
       [_ in never]: never
@@ -275,6 +580,31 @@ export const Constants = {
   public: {
     Enums: {
       app_role: ["admin", "user"],
+      chamado_categoria: [
+        "Computador",
+        "Internet",
+        "Rede / Wi-Fi",
+        "Impressora",
+        "Sistema / Software",
+        "E-mail",
+        "Telefonia / PABX",
+        "Firewall / Segurança",
+        "Outros",
+      ],
+      chamado_prioridade: ["Baixa", "Normal", "Alta", "Urgente"],
+      chamado_status: [
+        "Aberto",
+        "Em atendimento",
+        "Aguardando cliente",
+        "Resolvido",
+        "Fechado",
+      ],
+      suporte_perfil: [
+        "admin_visionyx",
+        "tecnico_visionyx",
+        "admin_cliente",
+        "usuario_filial",
+      ],
     },
   },
 } as const

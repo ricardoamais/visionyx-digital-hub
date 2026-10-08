@@ -17,6 +17,7 @@ const SmartTagRedirect = lazy(() => import("./pages/SmartTagRedirect.tsx"));
 const SmartTagAdmin = lazy(() => import("./pages/SmartTagAdmin.tsx"));
 const VendedorAcesso = lazy(() => import("./pages/VendedorAcesso.tsx"));
 const VendedoresAdmin = lazy(() => import("./pages/VendedoresAdmin.tsx"));
+const CentralSuporte = lazy(() => import("./pages/CentralSuporte.tsx"));
 
 const queryClient = new QueryClient();
 
@@ -45,6 +46,7 @@ const App = () => (
             <Route path="/smart-tag-admin" element={<SmartTagAdmin />} />
             <Route path="/vendedor" element={<VendedorAcesso />} />
             <Route path="/vendedores-admin" element={<VendedoresAdmin />} />
+            <Route path="/central-de-suporte" element={<CentralSuporte />} />
             <Route path="*" element={<NotFound />} />
           </Routes>
         </Suspense>
