@@ -21,7 +21,9 @@ const PortalLogin = () => {
 
   useEffect(() => {
     supabase.auth.getUser().then(async ({ data }) => {
-      if (data.user && (await carregarUsuarioPortal())) nav("/suporte/dashboard", { replace: true });
+      if (!data.user) return;
+      if (await carregarUsuarioPortal()) nav("/suporte/dashboard", { replace: true });
+      else if ((await supabase.rpc("suporte_is_staff")).data) nav("/suporte/admin", { replace: true });
     });
   }, [nav]);
 
@@ -51,6 +53,7 @@ const PortalLogin = () => {
     }
     const u = await carregarUsuarioPortal();
     setBusy(false);
+    if (!u && (await supabase.rpc("suporte_is_staff")).data) return nav("/suporte/admin", { replace: true });
     if (!u) {
       await supabase.auth.signOut();
       return setErro("Seu e-mail não está liberado ou está inativo. Fale com a Visionyx.");

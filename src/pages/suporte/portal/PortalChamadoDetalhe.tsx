@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import { Paperclip } from "lucide-react";
 import { supabase } from "@/integrations/supabase/client";
+import ChamadoConversa from "@/components/suporte/ChamadoConversa";
 
 type Chamado = { id: string; protocolo: string | null; numero: number; created_at: string; categoria: string; prioridade: string; assunto: string; descricao: string | null; equipamento: string | null; status: string };
 type Evento = { id: string; descricao: string; created_at: string };
@@ -18,7 +19,7 @@ const PortalChamadoDetalhe = () => {
     Promise.all([
       supabase.from("suporte_chamados").select("id, protocolo, numero, created_at, categoria, prioridade, assunto, descricao, equipamento, status").eq("id", id).maybeSingle(),
       supabase.from("suporte_chamado_eventos").select("id, descricao, created_at").eq("chamado_id", id).order("created_at"),
-      supabase.from("suporte_chamado_anexos").select("id, nome, path").eq("chamado_id", id).order("created_at"),
+      supabase.from("suporte_chamado_anexos").select("id, nome, path").eq("chamado_id", id).is("mensagem_id", null).order("created_at"),
     ]).then(([a, b, d]) => { setC(a.data as Chamado | null); setEventos(b.data ?? []); setAnexos(d.data ?? []); });
   }, [id]);
 
@@ -59,7 +60,9 @@ const PortalChamadoDetalhe = () => {
         </ul>
       ) : <p className="text-white/50 text-sm">Nenhum anexo.</p>}
 
-      <h2 className="font-bold mt-6 mb-3">Histórico</h2>
+      <ChamadoConversa chamadoId={c.id} fechado={c.status === "Fechado"} />
+
+      <h2 className="font-bold mt-6 mb-3">Linha do tempo</h2>
       <ol className="relative border-l border-[#38BDF8]/40 ml-2 space-y-5">
         {eventos.map((e) => (
           <li key={e.id} className="pl-5 relative">
