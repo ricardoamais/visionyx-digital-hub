@@ -648,7 +648,47 @@ export type Database = {
       }
     }
     Views: {
-      [_ in never]: never
+      notification_logs: {
+        Row: {
+          error_message: string | null
+          id: string | null
+          notification_type: string | null
+          recipient: string | null
+          sent_at: string | null
+          status: string | null
+          subject: string | null
+          ticket_id: string | null
+        }
+        Insert: {
+          error_message?: string | null
+          id?: string | null
+          notification_type?: string | null
+          recipient?: string | null
+          sent_at?: string | null
+          status?: string | null
+          subject?: string | null
+          ticket_id?: string | null
+        }
+        Update: {
+          error_message?: string | null
+          id?: string | null
+          notification_type?: string | null
+          recipient?: string | null
+          sent_at?: string | null
+          status?: string | null
+          subject?: string | null
+          ticket_id?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "suporte_notificacao_envios_chamado_id_fkey"
+            columns: ["ticket_id"]
+            isOneToOne: false
+            referencedRelation: "suporte_chamados"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
     }
     Functions: {
       claim_smart_tag_admin: { Args: never; Returns: boolean }

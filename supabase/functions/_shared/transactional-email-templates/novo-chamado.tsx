@@ -5,7 +5,7 @@ import type { TemplateEntry } from './registry.ts'
 interface Props {
   protocolo?: string; cliente?: string; filial?: string; solicitante?: string; email?: string; telefone?: string
   categoria?: string; prioridade?: string; assunto?: string; descricao?: string; equipamento?: string
-  data?: string; link?: string; temAnexos?: boolean
+  data?: string; status?: string; link?: string; temAnexos?: boolean
 }
 
 const Linha = ({ l, v }: { l: string; v?: string }) => (
@@ -36,6 +36,7 @@ const NovoChamado = (p: Props) => (
           <Text style={box}>{p.descricao || '—'}</Text>
           <Linha l="Equipamento" v={p.equipamento} />
           <Linha l="Data e hora" v={p.data} />
+          <Linha l="Status" v={p.status} />
           {p.temAnexos && <Text style={aviso}>Este chamado possui anexos. Acesse o chamado para visualizá-los.</Text>}
           {p.link && <Button href={p.link} style={button}>Visualizar chamado</Button>}
           <Hr style={{ borderColor: '#E2E8F0', margin: '24px 0 12px' }} />
@@ -53,7 +54,7 @@ export const template = {
   previewData: {
     protocolo: '#2026-00001', cliente: 'Tintas Darka', filial: 'Xaxim', solicitante: 'João da Silva', email: 'joao@tintasdarka.com.br',
     telefone: '(41) 99999-0000', categoria: 'Internet', prioridade: 'Alta', assunto: 'Internet sem conexão',
-    descricao: 'A internet da loja caiu às 9h.', equipamento: 'ROTEADOR01', data: '08/10/2026 15:00',
+    descricao: 'A internet da loja caiu às 9h.', equipamento: 'ROTEADOR01', data: '08/10/2026 15:00', status: 'Aberto',
     link: 'https://visionyx.com.br/suporte/admin/chamado/123', temAnexos: true,
   },
 } satisfies TemplateEntry
