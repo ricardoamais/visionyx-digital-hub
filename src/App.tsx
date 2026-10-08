@@ -28,6 +28,7 @@ const PortalDashboard = lazy(() => import("./pages/suporte/portal/PortalDashboar
 const PortalChamados = lazy(() => import("./pages/suporte/portal/PortalChamados.tsx"));
 const PortalNovoChamado = lazy(() => import("./pages/suporte/portal/PortalNovoChamado.tsx"));
 const PortalPerfil = lazy(() => import("./pages/suporte/portal/PortalPerfil.tsx"));
+const PortalChamadoDetalhe = lazy(() => import("./pages/suporte/portal/PortalChamadoDetalhe.tsx"));
 
 const queryClient = new QueryClient();
 
@@ -67,6 +68,7 @@ const App = () => (
               <Route path="chamados" element={<PortalChamados />} />
               <Route path="novo-chamado" element={<PortalNovoChamado />} />
               <Route path="perfil" element={<PortalPerfil />} />
+              <Route path="chamado/:id" element={<PortalChamadoDetalhe />} />
             </Route>
             <Route path="*" element={<NotFound />} />
           </Routes>
