@@ -36,6 +36,13 @@
       "when": 1791482368152,
       "tag": "0004_chamado_categorias_extras",
       "breakpoints": true
+    },
+    {
+      "idx": 5,
+      "version": "7",
+      "when": 1791482413012,
+      "tag": "0005_abertura_chamados",
+      "breakpoints": true
     }
   ]
 }
