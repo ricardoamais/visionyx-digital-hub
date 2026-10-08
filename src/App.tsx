@@ -28,6 +28,10 @@ const PortalDashboard = lazy(() => import("./pages/suporte/portal/PortalDashboar
 const PortalChamados = lazy(() => import("./pages/suporte/portal/PortalChamados.tsx"));
 const PortalNovoChamado = lazy(() => import("./pages/suporte/portal/PortalNovoChamado.tsx"));
 const PortalPerfil = lazy(() => import("./pages/suporte/portal/PortalPerfil.tsx"));
+const AtendimentoShell = lazy(() => import("./components/suporte/AtendimentoShell.tsx"));
+const AtendimentoDashboard = lazy(() => import("./pages/suporte/atendimento/AtendimentoDashboard.tsx"));
+const AtendimentoChamados = lazy(() => import("./pages/suporte/atendimento/AtendimentoChamados.tsx"));
+const AtendimentoChamadoDetalhe = lazy(() => import("./pages/suporte/atendimento/AtendimentoChamadoDetalhe.tsx"));
 const PortalChamadoDetalhe = lazy(() => import("./pages/suporte/portal/PortalChamadoDetalhe.tsx"));
 
 const queryClient = new QueryClient();
@@ -63,6 +67,11 @@ const App = () => (
             <Route path="/central-de-suporte/admin/filiais/:id" element={<SuporteFilial />} />
             <Route path="/suporte" element={<PortalLogin />} />
             <Route path="/suporte/redefinir-senha" element={<PortalRedefinirSenha />} />
+            <Route path="/suporte/admin" element={<AtendimentoShell />}>
+              <Route index element={<AtendimentoDashboard />} />
+              <Route path="chamados" element={<AtendimentoChamados />} />
+              <Route path="chamado/:id" element={<AtendimentoChamadoDetalhe />} />
+            </Route>
             <Route path="/suporte" element={<PortalLayout />}>
               <Route path="dashboard" element={<PortalDashboard />} />
               <Route path="chamados" element={<PortalChamados />} />
