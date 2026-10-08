@@ -67,6 +67,8 @@ const PortalNovoChamado = () => {
       });
       if (ins.error) falhas++;
     }
+    // Notificação por e-mail: em segundo plano, nunca bloqueia a abertura.
+    supabase.functions.invoke("notificar-novo-chamado", { body: { chamado_id: row.id } }).catch(() => {});
     setEnviando(false);
     setOk({ id: row.id, protocolo: row.protocolo, assunto: r.data.assunto, falhas });
   };

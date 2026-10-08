@@ -6,5 +6,3 @@ project_id = "ayemltlzqlmvpnrcwmvz"
 
   [functions.preview-transactional-email]
     verify_jwt = false
-  [functions.notificar-novo-chamado]
-    verify_jwt = true
