@@ -20,6 +20,7 @@ export type Database = {
           created_at: string
           enviado_por: string | null
           id: string
+          mensagem_id: string | null
           nome: string
           path: string
           tamanho: number
@@ -30,6 +31,7 @@ export type Database = {
           created_at?: string
           enviado_por?: string | null
           id?: string
+          mensagem_id?: string | null
           nome: string
           path: string
           tamanho: number
@@ -40,6 +42,7 @@ export type Database = {
           created_at?: string
           enviado_por?: string | null
           id?: string
+          mensagem_id?: string | null
           nome?: string
           path?: string
           tamanho?: number
@@ -60,31 +63,50 @@ export type Database = {
             referencedRelation: "suporte_usuarios"
             referencedColumns: ["id"]
           },
+          {
+            foreignKeyName: "suporte_chamado_anexos_mensagem_id_fkey"
+            columns: ["mensagem_id"]
+            isOneToOne: false
+            referencedRelation: "suporte_chamado_mensagens"
+            referencedColumns: ["id"]
+          },
         ]
       }
       suporte_chamado_eventos: {
         Row: {
           autor_id: string | null
+          autor_nome: string | null
+          autor_perfil: string | null
           chamado_id: string
           created_at: string
           descricao: string
           id: string
+          status_anterior: string | null
+          status_novo: string | null
           tipo: string
         }
         Insert: {
           autor_id?: string | null
+          autor_nome?: string | null
+          autor_perfil?: string | null
           chamado_id: string
           created_at?: string
           descricao: string
           id?: string
+          status_anterior?: string | null
+          status_novo?: string | null
           tipo: string
         }
         Update: {
           autor_id?: string | null
+          autor_nome?: string | null
+          autor_perfil?: string | null
           chamado_id?: string
           created_at?: string
           descricao?: string
           id?: string
+          status_anterior?: string | null
+          status_novo?: string | null
           tipo?: string
         }
         Relationships: [
@@ -104,6 +126,54 @@ export type Database = {
           },
         ]
       }
+      suporte_chamado_mensagens: {
+        Row: {
+          autor_filial: string | null
+          autor_id: string | null
+          autor_nome: string
+          autor_perfil: string
+          chamado_id: string
+          created_at: string
+          id: string
+          mensagem: string
+        }
+        Insert: {
+          autor_filial?: string | null
+          autor_id?: string | null
+          autor_nome: string
+          autor_perfil: string
+          chamado_id: string
+          created_at?: string
+          id?: string
+          mensagem: string
+        }
+        Update: {
+          autor_filial?: string | null
+          autor_id?: string | null
+          autor_nome?: string
+          autor_perfil?: string
+          chamado_id?: string
+          created_at?: string
+          id?: string
+          mensagem?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "suporte_chamado_mensagens_autor_id_fkey"
+            columns: ["autor_id"]
+            isOneToOne: false
+            referencedRelation: "suporte_usuarios"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "suporte_chamado_mensagens_chamado_id_fkey"
+            columns: ["chamado_id"]
+            isOneToOne: false
+            referencedRelation: "suporte_chamados"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       suporte_chamados: {
         Row: {
           assunto: string
@@ -115,9 +185,12 @@ export type Database = {
           equipamento: string | null
           filial_id: string
           id: string
+          iniciado_em: string | null
           numero: number
           prioridade: Database["public"]["Enums"]["chamado_prioridade"]
           protocolo: string | null
+          resolvido_em: string | null
+          solucao: string | null
           status: Database["public"]["Enums"]["chamado_status"]
           tecnico_id: string | null
           updated_at: string
@@ -133,9 +206,12 @@ export type Database = {
           equipamento?: string | null
           filial_id: string
           id?: string
+          iniciado_em?: string | null
           numero?: number
           prioridade?: Database["public"]["Enums"]["chamado_prioridade"]
           protocolo?: string | null
+          resolvido_em?: string | null
+          solucao?: string | null
           status?: Database["public"]["Enums"]["chamado_status"]
           tecnico_id?: string | null
           updated_at?: string
@@ -151,9 +227,12 @@ export type Database = {
           equipamento?: string | null
           filial_id?: string
           id?: string
+          iniciado_em?: string | null
           numero?: number
           prioridade?: Database["public"]["Enums"]["chamado_prioridade"]
           protocolo?: string | null
+          resolvido_em?: string | null
+          solucao?: string | null
           status?: Database["public"]["Enums"]["chamado_status"]
           tecnico_id?: string | null
           updated_at?: string
@@ -585,6 +664,22 @@ export type Database = {
           protocolo: string
         }[]
       }
+      suporte_alterar_prioridade: {
+        Args: {
+          _id: string
+          _prioridade: Database["public"]["Enums"]["chamado_prioridade"]
+        }
+        Returns: undefined
+      }
+      suporte_alterar_status: {
+        Args: {
+          _id: string
+          _motivo: string
+          _status: Database["public"]["Enums"]["chamado_status"]
+        }
+        Returns: undefined
+      }
+      suporte_assumir_chamado: { Args: { _id: string }; Returns: undefined }
       suporte_atualizar_meu_perfil: {
         Args: {
           _cargo: string
@@ -594,11 +689,94 @@ export type Database = {
         }
         Returns: undefined
       }
+      suporte_buscar_chamados: {
+        Args: {
+          _ate?: string
+          _busca?: string
+          _categoria?: string
+          _cliente?: string
+          _desde?: string
+          _filial?: string
+          _limite?: number
+          _offset?: number
+          _prioridade?: string
+          _status?: string
+          _tecnico?: string
+        }
+        Returns: {
+          assunto: string
+          categoria: string
+          cliente: string
+          created_at: string
+          filial: string
+          id: string
+          numero: number
+          prioridade: string
+          protocolo: string
+          solicitante: string
+          status: string
+          tecnico: string
+          total: number
+          updated_at: string
+        }[]
+      }
+      suporte_chamado_detalhe: {
+        Args: { _id: string }
+        Returns: {
+          assunto: string
+          categoria: string
+          cliente: string
+          closed_at: string
+          created_at: string
+          descricao: string
+          equipamento: string
+          filial: string
+          filial_codigo: string
+          id: string
+          iniciado_em: string
+          numero: number
+          prioridade: string
+          protocolo: string
+          resolvido_em: string
+          solicitante: string
+          solicitante_email: string
+          solicitante_telefone: string
+          solucao: string
+          status: string
+          tecnico: string
+          tecnico_id: string
+          updated_at: string
+        }[]
+      }
+      suporte_contadores: {
+        Args: { _cliente?: string }
+        Returns: {
+          abertos: number
+          aguardando: number
+          em_atendimento: number
+          resolvidos: number
+          total: number
+          urgentes: number
+        }[]
+      }
       suporte_e_solicitante: { Args: { _chamado_id: string }; Returns: boolean }
+      suporte_enviar_mensagem: {
+        Args: { _id: string; _mensagem: string }
+        Returns: string
+      }
+      suporte_fechar_chamado: { Args: { _id: string }; Returns: undefined }
       suporte_is_admin: { Args: never; Returns: boolean }
+      suporte_is_staff: { Args: never; Returns: boolean }
       suporte_is_tecnico_do_cliente: {
         Args: { _cliente_id: string }
         Returns: boolean
+      }
+      suporte_listar_tecnicos: {
+        Args: never
+        Returns: {
+          id: string
+          nome: string
+        }[]
       }
       suporte_me: {
         Args: never
@@ -624,6 +802,41 @@ export type Database = {
       suporte_pode_ver_cliente: {
         Args: { _cliente_id: string }
         Returns: boolean
+      }
+      suporte_registrar_anexo_evento: {
+        Args: { _id: string; _nome: string }
+        Returns: undefined
+      }
+      suporte_registrar_evento: {
+        Args: {
+          _ant: string
+          _chamado: string
+          _desc: string
+          _novo: string
+          _tipo: string
+        }
+        Returns: undefined
+      }
+      suporte_resolver_chamado: {
+        Args: { _id: string; _solucao: string }
+        Returns: undefined
+      }
+      suporte_staff_do_chamado: {
+        Args: { _chamado_id: string }
+        Returns: boolean
+      }
+      suporte_visao_filiais: {
+        Args: { _cliente: string }
+        Returns: {
+          abertos: number
+          aguardando: number
+          codigo: string
+          em_atendimento: number
+          filial_id: string
+          nome: string
+          resolvidos: number
+          urgentes: number
+        }[]
       }
     }
     Enums: {

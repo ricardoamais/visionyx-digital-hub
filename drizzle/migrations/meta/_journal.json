@@ -43,6 +43,13 @@
       "when": 1791482413012,
       "tag": "0005_abertura_chamados",
       "breakpoints": true
+    },
+    {
+      "idx": 6,
+      "version": "7",
+      "when": 1791482667842,
+      "tag": "0006_painel_atendimento",
+      "breakpoints": true
     }
   ]
 }
