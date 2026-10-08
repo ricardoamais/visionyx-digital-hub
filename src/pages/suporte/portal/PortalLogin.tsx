@@ -8,6 +8,9 @@ import { carregarUsuarioPortal } from "@/components/suporte/PortalLayout";
 const input = "w-full rounded-lg border border-white/15 bg-white/5 px-4 py-3 text-base text-white placeholder:text-white/40";
 const btn = "w-full rounded-lg bg-[#1A56DB] hover:bg-[#38BDF8] py-3.5 text-base font-bold text-white transition-colors disabled:opacity-60";
 
+// Links de e-mail sempre apontam para o endereço público (nunca para o preview interno).
+const PUBLIC_URL = /lovable\.app$|lovableproject\.com$|localhost/.test(window.location.hostname) ? "https://visionyx.com.br" : window.location.origin;
+
 const PortalLogin = () => {
   const nav = useNavigate();
   const [params] = useSearchParams();
@@ -19,13 +22,19 @@ const PortalLogin = () => {
     params.get("erro") === "sem-acesso" ? "Seu e-mail não está liberado ou está inativo. Fale com a Visionyx." : null,
   );
 
+  const confirmado = params.get("confirmado") === "1";
   useEffect(() => {
+    if (confirmado) {
+      // Link de confirmação cria uma sessão automática; encerramos para o usuário entrar com e-mail e senha.
+      const t = setTimeout(() => supabase.auth.signOut(), 300);
+      return () => clearTimeout(t);
+    }
     supabase.auth.getUser().then(async ({ data }) => {
       if (!data.user) return;
       if (await carregarUsuarioPortal()) nav("/suporte/dashboard", { replace: true });
       else if ((await supabase.rpc("suporte_is_staff")).data) nav("/suporte/admin", { replace: true });
     });
-  }, [nav]);
+  }, [nav, confirmado]);
 
   const enviar = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -33,14 +42,14 @@ const PortalLogin = () => {
     setBusy(true);
     const mail = email.trim().toLowerCase();
     if (modo === "esqueci") {
-      const { error } = await supabase.auth.resetPasswordForEmail(mail, { redirectTo: `${window.location.origin}/suporte/redefinir-senha` });
+      const { error } = await supabase.auth.resetPasswordForEmail(mail, { redirectTo: `${PUBLIC_URL}/suporte/redefinir-senha` });
       setBusy(false);
       if (error) return setErro("Não foi possível enviar. Tente novamente em instantes.");
       toast({ title: "E-mail enviado", description: "Confira sua caixa de entrada para criar uma nova senha." });
       return setModo("login");
     }
     if (modo === "primeiro") {
-      const { error } = await supabase.auth.signUp({ email: mail, password: senha, options: { emailRedirectTo: `${window.location.origin}/suporte` } });
+      const { error } = await supabase.auth.signUp({ email: mail, password: senha, options: { emailRedirectTo: `${PUBLIC_URL}/suporte?confirmado=1` } });
       setBusy(false);
       if (error) return setErro(error.message);
       toast({ title: "Confirme seu e-mail", description: "Enviamos um link para ativar seu acesso." });
@@ -78,6 +87,7 @@ const PortalLogin = () => {
           {modo !== "esqueci" && (
             <input className={input} type="password" required minLength={6} placeholder="Senha" value={senha} onChange={(e) => setSenha(e.target.value)} />
           )}
+          {confirmado && !erro && <p className="rounded-lg bg-emerald-500/15 px-3 py-2 text-sm text-emerald-200">E-mail confirmado com sucesso! Agora entre com seu e-mail e senha.</p>}
           {erro && <p className="rounded-lg bg-red-500/15 px-3 py-2 text-sm text-red-200">{erro}</p>}
           <button className={btn} disabled={busy}>
             {busy ? "Aguarde..." : modo === "esqueci" ? "Enviar link" : modo === "primeiro" ? "Criar senha" : "Entrar"}
