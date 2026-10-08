@@ -91,7 +91,7 @@ const Header = () => {
               <a href="/central-de-suporte" className="text-[#38BDF8] py-4 px-2 text-base">
                 Central de Suporte
               </a>
-              <
+              <a
                 href="https://wa.me/5541995236952"
                 target="_blank"
                 rel="noopener noreferrer"
