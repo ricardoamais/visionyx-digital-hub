@@ -21,6 +21,13 @@ const CentralSuporte = lazy(() => import("./pages/CentralSuporte.tsx"));
 const SuporteClientes = lazy(() => import("./pages/suporte/SuporteClientes.tsx"));
 const SuporteCliente = lazy(() => import("./pages/suporte/SuporteCliente.tsx"));
 const SuporteFilial = lazy(() => import("./pages/suporte/SuporteFilial.tsx"));
+const PortalLogin = lazy(() => import("./pages/suporte/portal/PortalLogin.tsx"));
+const PortalRedefinirSenha = lazy(() => import("./pages/suporte/portal/PortalRedefinirSenha.tsx"));
+const PortalLayout = lazy(() => import("./components/suporte/PortalLayout.tsx"));
+const PortalDashboard = lazy(() => import("./pages/suporte/portal/PortalDashboard.tsx"));
+const PortalChamados = lazy(() => import("./pages/suporte/portal/PortalChamados.tsx"));
+const PortalNovoChamado = lazy(() => import("./pages/suporte/portal/PortalNovoChamado.tsx"));
+const PortalPerfil = lazy(() => import("./pages/suporte/portal/PortalPerfil.tsx"));
 
 const queryClient = new QueryClient();
 
@@ -53,6 +60,14 @@ const App = () => (
             <Route path="/central-de-suporte/admin" element={<SuporteClientes />} />
             <Route path="/central-de-suporte/admin/clientes/:id" element={<SuporteCliente />} />
             <Route path="/central-de-suporte/admin/filiais/:id" element={<SuporteFilial />} />
+            <Route path="/suporte" element={<PortalLogin />} />
+            <Route path="/suporte/redefinir-senha" element={<PortalRedefinirSenha />} />
+            <Route path="/suporte" element={<PortalLayout />}>
+              <Route path="dashboard" element={<PortalDashboard />} />
+              <Route path="chamados" element={<PortalChamados />} />
+              <Route path="novo-chamado" element={<PortalNovoChamado />} />
+              <Route path="perfil" element={<PortalPerfil />} />
+            </Route>
             <Route path="*" element={<NotFound />} />
           </Routes>
         </Suspense>
