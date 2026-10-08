@@ -4,14 +4,14 @@ import { PlusCircle } from "lucide-react";
 import { supabase } from "@/integrations/supabase/client";
 import { usePortal } from "@/components/suporte/PortalLayout";
 
-type Chamado = { id: string; numero: number; created_at: string; updated_at: string; assunto: string; categoria: string; prioridade: string; status: string };
+type Chamado = { id: string; numero: number; protocolo: string | null; created_at: string; updated_at: string; assunto: string; categoria: string; prioridade: string; status: string };
 
 export const useMeusChamados = () => {
   const { user } = usePortal();
   const [lista, setLista] = useState<Chamado[] | null>(null);
   useEffect(() => {
     supabase.from("suporte_chamados")
-      .select("id, numero, created_at, updated_at, assunto, categoria, prioridade, status")
+      .select("id, numero, protocolo, created_at, updated_at, assunto, categoria, prioridade, status")
       .eq("usuario_id", user.id)
       .order("created_at", { ascending: false })
       .then(({ data }) => setLista((data as Chamado[]) ?? []));
@@ -30,7 +30,7 @@ const PortalChamados = () => {
 
   const visiveis = useMemo(() => (lista ?? []).filter((c) =>
     (f === "Todos" || c.status === f) &&
-    (!q || String(c.numero).includes(q) || c.assunto.toLowerCase().includes(q.toLowerCase())),
+    (!q || (c.protocolo ?? String(c.numero)).includes(q) || c.assunto.toLowerCase().includes(q.toLowerCase())),
   ), [lista, q, f]);
 
   return (
@@ -60,9 +60,9 @@ const PortalChamados = () => {
               <tbody>
                 {visiveis.map((c) => (
                   <tr key={c.id} className="border-t border-white/10">
-                    <td className="px-3 py-3 font-mono">#{c.numero}</td>
+                    <td className="px-3 py-3 font-mono">{c.protocolo ?? `#${c.numero}`}</td>
                     <td className="px-3 py-3 whitespace-nowrap">{dt(c.created_at)}</td>
-                    <td className="px-3 py-3 font-semibold">{c.assunto}</td>
+                    <td className="px-3 py-3 font-semibold"><Link className="hover:text-[#38BDF8]" to={`/suporte/chamado/${c.id}`}>{c.assunto}</Link></td>
                     <td className="px-3 py-3">{c.categoria}</td>
                     <td className="px-3 py-3">{c.prioridade}</td>
                     <td className="px-3 py-3">{c.status}</td>
@@ -74,12 +74,12 @@ const PortalChamados = () => {
           </div>
           <div className="md:hidden space-y-3">
             {visiveis.map((c) => (
-              <div key={c.id} className="rounded-xl border border-white/10 bg-white/5 p-4">
-                <div className="flex justify-between text-sm text-white/60"><span className="font-mono">#{c.numero}</span><span>{dt(c.created_at)}</span></div>
+              <Link to={`/suporte/chamado/${c.id}`} key={c.id} className="block rounded-xl border border-white/10 bg-white/5 p-4">
+                <div className="flex justify-between text-sm text-white/60"><span className="font-mono">{c.protocolo ?? `#${c.numero}`}</span><span>{dt(c.created_at)}</span></div>
                 <p className="font-bold mt-1">{c.assunto}</p>
                 <p className="text-sm text-white/70 mt-1">{c.categoria} · {c.prioridade}</p>
                 <p className="mt-2 inline-block rounded-full bg-[#1A56DB]/30 px-3 py-1 text-xs font-semibold">{c.status}</p>
-              </div>
+              </Link>
             ))}
           </div>
         </>

@@ -14,6 +14,96 @@ export type Database = {
   }
   public: {
     Tables: {
+      suporte_chamado_anexos: {
+        Row: {
+          chamado_id: string
+          created_at: string
+          enviado_por: string | null
+          id: string
+          nome: string
+          path: string
+          tamanho: number
+          tipo: string
+        }
+        Insert: {
+          chamado_id: string
+          created_at?: string
+          enviado_por?: string | null
+          id?: string
+          nome: string
+          path: string
+          tamanho: number
+          tipo: string
+        }
+        Update: {
+          chamado_id?: string
+          created_at?: string
+          enviado_por?: string | null
+          id?: string
+          nome?: string
+          path?: string
+          tamanho?: number
+          tipo?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "suporte_chamado_anexos_chamado_id_fkey"
+            columns: ["chamado_id"]
+            isOneToOne: false
+            referencedRelation: "suporte_chamados"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "suporte_chamado_anexos_enviado_por_fkey"
+            columns: ["enviado_por"]
+            isOneToOne: false
+            referencedRelation: "suporte_usuarios"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      suporte_chamado_eventos: {
+        Row: {
+          autor_id: string | null
+          chamado_id: string
+          created_at: string
+          descricao: string
+          id: string
+          tipo: string
+        }
+        Insert: {
+          autor_id?: string | null
+          chamado_id: string
+          created_at?: string
+          descricao: string
+          id?: string
+          tipo: string
+        }
+        Update: {
+          autor_id?: string | null
+          chamado_id?: string
+          created_at?: string
+          descricao?: string
+          id?: string
+          tipo?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "suporte_chamado_eventos_autor_id_fkey"
+            columns: ["autor_id"]
+            isOneToOne: false
+            referencedRelation: "suporte_usuarios"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "suporte_chamado_eventos_chamado_id_fkey"
+            columns: ["chamado_id"]
+            isOneToOne: false
+            referencedRelation: "suporte_chamados"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       suporte_chamados: {
         Row: {
           assunto: string
@@ -22,10 +112,12 @@ export type Database = {
           closed_at: string | null
           created_at: string
           descricao: string | null
+          equipamento: string | null
           filial_id: string
           id: string
           numero: number
           prioridade: Database["public"]["Enums"]["chamado_prioridade"]
+          protocolo: string | null
           status: Database["public"]["Enums"]["chamado_status"]
           tecnico_id: string | null
           updated_at: string
@@ -38,10 +130,12 @@ export type Database = {
           closed_at?: string | null
           created_at?: string
           descricao?: string | null
+          equipamento?: string | null
           filial_id: string
           id?: string
           numero?: number
           prioridade?: Database["public"]["Enums"]["chamado_prioridade"]
+          protocolo?: string | null
           status?: Database["public"]["Enums"]["chamado_status"]
           tecnico_id?: string | null
           updated_at?: string
@@ -54,10 +148,12 @@ export type Database = {
           closed_at?: string | null
           created_at?: string
           descricao?: string | null
+          equipamento?: string | null
           filial_id?: string
           id?: string
           numero?: number
           prioridade?: Database["public"]["Enums"]["chamado_prioridade"]
+          protocolo?: string | null
           status?: Database["public"]["Enums"]["chamado_status"]
           tecnico_id?: string | null
           updated_at?: string
@@ -191,6 +287,59 @@ export type Database = {
             referencedColumns: ["id"]
           },
         ]
+      }
+      suporte_notificacoes: {
+        Row: {
+          canal: string | null
+          chamado_id: string
+          created_at: string
+          enviada_em: string | null
+          evento: string
+          id: string
+          status: string
+        }
+        Insert: {
+          canal?: string | null
+          chamado_id: string
+          created_at?: string
+          enviada_em?: string | null
+          evento: string
+          id?: string
+          status?: string
+        }
+        Update: {
+          canal?: string | null
+          chamado_id?: string
+          created_at?: string
+          enviada_em?: string | null
+          evento?: string
+          id?: string
+          status?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "suporte_notificacoes_chamado_id_fkey"
+            columns: ["chamado_id"]
+            isOneToOne: false
+            referencedRelation: "suporte_chamados"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      suporte_protocolo_contador: {
+        Row: {
+          ano: number
+          ultimo: number
+        }
+        Insert: {
+          ano: number
+          ultimo?: number
+        }
+        Update: {
+          ano?: number
+          ultimo?: number
+        }
+        Relationships: []
       }
       suporte_tecnico_clientes: {
         Row: {
@@ -423,6 +572,19 @@ export type Database = {
           status: string
         }[]
       }
+      suporte_abrir_chamado: {
+        Args: {
+          _assunto: string
+          _categoria: Database["public"]["Enums"]["chamado_categoria"]
+          _descricao: string
+          _equipamento: string
+          _prioridade: Database["public"]["Enums"]["chamado_prioridade"]
+        }
+        Returns: {
+          id: string
+          protocolo: string
+        }[]
+      }
       suporte_atualizar_meu_perfil: {
         Args: {
           _cargo: string
@@ -432,6 +594,7 @@ export type Database = {
         }
         Returns: undefined
       }
+      suporte_e_solicitante: { Args: { _chamado_id: string }; Returns: boolean }
       suporte_is_admin: { Args: never; Returns: boolean }
       suporte_is_tecnico_do_cliente: {
         Args: { _cliente_id: string }
@@ -448,6 +611,10 @@ export type Database = {
       }
       suporte_pode_ver_chamado: {
         Args: { _cliente_id: string; _filial_id: string }
+        Returns: boolean
+      }
+      suporte_pode_ver_chamado_id: {
+        Args: { _chamado_id: string }
         Returns: boolean
       }
       suporte_pode_ver_chamado_v2: {
@@ -471,6 +638,9 @@ export type Database = {
         | "Telefonia / PABX"
         | "Firewall / Segurança"
         | "Outros"
+        | "Notebook"
+        | "Servidor"
+        | "Equipamento"
       chamado_prioridade: "Baixa" | "Normal" | "Alta" | "Urgente"
       chamado_status:
         | "Aberto"
@@ -622,6 +792,9 @@ export const Constants = {
         "Telefonia / PABX",
         "Firewall / Segurança",
         "Outros",
+        "Notebook",
+        "Servidor",
+        "Equipamento",
       ],
       chamado_prioridade: ["Baixa", "Normal", "Alta", "Urgente"],
       chamado_status: [
