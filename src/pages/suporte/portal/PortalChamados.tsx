@@ -1,5 +1,5 @@
 import { useEffect, useMemo, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { PlusCircle } from "lucide-react";
 import { supabase } from "@/integrations/supabase/client";
 import { usePortal } from "@/components/suporte/PortalLayout";
@@ -25,6 +25,7 @@ const dt = (s: string) => new Date(s).toLocaleString("pt-BR", { dateStyle: "shor
 
 const PortalChamados = () => {
   const lista = useMeusChamados();
+  const nav = useNavigate();
   const [q, setQ] = useState("");
   const [f, setF] = useState("Todos");
 
@@ -55,11 +56,11 @@ const PortalChamados = () => {
           <div className="hidden md:block overflow-x-auto rounded-xl border border-white/10">
             <table className="w-full text-sm">
               <thead className="bg-white/5 text-left text-white/60">
-                <tr>{["Nº", "Data", "Assunto", "Categoria", "Prioridade", "Status", "Atualização"].map((h) => <th key={h} className="px-3 py-3">{h}</th>)}</tr>
+                <tr>{["Nº", "Data", "Assunto", "Categoria", "Prioridade", "Status", "Atualização", ""].map((h) => <th key={h} className="px-3 py-3">{h}</th>)}</tr>
               </thead>
               <tbody>
                 {visiveis.map((c) => (
-                  <tr key={c.id} className="border-t border-white/10">
+                  <tr key={c.id} onClick={() => nav(`/suporte/chamado/${c.id}`)} className="border-t border-white/10 cursor-pointer hover:bg-white/5">
                     <td className="px-3 py-3 font-mono">{c.protocolo ?? `#${c.numero}`}</td>
                     <td className="px-3 py-3 whitespace-nowrap">{dt(c.created_at)}</td>
                     <td className="px-3 py-3 font-semibold"><Link className="hover:text-[#38BDF8]" to={`/suporte/chamado/${c.id}`}>{c.assunto}</Link></td>
@@ -67,6 +68,7 @@ const PortalChamados = () => {
                     <td className="px-3 py-3">{c.prioridade}</td>
                     <td className="px-3 py-3">{c.status}</td>
                     <td className="px-3 py-3 whitespace-nowrap">{dt(c.updated_at)}</td>
+                    <td className="px-3 py-3"><span className="rounded-lg bg-[#1A56DB] px-3 py-1.5 text-xs font-bold whitespace-nowrap">Abrir / Responder</span></td>
                   </tr>
                 ))}
               </tbody>
