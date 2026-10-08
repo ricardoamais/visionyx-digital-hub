@@ -49,11 +49,12 @@ const PortalLogin = () => {
       return setModo("login");
     }
     if (modo === "primeiro") {
-      const { error } = await supabase.auth.signUp({ email: mail, password: senha, options: { emailRedirectTo: `${PUBLIC_URL}/suporte?confirmado=1` } });
-      setBusy(false);
-      if (error) return setErro(error.message);
-      toast({ title: "Confirme seu e-mail", description: "Enviamos um link para ativar seu acesso." });
-      return setModo("login");
+      const { error } = await supabase.auth.signUp({ email: mail, password: senha });
+      if (error) {
+        setBusy(false);
+        return setErro(error.message.includes("registered") ? "Este e-mail já possui conta. Use Entrar." : error.message);
+      }
+      // Sem confirmação de e-mail: segue direto para o login abaixo.
     }
     const { error } = await supabase.auth.signInWithPassword({ email: mail, password: senha });
     if (error) {
