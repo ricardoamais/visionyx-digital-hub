@@ -3,3 +3,8 @@ project_id = "ayemltlzqlmvpnrcwmvz"
 [functions]
   [functions.auth-email-hook]
     verify_jwt = false
+
+  [functions.preview-transactional-email]
+    verify_jwt = false
+  [functions.notificar-novo-chamado]
+    verify_jwt = true
