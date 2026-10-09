@@ -167,6 +167,7 @@ const Conteudo = ({ clienteId }: { clienteId: string }) => {
                 <td className="px-3 py-2 space-x-3 whitespace-nowrap">
                   <Link className="text-[#38BDF8]" to={`/central-de-suporte/admin/filiais/${f.id}`}>Usuários</Link>
                   <button className="text-white/70 hover:text-white" onClick={() => setForm({ ...f })}>Editar</button>
+                  <button className="text-red-300 hover:text-red-200" onClick={() => excluir(f)}>Excluir</button>
                 </td>
               </tr>
             ))}
