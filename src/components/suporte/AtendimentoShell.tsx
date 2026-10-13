@@ -2,6 +2,7 @@ import { useCallback, useEffect, useState } from "react";
 import { NavLink, Navigate, Outlet, useLocation } from "react-router-dom";
 import { supabase } from "@/integrations/supabase/client";
 import { LayoutDashboard, ListChecks, LogOut } from "lucide-react";
+import { SupportThemeToggle } from "./SupportAppearance";
 
 /** Painel de Atendimento: só Administrador/Técnico Visionyx (o banco também bloqueia). */
 const AtendimentoShell = () => {
@@ -34,6 +35,7 @@ const AtendimentoShell = () => {
         <div className="container mx-auto px-4 h-16 flex items-center justify-between gap-3">
           <span className="font-extrabold uppercase">Visionyx <span className="text-[#38BDF8] text-xs tracking-[0.3em]">Atendimento</span></span>
           <nav className="flex items-center gap-1">
+            <SupportThemeToggle />
             <NavLink end to="/suporte/admin" className={link}><LayoutDashboard size={16} /><span className="hidden sm:inline">Dashboard</span></NavLink>
             <NavLink to="/suporte/admin/chamados" className={link}><ListChecks size={16} /><span className="hidden sm:inline">Todos os Chamados</span></NavLink>
             <button onClick={async () => { await supabase.auth.signOut(); setState("login"); }} className="ml-2 text-white/60 hover:text-white" aria-label="Sair"><LogOut size={18} /></button>
