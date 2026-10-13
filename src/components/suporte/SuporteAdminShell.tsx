@@ -2,6 +2,7 @@ import { ReactNode, useCallback, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { supabase } from "@/integrations/supabase/client";
 import { toast } from "@/hooks/use-toast";
+import { SupportThemeToggle } from "./SupportAppearance";
 
 export const inputCls =
   "w-full rounded-lg border border-white/15 bg-white/5 px-3 py-2 text-sm text-white placeholder:text-white/40";
@@ -39,9 +40,12 @@ const SuporteAdminShell = ({ title, back, children }: { title: string; back?: { 
           <Link to="/central-de-suporte" className="font-extrabold uppercase">
             Visionyx <span className="text-[#38BDF8] text-xs tracking-[0.3em]">Suporte</span>
           </Link>
+          <div className="flex items-center gap-3">
+          <SupportThemeToggle />
           {state === "ok" && (
             <button className="text-sm text-white/60 hover:text-white" onClick={() => supabase.auth.signOut()}>Sair</button>
           )}
+          </div>
         </div>
       </header>
       <main className="container mx-auto px-4 py-8">

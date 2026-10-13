@@ -6,6 +6,7 @@ import { TooltipProvider } from "@/components/ui/tooltip";
 import { lazy, Suspense } from "react";
 import Index from "./pages/Index.tsx";
 import NotFound from "./pages/NotFound.tsx";
+import { SupportAppearance } from "@/components/suporte/SupportAppearance";
 
 const FormatacaoComputador = lazy(() => import("./pages/FormatacaoComputador.tsx"));
 const LimpezaComputador = lazy(() => import("./pages/LimpezaComputador.tsx"));
@@ -48,6 +49,7 @@ const App = () => (
       <Toaster />
       <Sonner />
       <BrowserRouter>
+        <SupportAppearance>
         <Suspense fallback={<Loading />}>
           <Routes>
             <Route path="/" element={<Index />} />
@@ -82,6 +84,7 @@ const App = () => (
             <Route path="*" element={<NotFound />} />
           </Routes>
         </Suspense>
+        </SupportAppearance>
       </BrowserRouter>
     </TooltipProvider>
   </QueryClientProvider>
