@@ -3,10 +3,12 @@ import { corsHeaders } from 'npm:@supabase/supabase-js@2/cors'
 import { z } from 'npm:zod@3.23.8'
 import { sendTemplateEmail } from '../_shared/transactional-email-templates/send-email.ts'
 
-// Destinatários fixos — definidos somente no servidor.
-const DESTINATARIOS = ['cpd1@tintasdarka.com.br', 'adm@tintasdarka.com.br', 'suporte@visionyx.com.br']
-// Somente este cliente recebe e-mail automático de novo chamado (Tintas Darka).
-const CLIENTE_COM_EMAIL = 'f8a23fae-8c39-4d60-9d0f-bcd996ba29be'
+// Destinatários fixos por cliente — definidos somente no servidor.
+// Clientes que não estão aqui não recebem e-mail automático de novo chamado.
+const DESTINATARIOS_POR_CLIENTE: Record<string, string[]> = {
+  'f8a23fae-8c39-4d60-9d0f-bcd996ba29be': ['cpd1@tintasdarka.com.br', 'adm@tintasdarka.com.br', 'suporte@visionyx.com.br'], // Tintas Darka
+  'd516788c-bc4f-4f44-b57b-366a971b1e7b': ['suporte@visionyx.com.br', 'fiscal@abraspar.com.br'], // Abraspar Industria
+}
 const SITE = 'https://visionyx.com.br'
 const Body = z.object({ chamado_id: z.string().uuid() })
 const json = (b: unknown, status = 200) => new Response(JSON.stringify(b), { status, headers: { ...corsHeaders, 'Content-Type': 'application/json' } })
@@ -34,7 +36,8 @@ Deno.serve(async (req) => {
     .select('id, status, protocolo, numero, created_at, categoria, prioridade, assunto, descricao, equipamento, cliente_id, filial_id, usuario_id').eq('id', id).maybeSingle()
   if (!c) return json({ error: 'não encontrado' }, 404)
   // Clientes sem envio automático: não envia nem registra nada.
-  if (c.cliente_id !== CLIENTE_COM_EMAIL) return json({ resultados: [], ignorado: true })
+  const DESTINATARIOS = DESTINATARIOS_POR_CLIENTE[c.cliente_id]
+  if (!DESTINATARIOS) return json({ resultados: [], ignorado: true })
   const [cl, fi, us, an, env] = await Promise.all([
     admin.from('suporte_clientes').select('nome').eq('id', c.cliente_id).maybeSingle(),
     admin.from('suporte_filiais').select('nome').eq('id', c.filial_id).maybeSingle(),
