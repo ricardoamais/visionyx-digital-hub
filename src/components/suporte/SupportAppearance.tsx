@@ -1,4 +1,4 @@
-import { createContext, useContext, useState, type ReactNode } from "react";
+import { createContext, useContext, useEffect, useState, type ReactNode } from "react";
 import { useLocation } from "react-router-dom";
 import { Moon, Sun } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -25,11 +25,10 @@ export function SupportAppearance({ children }: { children: ReactNode }) {
     try { return localStorage.getItem(STORAGE_KEY) === "light" ? "light" : "dark"; }
     catch { return "dark"; }
   });
-  const toggle = () => setTheme(previous => {
-    const next = previous === "dark" ? "light" : "dark";
-    try { localStorage.setItem(STORAGE_KEY, next); } catch { /* Appearance still works without storage. */ }
-    return next;
-  });
+  useEffect(() => {
+    try { localStorage.setItem(STORAGE_KEY, theme); } catch { /* Appearance still works without storage. */ }
+  }, [theme]);
+  const toggle = () => setTheme(previous => previous === "dark" ? "light" : "dark");
   const isSupport = pathname === "/suporte" || pathname.startsWith("/suporte/") || pathname.startsWith("/central-de-suporte/admin");
   if (!isSupport) return children;
   const isAccess = pathname === "/suporte" || pathname === "/suporte/redefinir-senha";

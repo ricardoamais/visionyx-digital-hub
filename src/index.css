@@ -133,6 +133,7 @@
 .support-theme [class~="bg-[#0F2D5C]"] { background-color: hsl(var(--card)); }
 .support-theme [class~="bg-white/5"] { background-color: hsl(var(--support-overlay) / .05); }
 .support-theme [class~="bg-white/10"] { background-color: hsl(var(--support-overlay) / .1); }
+.support-theme [class~="bg-white/20"] { background-color: hsl(var(--support-overlay) / .2); }
 .support-theme [class~="text-white"] { color: hsl(var(--foreground)); }
 .support-theme [class~="text-[#38BDF8]"] { color: hsl(var(--support-link)); }
 .support-theme [class~="text-white/90"],
@@ -145,7 +146,8 @@
 .support-theme [class*="divide-white/"] > :not([hidden]) ~ :not([hidden]) { border-color: hsl(var(--border)); }
 .support-theme [class~="placeholder:text-white/40"]::placeholder { color: hsl(var(--muted-foreground)); }
 .support-theme [class~="hover:bg-white/5"]:hover,
-.support-theme [class~="hover:bg-white/10"]:hover { background-color: hsl(var(--accent)); }
+.support-theme [class~="hover:bg-white/10"]:hover,
+.support-theme [class~="hover:bg-white/20"]:hover { background-color: hsl(var(--accent)); }
 .support-theme [class~="hover:text-white"]:hover { color: hsl(var(--foreground)); }
 .support-theme [class~="text-red-200"],
 .support-theme [class~="text-red-300"] { color: hsl(var(--support-danger)); }
@@ -155,5 +157,6 @@
 .support-theme [class~="text-amber-300"] { color: hsl(var(--support-warning)); }
 .support-theme [class~="bg-[#1A56DB]"],
 .support-theme [class~="bg-[#16A34A]"],
+.support-theme [class~="bg-[#38BDF8]"],
 .support-theme [class~="bg-[#25D366]"] .text-white { color: hsl(var(--primary-foreground)); }
 .support-theme select option { background-color: hsl(var(--card)); color: hsl(var(--foreground)); }
