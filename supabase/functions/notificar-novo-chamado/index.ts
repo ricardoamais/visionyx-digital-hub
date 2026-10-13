@@ -33,6 +33,8 @@ Deno.serve(async (req) => {
   const { data: c } = await admin.from('suporte_chamados')
     .select('id, status, protocolo, numero, created_at, categoria, prioridade, assunto, descricao, equipamento, cliente_id, filial_id, usuario_id').eq('id', id).maybeSingle()
   if (!c) return json({ error: 'não encontrado' }, 404)
+  // Clientes sem envio automático: não envia nem registra nada.
+  if (c.cliente_id !== CLIENTE_COM_EMAIL) return json({ resultados: [], ignorado: true })
   const [cl, fi, us, an, env] = await Promise.all([
     admin.from('suporte_clientes').select('nome').eq('id', c.cliente_id).maybeSingle(),
     admin.from('suporte_filiais').select('nome').eq('id', c.filial_id).maybeSingle(),
