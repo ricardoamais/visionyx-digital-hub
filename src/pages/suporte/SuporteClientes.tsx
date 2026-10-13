@@ -29,14 +29,21 @@ const Lista = () => {
   const save = async () => {
     if (!edit) return;
     const { id, created_at, ...rest } = edit;
-    const { error } = await supabase.from("suporte_clientes").update(rest).eq("id", id);
+    if (!rest.nome.trim()) return toast({ title: "Informe o nome da empresa", variant: "destructive" });
+    const { error } = id
+      ? await supabase.from("suporte_clientes").update(rest).eq("id", id)
+      : await supabase.from("suporte_clientes").insert(rest);
     if (error) return toast({ title: "Erro ao salvar", description: error.message, variant: "destructive" });
+    if (!id) toast({ title: "Cliente cadastrado" });
     setEdit(null);
     load();
   };
 
   return (
     <>
+      <div className="flex justify-end mb-3">
+        <button className={btnCls} onClick={() => setEdit({ id: "", nome: "", cnpj: null, telefone: null, email: null, endereco: null, status: "ativo", created_at: "" })}>+ Novo Cliente</button>
+      </div>
       <div className="overflow-x-auto rounded-xl border border-white/10">
         <table className="w-full text-sm">
           <thead className="bg-white/5 text-left text-white/60">
