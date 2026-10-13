@@ -1,6 +1,6 @@
 import { createContext, useCallback, useContext, useEffect, useState } from "react";
 import { NavLink, Outlet, useNavigate } from "react-router-dom";
-import { Home, Ticket, PlusCircle, User, LogOut } from "lucide-react";
+import { Home, Ticket, PlusCircle, User, LogOut, MessageCircle } from "lucide-react";
 import { supabase } from "@/integrations/supabase/client";
 
 export interface PortalUser {
@@ -103,6 +103,15 @@ const PortalLayout = () => {
         <main className="flex-1 min-w-0 px-4 py-6 md:px-8 pb-28 md:pb-8">
           <Outlet />
         </main>
+        <a
+          href={`https://wa.me/5541995236952?text=${encodeURIComponent(`Olá! Sou ${user.nome} (${user.cliente_nome} — ${user.filial_nome}) e preciso de ajuda com a Central de Suporte.`)}`}
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label="Tirar dúvidas no WhatsApp"
+          className="fixed bottom-20 md:bottom-5 right-5 z-50 flex items-center justify-center w-14 h-14 bg-[#25D366] hover:bg-[#20ba56] rounded-full shadow-xl shadow-green-400/40 transition-all hover:scale-110"
+        >
+          <MessageCircle size={28} className="text-white" />
+        </a>
         <nav className="md:hidden fixed bottom-0 inset-x-0 z-40 grid grid-cols-5 border-t border-white/10 bg-[#0F2D5C]">
           {menu.map(({ to, label, icon: Icon }) => (
             <NavLink key={to} to={to} className={({ isActive }) => "flex flex-col items-center gap-1 py-3 text-[11px] " + (isActive ? "text-[#38BDF8]" : "text-white/60")}>
