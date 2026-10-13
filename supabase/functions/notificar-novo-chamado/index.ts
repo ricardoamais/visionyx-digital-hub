@@ -5,6 +5,8 @@ import { sendTemplateEmail } from '../_shared/transactional-email-templates/send
 
 // Destinatários fixos — definidos somente no servidor.
 const DESTINATARIOS = ['cpd1@tintasdarka.com.br', 'adm@tintasdarka.com.br', 'suporte@visionyx.com.br']
+// Somente este cliente recebe e-mail automático de novo chamado (Tintas Darka).
+const CLIENTE_COM_EMAIL = 'f8a23fae-8c39-4d60-9d0f-bcd996ba29be'
 const SITE = 'https://visionyx.com.br'
 const Body = z.object({ chamado_id: z.string().uuid() })
 const json = (b: unknown, status = 200) => new Response(JSON.stringify(b), { status, headers: { ...corsHeaders, 'Content-Type': 'application/json' } })
@@ -31,6 +33,8 @@ Deno.serve(async (req) => {
   const { data: c } = await admin.from('suporte_chamados')
     .select('id, status, protocolo, numero, created_at, categoria, prioridade, assunto, descricao, equipamento, cliente_id, filial_id, usuario_id').eq('id', id).maybeSingle()
   if (!c) return json({ error: 'não encontrado' }, 404)
+  // Clientes sem envio automático: não envia nem registra nada.
+  if (c.cliente_id !== CLIENTE_COM_EMAIL) return json({ resultados: [], ignorado: true })
   const [cl, fi, us, an, env] = await Promise.all([
     admin.from('suporte_clientes').select('nome').eq('id', c.cliente_id).maybeSingle(),
     admin.from('suporte_filiais').select('nome').eq('id', c.filial_id).maybeSingle(),
