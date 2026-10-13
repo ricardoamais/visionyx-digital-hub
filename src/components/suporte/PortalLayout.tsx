@@ -1,6 +1,6 @@
 import { createContext, useCallback, useContext, useEffect, useState } from "react";
 import { NavLink, Outlet, useNavigate } from "react-router-dom";
-import { Home, Ticket, PlusCircle, User, LogOut } from "lucide-react";
+import { Home, Ticket, PlusCircle, User, LogOut, MessageCircle } from "lucide-react";
 import { supabase } from "@/integrations/supabase/client";
 
 export interface PortalUser {
