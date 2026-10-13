@@ -5,6 +5,8 @@ import { sendTemplateEmail } from '../_shared/transactional-email-templates/send
 
 // Destinatários fixos — definidos somente no servidor.
 const DESTINATARIOS = ['cpd1@tintasdarka.com.br', 'adm@tintasdarka.com.br', 'suporte@visionyx.com.br']
+// Somente este cliente recebe e-mail automático de novo chamado (Tintas Darka).
+const CLIENTE_COM_EMAIL = 'f8a23fae-8c39-4d60-9d0f-bcd996ba29be'
 const SITE = 'https://visionyx.com.br'
 const Body = z.object({ chamado_id: z.string().uuid() })
 const json = (b: unknown, status = 200) => new Response(JSON.stringify(b), { status, headers: { ...corsHeaders, 'Content-Type': 'application/json' } })
