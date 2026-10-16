@@ -25,7 +25,10 @@ interface Details extends Place {
 }
 
 const schema = z.object({
-  pin: z.string().trim().regex(/^\d{4,12}$/, "O código deve ter de 4 a 12 números."),
+  pin: z
+    .string()
+    .trim()
+    .regex(/^[A-Za-z0-9]{4,12}$/, "O código deve ter de 4 a 12 letras e números."),
   query: z.string().trim().min(3, "Informe o nome do negócio e a cidade.").max(120, "Máximo de 120 caracteres."),
 });
 
@@ -160,11 +163,15 @@ const SmartTagActivate = ({ code, onActivated }: Props) => {
             </label>
             <input
               id="pin"
-              inputMode="numeric"
+              inputMode="text"
+              autoComplete="off"
+              autoCapitalize="characters"
+              spellCheck={false}
               maxLength={12}
+              placeholder="Ex.: VX0004"
               value={pin}
-              onChange={(e) => setPin(e.target.value.replace(/\D/g, ""))}
-              className={input}
+              onChange={(e) => setPin(e.target.value.toUpperCase().replace(/[^A-Z0-9]/g, ""))}
+              className={`${input} uppercase tracking-widest`}
             />
             {errors.pin && <p className="text-sm text-red-400">{errors.pin}</p>}
           </div>
