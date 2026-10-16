@@ -71,6 +71,13 @@
       "when": 1792178426423,
       "tag": "0009_smart_tag_self_activation",
       "breakpoints": true
+    },
+    {
+      "idx": 10,
+      "version": "7",
+      "when": 1792178982309,
+      "tag": "0010_smart_tag_accept_code_as_activation",
+      "breakpoints": true
     }
   ]
 }
