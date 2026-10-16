@@ -20,6 +20,8 @@ export interface SmartTag {
   destination_type: string | null;
   status: string;
   access_count: number;
+  activation_pin?: string | null;
+  google_place_id?: string | null;
   created_at: string;
   updated_at: string;
 }

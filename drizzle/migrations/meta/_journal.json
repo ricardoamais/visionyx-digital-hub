@@ -64,6 +64,13 @@
       "when": 1791484528506,
       "tag": "0008_notification_logs_view",
       "breakpoints": true
+    },
+    {
+      "idx": 9,
+      "version": "7",
+      "when": 1792178426423,
+      "tag": "0009_smart_tag_self_activation",
+      "breakpoints": true
     }
   ]
 }
