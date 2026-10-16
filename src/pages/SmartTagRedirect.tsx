@@ -1,8 +1,15 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { supabase } from "@/integrations/supabase/client";
+import SmartTagActivate from "@/components/SmartTagActivate";
 
-type State = "loading" | "redirecting" | "unconfigured" | "inactive" | "notfound";
+type State =
+  | "loading"
+  | "redirecting"
+  | "activate"
+  | "unconfigured"
+  | "inactive"
+  | "notfound";
 
 /** Navegação top-level normal do navegador (sem fetch, iframe ou proxy). */
 const goTo = (url: string) => {
@@ -22,7 +29,7 @@ const goTo = (url: string) => {
   }
 };
 
-const messages: Record<Exclude<State, "loading" | "redirecting">, string> = {
+const messages: Record<Exclude<State, "loading" | "redirecting" | "activate">, string> = {
   unconfigured: "Smart Tag ainda não configurado.",
   inactive: "Este Smart Tag está temporariamente indisponível.",
   notfound: "Smart Tag não encontrado.",
@@ -56,6 +63,10 @@ const SmartTagRedirect = () => {
         setState("inactive");
         return;
       }
+      if (data.status === "Disponível") {
+        setState("activate");
+        return;
+      }
       const url = (data.destination_url || "").trim();
       if (data.status === "Ativa" && /^https?:\/\//i.test(url)) {
         setTarget(url);
@@ -77,7 +88,7 @@ const SmartTagRedirect = () => {
 
   return (
     <main className="min-h-screen flex items-center justify-center bg-[#0A1F3F] px-6">
-      <div className="w-full max-w-sm rounded-2xl bg-white/5 border border-white/10 p-8 text-center">
+      <div className="w-full max-w-md rounded-2xl bg-white/5 border border-white/10 p-8 text-center">
         <div className="flex items-center justify-center gap-2 mb-6">
           <svg viewBox="0 0 32 32" fill="none" className="w-8 h-8">
             <path d="M4 4h9l3 8-4.5 4L4 4Z" fill="#38BDF8" />
@@ -103,6 +114,15 @@ const SmartTagRedirect = () => {
               </a>
             )}
           </>
+        ) : state === "activate" ? (
+          <SmartTagActivate
+            code={(code || "").trim().toUpperCase()}
+            onActivated={(url) => {
+              setTarget(url);
+              setState("redirecting");
+              goTo(url);
+            }}
+          />
         ) : (
           <>
             <h1 className="text-lg font-bold text-white">{messages[state]}</h1>
