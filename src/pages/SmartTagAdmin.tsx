@@ -377,6 +377,7 @@ const SmartTagAdmin = () => {
               <thead>
                 <tr className="text-left text-xs uppercase tracking-wider text-slate-400 border-b border-slate-200">
                   <th className="py-2 pr-4">Código</th>
+                  <th className="py-2 pr-4">PIN</th>
                   <th className="py-2 pr-4">Cliente</th>
                   <th className="py-2 pr-4">Destino</th>
                   <th className="py-2 pr-4">Tipo</th>
@@ -391,14 +392,14 @@ const SmartTagAdmin = () => {
               <tbody>
                 {loading && (
                   <tr>
-                    <td colSpan={10} className="py-6 text-center text-slate-400">
+                    <td colSpan={11} className="py-6 text-center text-slate-400">
                       Carregando...
                     </td>
                   </tr>
                 )}
                 {!loading && visible.length === 0 && (
                   <tr>
-                    <td colSpan={10} className="py-6 text-center text-slate-400">
+                    <td colSpan={11} className="py-6 text-center text-slate-400">
                       Nenhum Smart Tag encontrado.
                     </td>
                   </tr>
@@ -406,6 +407,9 @@ const SmartTagAdmin = () => {
                 {visible.map((t) => (
                   <tr key={t.id} className="border-b border-slate-100 last:border-0">
                     <td className="py-3 pr-4 font-bold text-[#0A1F3F]">{t.code}</td>
+                    <td className="py-3 pr-4 font-mono text-xs text-slate-700">
+                      {t.status === "Disponível" ? t.activation_pin || "—" : "—"}
+                    </td>
                     <td className="py-3 pr-4">{t.client_name || "—"}</td>
                     <td className="py-3 pr-4 max-w-[220px] truncate">
                       {t.destination_url ? (
