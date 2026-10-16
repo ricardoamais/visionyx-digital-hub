@@ -602,36 +602,54 @@ export type Database = {
       visionyx_smart_tags: {
         Row: {
           access_count: number
+          activated_at: string | null
+          activation_pin: string | null
           client_name: string | null
           code: string
           created_at: string
           destination_type: string | null
           destination_url: string | null
+          google_place_address: string | null
+          google_place_id: string | null
+          google_place_name: string | null
           id: string
+          pin_attempts: number
           status: string
           updated_at: string
           vendedor_id: string | null
         }
         Insert: {
           access_count?: number
+          activated_at?: string | null
+          activation_pin?: string | null
           client_name?: string | null
           code: string
           created_at?: string
           destination_type?: string | null
           destination_url?: string | null
+          google_place_address?: string | null
+          google_place_id?: string | null
+          google_place_name?: string | null
           id?: string
+          pin_attempts?: number
           status?: string
           updated_at?: string
           vendedor_id?: string | null
         }
         Update: {
           access_count?: number
+          activated_at?: string | null
+          activation_pin?: string | null
           client_name?: string | null
           code?: string
           created_at?: string
           destination_type?: string | null
           destination_url?: string | null
+          google_place_address?: string | null
+          google_place_id?: string | null
+          google_place_name?: string | null
           id?: string
+          pin_attempts?: number
           status?: string
           updated_at?: string
           vendedor_id?: string | null
@@ -691,6 +709,16 @@ export type Database = {
       }
     }
     Functions: {
+      activate_smart_tag: {
+        Args: {
+          _code: string
+          _pin: string
+          _place_address: string
+          _place_id: string
+          _place_name: string
+        }
+        Returns: boolean
+      }
       claim_smart_tag_admin: { Args: never; Returns: boolean }
       has_role: {
         Args: {
@@ -731,6 +759,10 @@ export type Database = {
           destination_url: string
           status: string
         }[]
+      }
+      smart_tag_check_pin: {
+        Args: { _code: string; _pin: string }
+        Returns: boolean
       }
       suporte_abrir_chamado: {
         Args: {
