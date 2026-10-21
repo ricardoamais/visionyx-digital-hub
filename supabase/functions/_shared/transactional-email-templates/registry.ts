@@ -1,5 +1,6 @@
 import type { ComponentType } from 'npm:react@18.3.1'
 import { template as novoChamado } from './novo-chamado.tsx'
+import { template as chamadoConcluido } from './chamado-concluido.tsx'
 
 export interface TemplateEntry {
   component: ComponentType<any>
@@ -20,6 +21,7 @@ export interface TemplateEntry {
  */
 export const TEMPLATES: Record<string, TemplateEntry> = {
   'novo-chamado': novoChamado,
+  'chamado-concluido': chamadoConcluido,
   // Add templates here as they are created, e.g.:
   // 'welcome': welcomeTemplate,
 }
