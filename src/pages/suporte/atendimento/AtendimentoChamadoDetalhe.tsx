@@ -31,7 +31,7 @@ const AtendimentoChamadoDetalhe = () => {
     ]);
     setC(((Array.isArray(d.data) ? d.data[0] : null) as D) ?? null);
     setEv((e.data as Ev[]) ?? []); setAn(a.data ?? []);
-    const n = await supabase.from("suporte_notificacao_envios").select("id, destinatario, status, erro, created_at").eq("chamado_id", id).order("created_at", { ascending: false });
+    const n = await supabase.from("suporte_notificacao_envios").select("id, destinatario, status, erro, created_at").eq("chamado_id", id).eq("tipo", "novo_chamado").order("created_at", { ascending: false });
     setEnvios(n.data ?? []);
   }, [id]);
   useEffect(() => { load(); }, [load]);
