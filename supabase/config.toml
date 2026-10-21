@@ -9,3 +9,6 @@ project_id = "ayemltlzqlmvpnrcwmvz"
 
   [functions.google-places]
     verify_jwt = false
+
+[functions.notificar-chamado-concluido]
+verify_jwt = false

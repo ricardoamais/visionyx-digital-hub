@@ -31,7 +31,7 @@ const AtendimentoChamadoDetalhe = () => {
     ]);
     setC(((Array.isArray(d.data) ? d.data[0] : null) as D) ?? null);
     setEv((e.data as Ev[]) ?? []); setAn(a.data ?? []);
-    const n = await supabase.from("suporte_notificacao_envios").select("id, destinatario, status, erro, created_at").eq("chamado_id", id).order("created_at", { ascending: false });
+    const n = await supabase.from("suporte_notificacao_envios").select("id, destinatario, status, erro, created_at").eq("chamado_id", id).eq("tipo", "novo_chamado").order("created_at", { ascending: false });
     setEnvios(n.data ?? []);
   }, [id]);
   useEffect(() => { load(); }, [load]);
@@ -143,7 +143,7 @@ const AtendimentoChamadoDetalhe = () => {
               <button onClick={() => setModal(null)} className={`${btn} border border-white/20`}>Cancelar</button>
               <button disabled={busy || (modal === "resolver" && !txt.trim())}
                 onClick={() => modal === "resolver"
-                  ? acao(() => supabase.rpc("suporte_resolver_chamado", { _id: c.id, _solucao: txt }), "Chamado resolvido")
+                  ? acao(async () => { const r = await supabase.rpc("suporte_resolver_chamado", { _id: c.id, _solucao: txt }); if (!r.error) supabase.functions.invoke("notificar-chamado-concluido", { body: { chamado_id: c.id } }).catch(() => {}); return r; }, "Chamado resolvido")
                   : acao(() => supabase.rpc("suporte_alterar_status", { _id: c.id, _status: "Aguardando cliente", _motivo: txt }), "Aguardando cliente")}
                 className={`${btn} bg-[#1A56DB] hover:bg-[#38BDF8]`}>Confirmar</button>
             </div>
