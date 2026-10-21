@@ -32,6 +32,7 @@ const PortalPerfil = lazy(() => import("./pages/suporte/portal/PortalPerfil.tsx"
 const AtendimentoShell = lazy(() => import("./components/suporte/AtendimentoShell.tsx"));
 const AtendimentoDashboard = lazy(() => import("./pages/suporte/atendimento/AtendimentoDashboard.tsx"));
 const AtendimentoChamados = lazy(() => import("./pages/suporte/atendimento/AtendimentoChamados.tsx"));
+const AtendimentoRelatorio = lazy(() => import("./pages/suporte/atendimento/AtendimentoRelatorio.tsx"));
 const AtendimentoChamadoDetalhe = lazy(() => import("./pages/suporte/atendimento/AtendimentoChamadoDetalhe.tsx"));
 const PortalChamadoDetalhe = lazy(() => import("./pages/suporte/portal/PortalChamadoDetalhe.tsx"));
 
@@ -72,6 +73,7 @@ const App = () => (
             <Route path="/suporte/admin" element={<AtendimentoShell />}>
               <Route index element={<AtendimentoDashboard />} />
               <Route path="chamados" element={<AtendimentoChamados />} />
+              <Route path="relatorio" element={<AtendimentoRelatorio />} />
               <Route path="chamado/:id" element={<AtendimentoChamadoDetalhe />} />
             </Route>
             <Route path="/suporte" element={<PortalLayout />}>
