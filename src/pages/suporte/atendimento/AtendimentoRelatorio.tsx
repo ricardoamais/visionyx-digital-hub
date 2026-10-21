@@ -9,7 +9,7 @@ type Ch = {
   suporte_filiais: { codigo: string; nome: string } | null;
 };
 
-const CORES = ["#38BDF8", "#1A56DB", "#16A34A", "#F59E0B", "#EF4444", "#A855F7", "#14B8A6", "#F97316", "#64748B", "#EC4899", "#84CC16", "#0EA5E9"];
+const CORES = ["#38BDF8", "#F59E0B", "#16A34A", "#EF4444", "#A855F7", "#EC4899", "#14B8A6", "#F97316", "#1A56DB", "#84CC16", "#EAB308", "#6366F1"];
 const hoje = () => new Date().toISOString().slice(0, 10);
 const menos30 = () => new Date(Date.now() - 30 * 864e5).toISOString().slice(0, 10);
 
@@ -132,7 +132,7 @@ const AtendimentoRelatorio = () => {
                   <CartesianGrid strokeDasharray="3 3" stroke="#ffffff22" />
                   <XAxis type="number" allowDecimals={false} stroke="#94a3b8" fontSize={11} />
                   <YAxis type="category" dataKey="name" width={120} stroke="#94a3b8" fontSize={11} />
-                  <Tooltip {...tip} /><Bar dataKey="value" name="Chamados" fill="#38BDF8" radius={[0, 4, 4, 0]} />
+                  <Tooltip {...tip} /><Bar dataKey="value" name="Chamados" radius={[0, 4, 4, 0]}>{k.categorias.map((_, i) => <Cell key={i} fill={CORES[i % CORES.length]} />)}</Bar>
                 </BarChart>
               </ResponsiveContainer>
             </div>
@@ -143,7 +143,7 @@ const AtendimentoRelatorio = () => {
                   <CartesianGrid strokeDasharray="3 3" stroke="#ffffff22" />
                   <XAxis type="number" allowDecimals={false} stroke="#94a3b8" fontSize={11} />
                   <YAxis type="category" dataKey="name" width={150} stroke="#94a3b8" fontSize={11} />
-                  <Tooltip {...tip} /><Bar dataKey="value" name="Chamados" fill="#1A56DB" radius={[0, 4, 4, 0]} />
+                  <Tooltip {...tip} /><Bar dataKey="value" name="Chamados" radius={[0, 4, 4, 0]}>{k.filiais.slice(0, 10).map((_, i) => <Cell key={i} fill={CORES[(i + 3) % CORES.length]} />)}</Bar>
                 </BarChart>
               </ResponsiveContainer>
             </div>
