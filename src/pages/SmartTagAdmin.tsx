@@ -2,6 +2,7 @@ import { useCallback, useEffect, useMemo, useState } from "react";
 import { toast } from "sonner";
 import { supabase } from "@/integrations/supabase/client";
 import SmartTagQr from "@/components/SmartTagQr";
+import { downloadPlateArt } from "@/lib/plateArt";
 import { Button } from "@/components/ui/button";
 import { FlaskConical } from "lucide-react";
 import {
@@ -487,6 +488,14 @@ const SmartTagAdmin = () => {
                       ⧉ Copiar link
                     </button>
                   </div>
+                  <button
+                    onClick={() =>
+                      downloadPlateArt(t.code).catch(() => toast.error("Não foi possível gerar a arte"))
+                    }
+                    className="w-full rounded-xl border border-[#16A34A] py-2.5 text-xs font-bold text-[#16A34A]"
+                  >
+                    ⬇ Baixar arte 10x10
+                  </button>
                 </div>
               ))}
           </div>
