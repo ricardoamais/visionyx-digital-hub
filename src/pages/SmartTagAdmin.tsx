@@ -495,12 +495,25 @@ const SmartTagAdmin = () => {
               visible.map((t) => (
                 <div
                   key={t.id}
-                  className="rounded-xl bg-white border border-slate-200 p-4 space-y-3"
+                  className={`relative overflow-hidden rounded-2xl bg-white border border-slate-200 p-5 space-y-4 shadow-sm border-l-4 ${
+                    t.status === "Ativa"
+                      ? "border-l-emerald-500"
+                      : t.status === "Inativa"
+                        ? "border-l-red-500"
+                        : "border-l-[#1A56DB]"
+                  }`}
                 >
-                  <div className="flex items-center justify-between gap-2">
-                    <p className="font-bold text-[#0A1F3F] break-all">{t.code}</p>
+                  <div className="flex items-start justify-between gap-2">
+                    <div className="min-w-0">
+                      <p className="text-xs font-semibold uppercase tracking-wide text-slate-400">
+                        Placa {t.code}
+                      </p>
+                      <p className="text-lg font-bold text-[#0A1F3F] break-words">
+                        {t.client_name || t.google_place_name || "Sem cliente"}
+                      </p>
+                    </div>
                     <span
-                      className={`shrink-0 rounded-full px-2 py-0.5 text-xs font-bold ${
+                      className={`shrink-0 rounded-full px-2.5 py-1 text-xs font-bold ${
                         t.status === "Ativa"
                           ? "bg-emerald-100 text-emerald-700"
                           : t.status === "Inativa"
@@ -512,70 +525,70 @@ const SmartTagAdmin = () => {
                     </span>
                   </div>
 
-                  <div className="space-y-1 text-sm">
-                    <p>
-                      <span className="text-slate-400 font-semibold">Cliente:</span>{" "}
-                      {t.client_name || "—"}
-                    </p>
-                    <p>
-                      <span className="text-slate-400 font-semibold">Destino:</span>{" "}
-                      {t.destination_url ? (
-                        <a
-                          href={t.destination_url}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="text-[#1A56DB] hover:underline break-all"
-                        >
-                          {t.destination_url}
-                        </a>
-                      ) : (
-                        "—"
-                      )}
-                    </p>
-                    <p>
-                      <span className="text-slate-400 font-semibold">Tipo:</span>{" "}
-                      {t.destination_type || "—"}
-                    </p>
-                    <p>
-                      <span className="text-slate-400 font-semibold">Criado:</span>{" "}
-                      <span className="text-xs text-slate-500">{formatDate(t.created_at)}</span>
-                    </p>
-                    <p>
-                      <span className="text-slate-400 font-semibold">Atualizado:</span>{" "}
-                      <span className="text-xs text-slate-500">{formatDate(t.updated_at)}</span>
-                    </p>
-                    <p>
-                      <span className="text-slate-400 font-semibold">Acessos:</span>{" "}
-                      <span className="font-bold text-[#0A1F3F]">{t.access_count ?? 0}</span>
-                    </p>
+                  <div className="flex flex-wrap gap-2 text-xs font-semibold">
+                    <span className="rounded-full border border-blue-100 bg-blue-50 px-3 py-1 text-[#1A56DB]">
+                      👁 {t.access_count ?? 0} acessos
+                    </span>
+                    {t.destination_type && (
+                      <span className="rounded-full border border-amber-200 bg-amber-50 px-3 py-1 text-amber-700">
+                        {t.destination_type}
+                      </span>
+                    )}
+                    {t.status === "Disponível" && t.activation_pin && (
+                      <span className="rounded-full border border-slate-200 bg-slate-50 px-3 py-1 font-mono text-slate-700">
+                        PIN {t.activation_pin}
+                      </span>
+                    )}
                   </div>
+
+                  {t.destination_url && (
+                    <a
+                      href={t.destination_url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="block truncate rounded-lg border border-slate-200 bg-slate-50 px-3 py-2 text-xs text-[#1A56DB]"
+                    >
+                      🔗 {t.destination_url}
+                    </a>
+                  )}
+
+                  <p className="text-xs text-slate-400">
+                    Atualizado {formatDate(t.updated_at)}
+                  </p>
 
                   <SmartTagQr code={t.code} centered />
 
+                  <button
+                    onClick={() => {
+                      setForm({
+                        id: t.id,
+                        code: t.code,
+                        client_name: t.client_name || "",
+                        destination_url: t.destination_url || "",
+                        destination_type: t.destination_type || "",
+                        status: t.status,
+                      });
+                      window.scrollTo({ top: 0, behavior: "smooth" });
+                    }}
+                    className="w-full rounded-xl bg-[#1A56DB] py-3 text-sm font-bold text-white shadow"
+                  >
+                    ✎ Editar
+                  </button>
                   <div className="grid grid-cols-2 gap-2">
-                    <button
-                      onClick={() =>
-                        setForm({
-                          id: t.id,
-                          code: t.code,
-                          client_name: t.client_name || "",
-                          destination_url: t.destination_url || "",
-                          destination_type: t.destination_type || "",
-                          status: t.status,
-                        })
-                      }
-                      className="rounded-md border border-slate-300 px-2 py-2 text-xs font-semibold text-slate-700"
-                    >
-                      Editar
-                    </button>
                     <a
                       href={getSmartTagUrl(t.code)}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="text-center rounded-md border border-slate-300 px-2 py-2 text-xs font-semibold text-slate-700"
+                      className="text-center rounded-xl border border-[#1A56DB] py-2.5 text-xs font-bold text-[#1A56DB]"
                     >
-                      Testar
+                      ↗ Abrir
                     </a>
+                    <button
+                      onClick={() => copyUrl(t.code)}
+                      className="rounded-xl border border-[#1A56DB] py-2.5 text-xs font-bold text-[#1A56DB]"
+                    >
+                      ⧉ Copiar link
+                    </button>
                   </div>
                 </div>
               ))}
