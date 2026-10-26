@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, useSearchParams } from "react-router-dom";
 import { supabase } from "@/integrations/supabase/client";
 import SmartTagActivate from "@/components/SmartTagActivate";
 
@@ -37,6 +37,8 @@ const messages: Record<Exclude<State, "loading" | "redirecting" | "activate">, s
 
 const SmartTagRedirect = () => {
   const { code } = useParams<{ code: string }>();
+  const [searchParams] = useSearchParams();
+  const demo = searchParams.get("demo") === "1";
   const [state, setState] = useState<State>("loading");
   const [target, setTarget] = useState<string>("");
 
@@ -46,6 +48,10 @@ const SmartTagRedirect = () => {
       const normalized = (code || "").trim().toUpperCase();
       if (!normalized) {
         setState("notfound");
+        return;
+      }
+      if (demo) {
+        setState("activate");
         return;
       }
       const { data: rows, error } = await supabase.rpc("resolve_smart_tag", { _code: normalized });
@@ -80,7 +86,7 @@ const SmartTagRedirect = () => {
     return () => {
       cancelled = true;
     };
-  }, [code]);
+  }, [code, demo]);
 
   useEffect(() => {
     document.title = "Visionyx Smart Tag";
@@ -116,6 +122,8 @@ const SmartTagRedirect = () => {
           </>
         ) : state === "activate" ? (
           <SmartTagActivate
+            key={`${code}-${demo}`}
+            demo={demo}
             code={(code || "").trim().toUpperCase()}
             onActivated={(url) => {
               setTarget(url);

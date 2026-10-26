@@ -2,10 +2,12 @@ import { useState } from "react";
 import { z } from "zod";
 import { Check, KeyRound, Loader2, MapPin, Search, Star, ArrowLeft, Store, ShieldCheck } from "lucide-react";
 import { supabase } from "@/integrations/supabase/client";
+import { Button } from "@/components/ui/button";
 
 interface Props {
   code: string;
   onActivated: (url: string) => void;
+  demo?: boolean;
 }
 
 interface Place {
@@ -81,7 +83,7 @@ const Stepper = ({ step }: { step: number }) => (
   </ol>
 );
 
-const SmartTagActivate = ({ code, onActivated }: Props) => {
+const SmartTagActivate = ({ code, onActivated, demo = false }: Props) => {
   const [pin, setPin] = useState("");
   const [query, setQuery] = useState("");
   const [errors, setErrors] = useState<{ pin?: string; query?: string; general?: string }>({});
@@ -89,6 +91,7 @@ const SmartTagActivate = ({ code, onActivated }: Props) => {
   const [details, setDetails] = useState<Details | null>(null);
   const [loading, setLoading] = useState<"search" | "details" | "activate" | null>(null);
   const [selecting, setSelecting] = useState<string | null>(null);
+  const [demoComplete, setDemoComplete] = useState(false);
 
   const step = details ? 2 : places ? 1 : 0;
 
@@ -100,6 +103,14 @@ const SmartTagActivate = ({ code, onActivated }: Props) => {
       return;
     }
     setErrors({});
+    if (demo) {
+      setPlaces([
+        { place_id: "demo-1", name: `${p.data.query} (fictício)`, address: "Endereço fictício · Curitiba, PR", rating: 4.8, total: 125 },
+        { place_id: "demo-2", name: "Loja Exemplo (fictício)", address: "Outro endereço fictício · Curitiba, PR", rating: 4.6, total: 48 },
+      ]);
+      setDetails(null);
+      return;
+    }
     setLoading("search");
     const { data, error } = await supabase.functions.invoke("google-places", {
       body: { action: "search", code, pin: p.data.pin, query: p.data.query },
@@ -115,6 +126,13 @@ const SmartTagActivate = ({ code, onActivated }: Props) => {
 
   const openDetails = async (place: Place) => {
     setErrors({});
+    if (demo) {
+      setDetails({ ...place, reviews: [
+        { author: "Cliente fictício 1", rating: 5, text: "Ótimo atendimento! Avaliação apenas para demonstração.", when: "há uma semana" },
+        { author: "Cliente fictício 2", rating: 4, text: "Serviço muito bom. Avaliação apenas para demonstração.", when: "há duas semanas" },
+      ] });
+      return;
+    }
     setLoading("details");
     setSelecting(place.place_id);
     const { data, error } = await supabase.functions.invoke("google-places", {
@@ -131,6 +149,10 @@ const SmartTagActivate = ({ code, onActivated }: Props) => {
 
   const activate = async () => {
     if (!details) return;
+    if (demo) {
+      setDemoComplete(true);
+      return;
+    }
     setErrors({});
     setLoading("activate");
     const { data, error } = await supabase.rpc("activate_smart_tag", {
@@ -150,6 +172,11 @@ const SmartTagActivate = ({ code, onActivated }: Props) => {
 
   return (
     <div className="w-full text-left text-white space-y-4">
+      {demo && (
+        <p role="status" className="rounded-md bg-accent p-3 text-sm text-accent-foreground">
+          Demonstração · negócios e avaliações fictícios. Nenhuma placa será ativada.
+        </p>
+      )}
       <div className="text-center space-y-1">
         <h1 className="text-xl font-bold">Ativar sua plaquinha</h1>
         <p className="text-xs text-white/60">
@@ -165,7 +192,16 @@ const SmartTagActivate = ({ code, onActivated }: Props) => {
         </p>
       )}
 
-      {details ? (
+      {demoComplete ? (
+        <div className="space-y-4 text-center">
+          <Check className="mx-auto h-10 w-10 text-primary" />
+          <h2 className="text-lg font-bold">Teste concluído!</h2>
+          <p className="text-sm">Nenhuma placa foi alterada e nenhuma consulta ao Google foi feita.</p>
+          <Button onClick={() => { setDemoComplete(false); setDetails(null); setPlaces(null); setErrors({}); }} className="w-full">
+            Testar novamente
+          </Button>
+        </div>
+      ) : details ? (
         <div className="space-y-4">
           <div className="rounded-xl bg-white/5 border border-[#38BDF8]/40 p-4">
             <div className="flex items-start gap-3">

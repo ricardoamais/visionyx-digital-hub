@@ -2,6 +2,8 @@ import { useCallback, useEffect, useMemo, useState } from "react";
 import { toast } from "sonner";
 import { supabase } from "@/integrations/supabase/client";
 import SmartTagQr from "@/components/SmartTagQr";
+import { Button } from "@/components/ui/button";
+import { FlaskConical } from "lucide-react";
 import {
   DESTINATION_TYPES,
   SMART_TAG_STATUS,
@@ -266,6 +268,13 @@ const SmartTagAdmin = () => {
       </header>
 
       <div className="container mx-auto px-4 py-8 space-y-8">
+        <div className="flex justify-end">
+          <Button asChild>
+            <a href="/r/VX0004?demo=1" target="_blank" rel="noopener noreferrer">
+              <FlaskConical /> Testar sem Google
+            </a>
+          </Button>
+        </div>
         <section className="grid grid-cols-2 lg:grid-cols-4 gap-4">
           {[
             { label: "Total", value: stats.total, color: "text-[#0A1F3F]" },
