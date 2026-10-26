@@ -381,124 +381,12 @@ const SmartTagAdmin = () => {
             </div>
           </div>
 
-          <div className="hidden md:block overflow-x-auto">
-            <table className="w-full text-sm">
-              <thead>
-                <tr className="text-left text-xs uppercase tracking-wider text-slate-400 border-b border-slate-200">
-                  <th className="py-2 pr-4">Código</th>
-                  <th className="py-2 pr-4">PIN</th>
-                  <th className="py-2 pr-4">Cliente</th>
-                  <th className="py-2 pr-4">Destino</th>
-                  <th className="py-2 pr-4">Tipo</th>
-                  <th className="py-2 pr-4">Status</th>
-                  <th className="py-2 pr-4">Criado</th>
-                  <th className="py-2 pr-4">Atualizado</th>
-                  <th className="py-2 pr-4">Acessos</th>
-                  <th className="py-2 pr-4">QR Code</th>
-                  <th className="py-2">Ações</th>
-                </tr>
-              </thead>
-              <tbody>
-                {loading && (
-                  <tr>
-                    <td colSpan={11} className="py-6 text-center text-slate-400">
-                      Carregando...
-                    </td>
-                  </tr>
-                )}
-                {!loading && visible.length === 0 && (
-                  <tr>
-                    <td colSpan={11} className="py-6 text-center text-slate-400">
-                      Nenhum Smart Tag encontrado.
-                    </td>
-                  </tr>
-                )}
-                {visible.map((t) => (
-                  <tr key={t.id} className="border-b border-slate-100 last:border-0">
-                    <td className="py-3 pr-4 font-bold text-[#0A1F3F]">{t.code}</td>
-                    <td className="py-3 pr-4 font-mono text-xs text-slate-700">
-                      {t.status === "Disponível" ? t.activation_pin || "—" : "—"}
-                    </td>
-                    <td className="py-3 pr-4">{t.client_name || "—"}</td>
-                    <td className="py-3 pr-4 max-w-[220px] truncate">
-                      {t.destination_url ? (
-                        <a
-                          href={t.destination_url}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="text-[#1A56DB] hover:underline"
-                        >
-                          {t.destination_url}
-                        </a>
-                      ) : (
-                        "—"
-                      )}
-                    </td>
-                    <td className="py-3 pr-4">{t.destination_type || "—"}</td>
-                    <td className="py-3 pr-4">
-                      <span
-                        className={`rounded-full px-2 py-0.5 text-xs font-bold ${
-                          t.status === "Ativa"
-                            ? "bg-emerald-100 text-emerald-700"
-                            : t.status === "Inativa"
-                              ? "bg-red-100 text-red-600"
-                              : "bg-slate-100 text-slate-600"
-                        }`}
-                      >
-                        {t.status}
-                      </span>
-                    </td>
-                    <td className="py-3 pr-4 text-xs text-slate-500">{formatDate(t.created_at)}</td>
-                    <td className="py-3 pr-4 text-xs text-slate-500">{formatDate(t.updated_at)}</td>
-                    <td className="py-3 pr-4 font-bold text-[#0A1F3F]">{t.access_count ?? 0}</td>
-                    <td className="py-3 pr-4">
-                      <SmartTagQr code={t.code} />
-                    </td>
-                    <td className="py-3">
-                      <div className="flex gap-2">
-                        <button
-                          onClick={() =>
-                            setForm({
-                              id: t.id,
-                              code: t.code,
-                              client_name: t.client_name || "",
-                              destination_url: t.destination_url || "",
-                              destination_type: t.destination_type || "",
-                              status: t.status,
-                            })
-                          }
-                          className="rounded-md border border-slate-300 px-2 py-1 text-xs font-semibold text-slate-700"
-                        >
-                          Editar
-                        </button>
-                        <a
-                          href={getSmartTagUrl(t.code)}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="rounded-md border border-slate-300 px-2 py-1 text-xs font-semibold text-slate-700"
-                        >
-                          Testar
-                        </a>
-                        <button
-                          onClick={() => copyUrl(t.code)}
-                          className="rounded-md border border-slate-300 px-2 py-1 text-xs font-semibold text-slate-700"
-                        >
-                          Copiar URL
-                        </button>
-                      </div>
-                    </td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
-          </div>
-
-          <div className="block md:hidden space-y-4">
+          <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-4 items-start">
             {loading && (
-              <p className="py-6 text-center text-slate-400">Carregando...</p>
+              <p className="col-span-full py-6 text-center text-slate-400">Carregando...</p>
             )}
             {!loading && visible.length === 0 && (
-              <p className="py-6 text-center text-slate-400">Nenhum Smart Tag encontrado.</p>
+              <p className="col-span-full py-6 text-center text-slate-400">Nenhum Smart Tag encontrado.</p>
             )}
             {!loading &&
               visible.map((t) => (
