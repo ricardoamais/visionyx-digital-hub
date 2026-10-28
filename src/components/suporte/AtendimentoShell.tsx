@@ -3,6 +3,7 @@ import { NavLink, Navigate, Outlet, useLocation } from "react-router-dom";
 import { supabase } from "@/integrations/supabase/client";
 import { BarChart3, LayoutDashboard, ListChecks, LogOut } from "lucide-react";
 import { SupportThemeToggle } from "./SupportAppearance";
+import ChamadoNotifier from "./ChamadoNotifier";
 
 /** Painel de Atendimento: só Administrador/Técnico Visionyx (o banco também bloqueia). */
 const AtendimentoShell = () => {
@@ -43,7 +44,8 @@ const AtendimentoShell = () => {
           </nav>
         </div>
       </header>
-      <main className="container mx-auto px-4 py-6"><Outlet /></main>
+      <main className="container mx-auto px-4 py-6"><Outlet />
+<ChamadoNotifier base="/suporte/admin" /></main>
     </div>
   );
 };

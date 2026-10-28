@@ -3,6 +3,7 @@ import { NavLink, Outlet, useNavigate } from "react-router-dom";
 import { Home, Ticket, PlusCircle, User, LogOut, MessageCircle } from "lucide-react";
 import { supabase } from "@/integrations/supabase/client";
 import { SupportThemeToggle } from "./SupportAppearance";
+import ChamadoNotifier from "./ChamadoNotifier";
 
 export interface PortalUser {
   id: string;
@@ -104,6 +105,7 @@ const PortalLayout = () => {
         </aside>
         <main className="flex-1 min-w-0 px-4 py-6 md:px-8 pb-28 md:pb-8">
           <Outlet />
+          <ChamadoNotifier base="/suporte" />
         </main>
         <a
           href={`https://wa.me/5541995236952?text=${encodeURIComponent(`Olá! Sou ${user.nome} (${user.cliente_nome} — ${user.filial_nome}) e preciso de ajuda com a Central de Suporte.`)}`}
