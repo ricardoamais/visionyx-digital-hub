@@ -9,10 +9,12 @@ import ChamadoNotifier from "./ChamadoNotifier";
 const AtendimentoShell = () => {
   const loc = useLocation();
   const [state, setState] = useState<"loading" | "login" | "cliente" | "ok">("loading");
+  const [email, setEmail] = useState("");
 
   const check = useCallback(async () => {
     const { data } = await supabase.auth.getUser();
     if (!data.user) return setState("login");
+    setEmail(data.user.email ?? "");
     await supabase.rpc("link_suporte_account");
     const { data: staff } = await supabase.rpc("suporte_is_staff");
     setState(staff ? "ok" : "cliente");
@@ -40,7 +42,8 @@ const AtendimentoShell = () => {
             <NavLink end to="/suporte/admin" className={link}><LayoutDashboard size={16} /><span className="hidden sm:inline">Dashboard</span></NavLink>
             <NavLink to="/suporte/admin/chamados" className={link}><ListChecks size={16} /><span className="hidden sm:inline">Todos os Chamados</span></NavLink>
             <NavLink to="/suporte/admin/relatorio" className={link}><BarChart3 size={16} /><span className="hidden sm:inline">Relatório B.I.</span></NavLink>
-            <button onClick={async () => { await supabase.auth.signOut(); setState("login"); }} className="ml-2 text-white/60 hover:text-white" aria-label="Sair"><LogOut size={18} /></button>
+            {email && <span className="hidden lg:inline ml-2 max-w-48 truncate rounded-full border border-white/15 px-3 py-1 text-xs text-white/70" title={email}>{email}</span>}
+            <button onClick={async () => { await supabase.auth.signOut(); setState("login"); }} className="ml-2 inline-flex items-center gap-1 text-sm text-white/60 hover:text-white" aria-label="Sair"><LogOut size={18} /><span className="hidden md:inline">Sair</span></button>
           </nav>
         </div>
       </header>
