@@ -3,6 +3,7 @@ import { NavLink, Navigate, Outlet, useLocation } from "react-router-dom";
 import { supabase } from "@/integrations/supabase/client";
 import { BarChart3, LayoutDashboard, ListChecks, LogOut } from "lucide-react";
 import { SupportThemeToggle } from "./SupportAppearance";
+import darkaLogo from "@/assets/tintas-darka-logo.png.asset.json";
 import ChamadoNotifier from "./ChamadoNotifier";
 
 /** Painel de Atendimento: só Administrador/Técnico Visionyx (o banco também bloqueia). */
@@ -10,6 +11,7 @@ const AtendimentoShell = () => {
   const loc = useLocation();
   const [state, setState] = useState<"loading" | "login" | "cliente" | "ok">("loading");
   const [email, setEmail] = useState("");
+  const [darka, setDarka] = useState(false);
 
   const check = useCallback(async () => {
     const { data } = await supabase.auth.getUser();
@@ -17,6 +19,10 @@ const AtendimentoShell = () => {
     setEmail(data.user.email ?? "");
     await supabase.rpc("link_suporte_account");
     const { data: staff } = await supabase.rpc("suporte_is_staff");
+    if (staff) {
+      const { data: cls } = await supabase.from("suporte_clientes").select("nome");
+      setDarka(!!cls?.length && cls.every((c) => /darka/i.test(c.nome ?? "")));
+    }
     setState(staff ? "ok" : "cliente");
   }, []);
 
@@ -33,10 +39,14 @@ const AtendimentoShell = () => {
     `flex items-center gap-2 rounded-lg px-3 py-2 text-sm font-semibold ${isActive ? "bg-[#1A56DB] text-white" : "text-white/70 hover:text-white"}`;
 
   return (
-    <div className="min-h-screen bg-[#0A1F3F] text-white overflow-x-hidden break-words">
+    <div data-brand={darka ? "darka" : undefined} className="min-h-screen bg-[#0A1F3F] text-white overflow-x-hidden break-words">
       <header className="border-b border-white/10">
         <div className="container mx-auto px-4 h-16 flex items-center justify-between gap-3">
-          <span className="font-extrabold uppercase">Visionyx <span className="text-[#38BDF8] text-xs tracking-[0.3em]">Atendimento</span></span>
+          {darka ? (
+            <span className="flex items-center gap-2 font-extrabold uppercase"><img src={darkaLogo.url} alt="Tintas Darka" className="h-11 w-11 rounded-md bg-white object-contain p-0.5" /><span className="text-sm">Tintas Darka <span className="block text-[10px] tracking-[0.3em] text-[#38BDF8]">Atendimento</span></span></span>
+          ) : (
+            <span className="font-extrabold uppercase">Visionyx <span className="text-[#38BDF8] text-xs tracking-[0.3em]">Atendimento</span></span>
+          )}
           <nav className="flex items-center gap-1">
             <SupportThemeToggle />
             <NavLink end to="/suporte/admin" className={link}><LayoutDashboard size={16} /><span className="hidden sm:inline">Dashboard</span></NavLink>

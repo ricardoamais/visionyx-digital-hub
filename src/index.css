@@ -160,3 +160,31 @@
 .support-theme [class~="bg-[#38BDF8]"],
 .support-theme [class~="bg-[#25D366]"] .text-white { color: hsl(var(--primary-foreground)); }
 .support-theme select option { background-color: hsl(var(--card)); color: hsl(var(--foreground)); }
+
+/* Tintas Darka branding (client-scoped). */
+.support-theme [data-brand="darka"] {
+  --background: 150 45% 10%;
+  --card: 150 40% 15%;
+  --popover: 150 40% 15%;
+  --primary: 145 63% 32%;
+  --accent: 150 35% 22%;
+  --muted: 150 30% 18%;
+  --border: 150 25% 28%;
+  --input: 150 25% 28%;
+  --ring: 48 96% 55%;
+  --support-link: 48 96% 58%;
+}
+.support-theme[data-support-theme="light"] [data-brand="darka"] {
+  --background: 140 30% 96%;
+  --card: 0 0% 100%;
+  --accent: 140 40% 90%;
+  --muted: 140 25% 92%;
+  --border: 140 20% 80%;
+  --input: 140 20% 80%;
+  --support-link: 150 70% 24%;
+}
+.support-theme [data-brand="darka"] [class~="bg-[#1A56DB]"] { background-color: hsl(var(--primary)); }
+.support-theme [data-brand="darka"]::before {
+  content: ""; position: fixed; top: 0; left: 0; right: 0; height: 4px; z-index: 60;
+  background: linear-gradient(90deg, hsl(0 80% 52%), hsl(45 95% 55%), hsl(130 60% 42%), hsl(205 85% 50%));
+}

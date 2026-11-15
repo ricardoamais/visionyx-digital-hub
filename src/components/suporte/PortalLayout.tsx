@@ -3,6 +3,7 @@ import { NavLink, Outlet, useNavigate } from "react-router-dom";
 import { Home, Ticket, PlusCircle, User, LogOut, MessageCircle } from "lucide-react";
 import { supabase } from "@/integrations/supabase/client";
 import { SupportThemeToggle } from "./SupportAppearance";
+import darkaLogo from "@/assets/tintas-darka-logo.png.asset.json";
 import ChamadoNotifier from "./ChamadoNotifier";
 
 export interface PortalUser {
@@ -88,10 +89,14 @@ const PortalLayout = () => {
 
   return (
     <Ctx.Provider value={{ user, reload }}>
-      <div className="min-h-screen bg-[#0A1F3F] text-white md:flex overflow-x-hidden break-words">
+      <div data-brand={/darka/i.test(user.cliente_nome) ? "darka" : undefined} className="min-h-screen bg-[#0A1F3F] text-white md:flex overflow-x-hidden break-words">
         <aside className="md:w-64 md:min-h-screen border-b md:border-b-0 md:border-r border-white/10 bg-[#0F2D5C]">
           <div className="px-5 h-16 flex items-center justify-between gap-2 font-extrabold uppercase">
-            <span>Visionyx <span className="ml-2 text-[#38BDF8] text-xs tracking-[0.3em]">Suporte</span></span>
+            {/darka/i.test(user.cliente_nome) ? (
+              <span className="flex items-center gap-2"><img src={darkaLogo.url} alt="Tintas Darka" className="h-11 w-11 rounded-md bg-white object-contain p-0.5" /><span className="text-sm">Tintas Darka <span className="block text-[10px] tracking-[0.3em] text-[#38BDF8]">Suporte</span></span></span>
+            ) : (
+              <span>Visionyx <span className="ml-2 text-[#38BDF8] text-xs tracking-[0.3em]">Suporte</span></span>
+            )}
             <SupportThemeToggle />
           </div>
           <nav className="hidden md:flex flex-col gap-1 px-3 pb-6">
