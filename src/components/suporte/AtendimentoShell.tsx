@@ -3,7 +3,6 @@ import { NavLink, Navigate, Outlet, useLocation } from "react-router-dom";
 import { supabase } from "@/integrations/supabase/client";
 import { BarChart3, LayoutDashboard, ListChecks, LogOut } from "lucide-react";
 import { SupportThemeToggle } from "./SupportAppearance";
-import darkaLogo from "@/assets/tintas-darka-logo.png.asset.json";
 import ChamadoNotifier from "./ChamadoNotifier";
 
 /** Painel de Atendimento: só Administrador/Técnico Visionyx (o banco também bloqueia). */
@@ -43,7 +42,7 @@ const AtendimentoShell = () => {
       <header className="border-b border-white/10">
         <div className="container mx-auto px-4 h-16 flex items-center justify-between gap-3">
           {darka ? (
-            <span className="flex items-center gap-2 font-extrabold uppercase"><img src={darkaLogo.url} alt="Tintas Darka" className="h-11 w-11 rounded-md bg-white object-contain p-0.5" /><span className="text-sm">Tintas Darka <span className="block text-[10px] tracking-[0.3em] text-[#38BDF8]">Atendimento</span></span></span>
+            <span className="flex items-center gap-2 font-extrabold uppercase"><img src="/tintas-darka-logo.png" alt="Tintas Darka" className="h-14 w-14 rounded-xl bg-white object-contain p-1 shadow-md" /><span className="text-[10px] tracking-[0.3em] text-[#38BDF8]">Atendimento</span></span>
           ) : (
             <span className="font-extrabold uppercase">Visionyx <span className="text-[#38BDF8] text-xs tracking-[0.3em]">Atendimento</span></span>
           )}
